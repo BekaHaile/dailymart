@@ -4,8 +4,6 @@ require_once("includes/session.php");
 require_once("includes/functions.php");
 require_once("includes/validation_functions.php");
 $c_cart = null;
-$brand = find_brand_by_brand_id($_GET["id"]);
-$cat = find_product_group_by_pro_id($_GET["id"]);
 if (isset($_SESSION["customer_id"])) {
     $c_cart = find_all_cart_by_customer($_SESSION["customer_id"]);
 }
@@ -17,7 +15,7 @@ if(isset($_GET["type"])){
         $header = find_product_group_by_category_id($_GET["id"]);
     }
     else {
-        $items = find_item_by_product_id($_GET["id"]);
+        $header = find_product_group_by_product_id($_GET["id"]);
     }
 }
 ?>
@@ -114,7 +112,7 @@ require_once("sidenav.php");
 
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="dv_scroll" style="margin-bottom: 50px;">
-        <?php if($_GET['type'] != 'sub-catagory') { 
+        <?php
             while ($row1 = sqlsrv_fetch_array($header, SQLSRV_FETCH_ASSOC)) {
                 $items = find_item_by_product_group_id($row1["product_Id"]);
             if (sqlsrv_num_rows($items) > 0) {
@@ -140,12 +138,12 @@ require_once("sidenav.php");
                                             <div class="product-thumbnail-side">
                                                 <a class="wishlist-btn" href="#"></a>
                                                 <a class="product-thumbnail d-block"
-                                                   href="single-product.php?id=<?php echo $row["id"]; ?>&type=allProduct">
+                                                   href="single-product.php?id=<?php echo $row["id"]; ?>&type=allProduct&mainType=<?php echo $_GET["type"]; ?>&mainId=<?php echo $_GET["id"]; ?>">
                                                     <img style="border-radius: 0.75rem;"
                                                          src="<?php echo "admin/" . $row["image"]; ?>" alt=""></a></div>
                                             <div class="product-description">
                                                 <a class="product-title d-block"
-                                                   href="single-product.php?id=<?php echo $row["id"]; ?>&type=allProduct">
+                                                   href="single-product.php?id=<?php echo $row["id"]; ?>&type=allProduct&mainType=<?php echo $_GET["type"]; ?>&mainId=<?php echo $_GET["id"]; ?>">
                                                     <?php echo $row["title_en"]; ?>
                                                 </a>
 
@@ -177,10 +175,17 @@ require_once("sidenav.php");
                                                         <div class="col-md-6"
                                                              style="width: 30%;padding-left: 0;padding-right: 0">
                                                             <div class="col-md-10 text-center">
+                                                            <?php if(isset($_SESSION["customer_id"])) { ?>
                                                                 <input type="button" name="submit" id="submit"
                                                                        style="padding: 0.375rem 0.5rem;"
                                                                        onclick="addBtn(<?php echo $row["item_id"]; ?>)"
                                                                        class="btn btn-success" value="Add"/>
+                                                                       <?php }
+                                                            else { ?>
+
+                                                            <a href="#" data-toggle="modal" data-target="#myModal1"><input style="padding: 0.375rem 0.5rem;" type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
+                                                                value="Add"/></a>
+                                                            <?php } ?>
 
                                                             </div>
                                                         </div>
@@ -201,103 +206,7 @@ require_once("sidenav.php");
 
             <?php
             }
-        } } else {?>
-        <div class="top-products-area py-3">
-        <div class="container">
-            <div class="section-heading d-flex align-items-center justify-content-between">
-                <div style="width: 28%;" class="section-heading d-flex align-items-center justify-content-between">
-                    <!--                <h6 class="ml-1">All Products</h6>-->
-                    <!-- Layout Options-->
-                    <div class="layout-options">
-                        <a class="active" href=""><i
-                                class="lni lni-radio-button"></i></a>
-                        <a href=""><i class="lni lni-grid-alt"></i></a>
-                    </div>
-                </div>
-                <div style="width: 71%;text-align: right;">
-                    <h6 class="ml-1" style="font-size: 12px;">
-                    <a style="font-style: italic;" href="home.php">Home</a> /
-                    <a style="font-style: italic;" href="catagory.php?id=<?php echo $cat["category_id"]; ?>"><?php echo find_category_by_cat_id($cat["category_id"])["title_en"]; ?></a>
-                    /
-                    <a style="font-style: italic;" href="sub-catagory.php?id=<?php echo $_GET["id"]; ?>"><?php echo $cat["title_en"]; ?></a>
-                    / <?php echo $_GET["path"]; ?>
-                    </h6>
-                </div>
-            </div>
-             <div class="row g-3">
-                <?php
-                while ($row = sqlsrv_fetch_array($items, SQLSRV_FETCH_ASSOC)) {
-                    if ($row["image"] != null || $row["image"] != "") {
-                        $price = find_price_by_item_id($row["item_id"]);
-                        $discount_per = find_discount_by_item_id($row["item_id"]);
-                        ?>
-
-                        <div class="col-12 col-md-6">
-                            <div class="card weekly-product-card">
-                                <div class="card-body d-flex align-items-center" style="padding: 0.2rem">
-                                    <div class="product-thumbnail-side">
-                                        <a class="wishlist-btn" href="#"></a>
-                                        <a class="product-thumbnail d-block"
-                                           href="single-product.php?id=<?php echo $row["id"]; ?>">
-                                            <img style="border-radius: 0.75rem;"
-                                                 src="<?php echo "admin/" . $row["image"]; ?>" alt=""></a></div>
-                                    <div class="product-description">
-                                        <a class="product-title d-block"
-                                           href="single-product.php?id=<?php echo $row["id"]; ?>">
-                                            <?php echo $row["title_en"]; ?>
-                                        </a>
-
-                                        <p class="sale-price text-center" style="font-size: 12px;">
-                                            <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
-                                            <span style="font-size: 12px;">
-                                               <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
-                                            </span><span
-                                                style="font-size: 9px;text-decoration: none;text-transform: lowercase;color: #000"><?php echo "(" . trim($price["uom"]) . ")"; ?></span>
-                                        </p>
-
-                                        <form class="cart-form row" action="#" method="post">
-                                            <div class="row col-md-12 mb-3">
-
-                                                <div class="col-md-5 order-plus-minus d-flex align-items-center"
-                                                     style="display:inline-flex !important;width: 70%">
-
-                                                    <div class="quantity-button-handler">-</div>
-
-                                                    <input class="form-control cart-quantity-input"
-                                                           id="qty<?php echo $row["item_id"]; ?>" type="text"
-                                                           step="1"
-                                                           name="quantity" value="1">
-
-                                                    <div class="quantity-button-handler">+</div>
-
-                                                </div>
-
-                                                <div class="col-md-6"
-                                                     style="width: 30%;padding-left: 0;padding-right: 0">
-                                                    <div class="col-md-10 text-center">
-                                                        <input type="button" name="submit" id="submit"
-                                                               style="padding: 0.375rem 0.5rem;"
-                                                               onclick="addBtn(<?php echo $row["item_id"]; ?>)"
-                                                               class="btn btn-danger" value="Add"/>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php
-                    }
-                } ?>
-
-            </div>
-            </div>
-        <?php } ?>
+        } ?>
 
     </div>
 
@@ -308,6 +217,7 @@ require_once("sidenav.php");
 
 </div>
 
+<?php require_once("register-modal.php"); ?>
 <?php require_once("footer.php"); ?>
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>

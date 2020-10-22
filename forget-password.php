@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
                 $result = CurlHelper::perform_http_request($action, $url, $parameters);
                 //echo print_r($result);
 
-                redirect_to("otp-confirm_forget.php?mobile=+251" . $_POST["mobile"] . "&message=" . $message);
+                redirect_to("otp-confirm_forget.php?mobile=" . $_POST["mobile"] . "&message=" . $message);
             } else {
                 $_SESSION["art_error"] = "Please try again.";
             }
@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                         <div class="form-group text-left mb-4"><span>Mobile Number</span>
                             <div class="otp-form mt-3 " >
                                 <div class="mb-6 d-flex">
-                                    <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;">
+                                    <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;" disabled>
                                         <option value="">+251</option>
                                     </select>
                                     <input class="form-control pl-0" name="mobile" id="mobile" type="text"

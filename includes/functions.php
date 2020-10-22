@@ -2750,30 +2750,21 @@ function find_all_time_range_and_price_by_shop_id($shop, $landmark, $time)
     return $result_set;
 }
 
-function find_product_group_by_brand_id($id)
+function find_product_group_by_product_id($id)
 {
     global $connection;
 
     $query = "SELECT * ";
-    $query .= "FROM [dbo].[product_group] WHERE brand_id = '{$id}'";
-
+    $query .= "FROM [dbo].[product_group] WHERE product_id = '{$id}'";
     $result_set = sqlsrv_query($connection, $query);
     confirm_query($result_set);
 
-    return $result_set;
-}
-
-function find_item_by_product_id($id)
-{
-    global $connection;
-
-    $query = "SELECT * ";
-    $query .= "FROM [dbo].[item] WHERE product_id = '{$id}'";
-
-    $result_set = sqlsrv_query($connection, $query);
-    confirm_query($result_set);
+    if ($result_set === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
 
     return $result_set;
+    
 }
 
 ?>

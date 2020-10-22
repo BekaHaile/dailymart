@@ -141,11 +141,17 @@ require_once("sidenav.php");
                                                 <div class="col-md-6"
                                                      style="width: 30%;padding-left: 0;padding-right: 0">
                                                     <div class="col-md-10 text-center">
-                                                        <input type="button" name="submit" id="submit"
-                                                               style="padding: 0.375rem 0.5rem;"
-                                                               onclick="addBtn(<?php echo $row["item_id"]; ?>)"
-                                                               class="btn btn-danger" value="Add"/>
+                                                        <?php if(isset($_SESSION["customer_id"])) { ?>
+                                                            <input type="button" name="submit" id="submit"
+                                                                style="padding: 0.375rem 0.5rem;"
+                                                                onclick="addBtn(<?php echo $row["item_id"]; ?>)"
+                                                                class="btn btn-danger" value="Add"/>
+                                                            <?php }
+                                                        else { ?>
 
+                                                        <a href="#" data-toggle="modal" data-target="#myModal1"><input style="padding: 0.375rem 0.5rem;" type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
+                                                            value="Add"/></a>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
 
@@ -199,6 +205,8 @@ require_once("sidenav.php");
         </div>
     </div>
 </div>
+
+<?php require_once("register-modal.php"); ?>
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>

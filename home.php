@@ -125,7 +125,7 @@ require_once("sidenav.php");
             </div>
 
             <a class="btn btn-danger btn-sm" style="margin-top: 1.5rem!important;margin-bottom: -1.0rem;"
-               href="allProduct.php?type=all">Browse All Products</a>
+               href="allProduct.php?type=all&id=0">Browse All Products</a>
         </div>
     </div>
 

@@ -98,7 +98,9 @@ if (isset($_SESSION["customer_id"])) {
 <div class="header-area" id="headerArea">
     <div class="container h-100 d-flex align-items-center justify-content-between">
         <!-- Back Button-->
-        <div class="back-button"><a <?php if(isset($_GET['type'])){ ?> href="<?php echo $_GET['type'] ?>.php" <?php } 
+        <div class="back-button"><a <?php if(isset($_GET['type'])){ if($_GET['type'] == 'home'){ ?> href=home.php <?php } 
+		else if($_GET['type'] == 'topItem'){ ?> href=topItem.php <?php } 
+		else ?> href="<?php echo $_GET['type'] ?>.php?&type=<?php echo $_GET["mainType"]; ?>&id=<?php echo $_GET["mainId"]; ?>" <?php } 
 		else { ?> href="product-list.php?id=<?php echo $item["brand_id"]; ?>" <?php } ?>><i
                     class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
@@ -176,8 +178,15 @@ require_once("sidenav.php");
 
 
                     <div class="col-md-10 text-center">
+                        <?php if(isset($_SESSION["customer_id"])) { ?>
                         <input type="submit" name="submit" id="submit" style="width:75%" class="btn btn-danger ml-3"
                                value="Add To Cart"/>
+                    <?php }
+                        else { ?>
+
+                        <a href="#" data-toggle="modal" data-target="#myModal1"><input type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
+                               value="Add To Cart"/></a>
+                        <?php } ?>
 
                     </div>
 
@@ -229,6 +238,8 @@ require_once("sidenav.php");
         </div>
     </div>
 </div>
+<?php require_once("register-modal.php"); ?>
+
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>
