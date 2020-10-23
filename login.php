@@ -21,6 +21,14 @@ if (isset($_POST['submit'])) {
         if ($found_admin) {
             // Success
             // Mark user as logged in
+            if(!isset($_COOKIE['username'])){
+                setcookie("username", $_POST["username"]);
+                setcookie("password", $password);
+            } else if($_COOKIE['username'] != $_POST["username"]){
+                setcookie("username", $_POST["username"]);
+                setcookie("password", $password);
+            }
+
             $_SESSION["customer_id"] = $found_admin["id"];
             $_SESSION["username"] = $found_admin["mobile_number"];
             $_SESSION["role"] = $found_admin["role"];
@@ -95,7 +103,7 @@ if(customer_logged_in()){
                                     <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;" disabled>
                                         <option value="">+251</option>
                                     </select>
-                                    <input class="form-control pl-0" name="username" id="username" type="text" value="<?php echo htmlentities(substr($username,3)); ?>"
+                                    <input class="form-control pl-0" name="username" id="username" type="text" value="<?php if(isset($_COOKIE['username'])) { echo $_COOKIE['username'];} else echo htmlentities(substr($username,3)); ?>"
                                     required placeholder="9 1100 0000">
                                 </div>
                             </div>
@@ -105,7 +113,7 @@ if(customer_logged_in()){
                         <div class="form-group text-left mb-4"><span>Password</span>
                             <label for="password"><i class="lni lni-lock"></i></label>
                             <input class="form-control" name="password" id="password" type="password"
-                                   placeholder="********************">
+                                   placeholder="********************" value="<?php if(isset($_COOKIE['password'])) { echo $_COOKIE['password'];}?>">
                         </div>
 						
                         <input class="btn btn-success btn-lg w-100" name="submit" type="submit" value="Log In"/>

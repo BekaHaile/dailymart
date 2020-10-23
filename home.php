@@ -10,8 +10,8 @@ $top = find_top_six_item();
 $c_cart = null;
 if (isset($_SESSION["customer_id"])) {
     $c_cart = find_all_cart_by_customer($_SESSION["customer_id"]);
-
 }
+// clearstatcache(true);
 
 ?>
 <!DOCTYPE html>
