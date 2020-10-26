@@ -14,7 +14,7 @@ $output = "<table class='table' border = '1'>
                             <th>Product Group Title</th>
                             <th>Brand Title</th>
                             <th>Item Title</th>
-                            <th>Created By</th>
+                            <th>Image</th>
                         </tr>
                         </thead>
                         <tbody>";
@@ -27,14 +27,18 @@ while ($row = sqlsrv_fetch_array($item, SQLSRV_FETCH_ASSOC)) {
     $category = find_category_by_cat_id($row["category_id"]);
     $product_group = find_product_group_by_pro_id($row["product_id"]);
     $brand = find_brand_by_brand_id($row["brand_id"]);
-
+    if(file_exists($row['image'])) { 
+        $image = 'yes';
+     } else { 
+        $image = 'no';
+      }
     $output.= "<tr>
                     <td>".$k++."</td>
-                    <td>".$category["title_en"] . "/ " . $category["title_am"]."</td>
-                    <td>".$product_group["title_en"] . "/ " . $product_group["title_am"]."</td>
-                    <td>".$brand["title_en"] . "/ " . $brand["title_am"]."</td>
+                    <td>".$category["title_en"]."</td>
+                    <td>".$product_group["title_en"]."</td>
+                    <td>".$brand["title_en"]."</td>
                     <td>".$row["title_en"]."</td>
-                    <td>".find_all_admin_by_id($row["created_by"])["user_name"]."</td>
+                    <td>".$image."</td>
                 </tr>";
 }
 

@@ -40,7 +40,8 @@ if (isset($_POST['submit'])) {
             $_SESSION["art_error"] = "Please Fill All Fields.";
         }
     } else {
-        $_SESSION["art_error"] = 'Please register this Mobile Number.';
+        $_SESSION["art_error"] = 'This Mobile Number is not regsitered so please sign up first.';
+        redirect_to('register.php');
     }
 }
 ?>
@@ -102,6 +103,8 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </div>
+
+<?php require_once("forget-modal.php"); ?>
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>

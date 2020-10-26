@@ -19,13 +19,14 @@ if (isset($_POST['submit'])) {
     $mname = trim($_POST["mname"]);
     $gender = trim($_POST["gender"]);
     $email = trim($_POST["email"]);
-    $mobile = trim(str_replace(" ", "", "+251".$_POST["mobile"]));
+    $mobile = trim(str_replace(" ", "", $_POST["mobile"]));
     //$date_of_birth = trim($_POST["date_of_birth"]);
     $password = $_POST["password"];
     $message = rand(1000, 9999);
 
     if ($_POST["password"] == $_POST["confirm_password"]) {
         $check = check_account(str_replace(" ", "", "+251".$_POST["mobile"]));
+        $mobile = trim(str_replace(" ", "", "+251".$_POST["mobile"]));
         if (!$check) {
             $required_fields = array("fname", "mname", "mobile", "password");
 
@@ -156,8 +157,7 @@ if (isset($_POST['submit'])) {
                             <label for="gender"><i class="lni lni-users"></i></label>
 
                             <div class="col-lg-4">
-                                <select class="form-control" name="gender" data-plugin-selectTwo
-                                        name="gender" id="gender">
+                                <select class="form-control" name="gender" data-plugin-selectTwo id="gender">
 
                                     <?php if ($gender == null) echo '<option disabled selected value>Select</option>'; ?>
                                     <?php if ($gender == 'Male') echo '<option value="Male" selected>Male</option>';

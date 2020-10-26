@@ -49,9 +49,6 @@ if (isset($_POST["submit"])) {
                          <h4 style="position: fixed;bottom: 58px;width: 100%;height: 30px;background-color: #00b894;z-index: 1000;color: #ffffff;text-align: center;font-size: 12px;line-height: 30px;font-weight: 700;margin-bottom: 0"><i class="icon fa fa-check"></i>Error!</h4>
                   </div>';
         }
-//        usleep(10000);
-//
-//        redirect_to("product.php?id=" . $item["brand_id"]);
 
 
     } else {
@@ -173,6 +170,9 @@ require_once("sidenav.php");
                             <div class="quantity-button-handler">+</div>
 
                         </div>
+                        
+                        <span style="text-align: center;"><?php $check = sqlsrv_num_rows(check_inventory_total_balance($item["item_id"], "1"));
+                                                            if($check == 0 || !isset($price["price"])) echo 'Out of stock'; ?></span>
 
                     </div>
 
@@ -180,7 +180,7 @@ require_once("sidenav.php");
                     <div class="col-md-10 text-center">
                         <?php if(isset($_SESSION["customer_id"])) { ?>
                         <input type="submit" name="submit" id="submit" style="width:75%" class="btn btn-danger ml-3"
-                               value="Add To Cart"/>
+                               value="Add To Cart" <?php if($check == 0|| !isset($price["price"])) { ?> disabled <?php } ?>/>
                     <?php }
                         else { ?>
 

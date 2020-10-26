@@ -73,10 +73,10 @@ include_once("header.php")
                             ?>
                             <tr class="">
                                 <td><?php echo $k++; ?></td>
-                                <td><?php echo $category["title_en"] . "/ " . $category["title_am"]; ?></td>
-                                <td><?php echo $product_group["title_en"] . "/ " . $product_group["title_am"]; ?></td>
-                                <td><?php echo $brand["title_en"] . "/ " . $brand["title_am"]; ?></td>
-                                <td><?php echo $row["title_en"] . "/ " . $row["title_am"]; ?></td>
+                                <td><?php echo $category["title_en"];?></td>
+                                <td><?php echo $product_group["title_en"]; ?></td>
+                                <td><?php echo $brand["title_en"]; ?></td>
+                                <td><?php echo $row["title_en"]; ?></td>
                                 <td>
                                     <img src="<?php echo $row["image"]; ?>"
                                          style="height: 50px;width: auto">

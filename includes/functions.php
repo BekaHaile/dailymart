@@ -2767,4 +2767,29 @@ function find_product_group_by_product_id($id)
     
 }
 
+function check_inventory_total_balance($item, $quantity)
+{
+    global $connection;
+
+    $item = sqlsrv_escape(trim($item));
+    $quantity = sqlsrv_escape(trim($quantity));
+
+    $query = "SELECT * ";
+    $query .= "FROM [dbo].[inventory_by_location] ";
+    $query .= "WHERE item_no ='{$item}' and convert(decimal,quantity) >= convert(decimal,{$quantity});";
+    $params = array();
+    $options = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
+    $result_set = sqlsrv_query($connection, $query, $params, $options);
+
+    confirm_query($result_set);
+
+    if ($result_set === false) {
+        return null;
+    } else {
+//        $_SESSION["art_error"] = $query;
+        return $result_set;
+    }
+
+}
+
 ?>

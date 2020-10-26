@@ -155,6 +155,9 @@ require_once("sidenav.php");
                                                         style="font-size: 9px;text-decoration: none;text-transform: lowercase;color: #000"><?php echo "(" . trim($price["uom"]) . ")"; ?></span>
                                                 </p>
 
+                                                <span><?php $check = sqlsrv_num_rows(check_inventory_total_balance($row["item_id"], "1"));
+                                                            if($check == 0 || !isset($price["price"])) echo 'Out of stock'; ?></span>
+
                                                 <form class="cart-form row" action="#" method="post">
                                                     <div class="row col-md-12 mb-3">
 
@@ -179,7 +182,7 @@ require_once("sidenav.php");
                                                                 <input type="button" name="submit" id="submit"
                                                                        style="padding: 0.375rem 0.5rem;"
                                                                        onclick="addBtn(<?php echo $row["item_id"]; ?>)"
-                                                                       class="btn btn-success" value="Add"/>
+                                                                       class="btn btn-success" value="Add" <?php if($check == 0 || !isset($price["price"])) { ?> disabled <?php } ?>/>
                                                                        <?php }
                                                             else { ?>
 
