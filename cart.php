@@ -37,6 +37,21 @@ $total = 0;
     <link rel="stylesheet" href="style.css">
     <!-- Web App Manifest-->
     <link rel="manifest" href="manifest.json">
+
+    <style> 
+        .blink {
+        color: #008000; 
+        margin-top: -10px;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 30em;
+        animation: type 4s steps(60, end) infinite; 
+        }
+
+        @keyframes type{ 
+        from { width: 0; } 
+        } 
+    </style> 
 </head>
 <!--<body>-->
 <!-- Preloader-->
@@ -75,13 +90,13 @@ require_once("sidenav.php");
 
                 <label for="cardNumber"> <span style="display: none">Waiting</span></label>
 				
+                <div class='blink'> Select your nearby Shop </div>
 				<div class="input-append date form_datetime" data-date="2013-02-21T15:25:00Z" id="DTime"
                              style="display: flex;">
-
                             <select class="form-control" id="locations" name="locations" 
                                     onchange="updateCart()"
                                     style="border-radius: 0 0 15px 15px;;border: 3px solid lightgray;">
-                                <option value="">Select your nearby Shop</option>
+                                <option value="" disabled selected hidden>Location</option>
                                 <?php if ($c_cart != null) {
 								while ($row = sqlsrv_fetch_array($location, SQLSRV_FETCH_ASSOC)) {
 									?>

@@ -99,45 +99,83 @@ $customer_id = $_GET["customer_id"];
             <div id="printMe">
                 <div class="row">
                     <div class="col-sm-4">
+                       <h3>Daily Mini Mart PLC</h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <h2>Purchase Order</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                       Address 
+                    </div>
+                    <div class="col-sm-4">
+                        DATE: <?php $string=$row["date_time"]->format('Y-m-d'); echo $string; ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Addis Ababa City, Yeka Sub City, Woreda 13
+                    </div>
+                    <div class="col-sm-4">
+                        #Order No: <?php $string=$row["order_id"]; echo $string; ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <?php $string=$row["delivery_method"]; echo $string; ?>
+                    </div>
+                    <div class="col-sm-4">
+                    Payment Method: <?php $string=$row["payment_method"]; echo $string; ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Telephone No.: +251978155119
+                    </div>
+                    <div class="col-sm-4">
+                        Status: <?php if($row['status'] == 0) {echo 'Open';} else echo 'Delivered'?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Shop Location: <?php echo $location['title_en']?>
+                    </div>
+                </div>
+
+                <!-- customer Detail -->
+                <div class="row">
+                    <div class="col-sm-4">
+                       <h3>Customer</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
                         Name: <?php echo $row['name']?>
                     </div>
+                </div>
+                <?php if(isset($landmark)){ ?>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            Delivery Address: <?php echo $landmark['title_en']?>
+                        </div>
+                    </div>
+                <?php } ?>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Addis Ababa
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-4">
                         Phone No: <?php echo $row['mobile_no']?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        Payment Method: <?php echo $row['payment_method']?>
+                        Delivery Date: <?php echo $row['delivery_date']?> <?php echo $row['time_range']?>
                     </div>
-                    <div class="col-sm-4">
-                        Delivery Type: <?php echo $row['delivery_method']?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        Order Date: <?php $string=$row["date_time"]->format('Y-m-d'); echo $string; ?>
-                    </div>
-                    <div class="col-sm-4">
-                        Delivery Date: <?php echo $row['delivery_date']?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        Delivery Time: <?php echo $row['time_range']?>
-                    </div>
-                    <div class="col-sm-4">
-                        Shop Location: <?php echo $location['title_en']?>
-                    </div>
-                </div>
-				<div class="row">
-                    <div class="col-sm-4">
-						<?php if($row['delivery_method'] != "Pickup"){ ?>
-							Customer Location: <?php echo $landMark['title_en']?>
-						<?php } ?>
-                    </div>
-                    <div class="col-sm-4">
-                        Delivery Status: <?php if($row['status'] == 0) {echo 'Open';} else echo 'Delivered'?>
-                    </div>
+                    
                 </div>
 
                 <?php } ?>
@@ -174,16 +212,17 @@ $customer_id = $_GET["customer_id"];
                         <td style="visibility: hidden;"></td>
                         <td style="visibility: hidden;"></td>
                         <td style="visibility: hidden;"></td>
-                        <td class='alnright'>Total Order Price: <?php echo $_GET["total_price"]."<br>";?></td>
+                        <td class='alnright'>Total: <?php echo $_GET["total_price"]."<br>";?></td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="row">
-                        <div class="col-sm-8" >
+                        <div class="col-sm-5" >
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Comments or Special Instructions</label>
+                                <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" disabled></textarea>
+                            </div>
                         </div>
-                        <!-- <div class="col-sm-4 alnright space" >
-                            Total Order Price: <?php echo number_format($_GET["total_price"],2)."<br>";?>
-                        </div> -->
                     </div>
     </div>
                     <form class="form-horizontal form-bordered" action="#" method="post" enctype='multipart/form-data'>

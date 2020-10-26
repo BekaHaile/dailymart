@@ -187,8 +187,8 @@ if (isset($_POST['submit'])) {
                              
                             <div class="otp-form mt-3 " >
                                 <div class="mb-6 d-flex">
-                                    <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;" disabled>
-                                        <option value="">+251</option>
+                                    <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;">
+                                        <option value="+251" label="+251 Ethiopia"></option>
                                     </select>
                                     <input class="form-control pl-0" name="mobile" id="mobile" type="text" value="<?php echo htmlentities($mobile); ?>"
                                     required placeholder="9 1100 0000">

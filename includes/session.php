@@ -22,7 +22,7 @@ function art_message()
     if (isset($_SESSION["art_message"])) {
 
         $output = "<div class=\"alert alert-success\">";
-        $output .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>";
+        // $output .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>";
         $output .= "<strong>Success! </strong> ".$_SESSION["art_message"] ."</div>";
 
         // clear message after use
@@ -32,7 +32,7 @@ function art_message()
     }
     if (isset($_SESSION["art_error"])) {
         $output = "<div class=\"alert alert-danger\">";
-        $output .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>";
+        // $output .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>";
         $output .= "<strong>Error! </strong> ".$_SESSION["art_error"] ."</div>";
 
         // clear message after use

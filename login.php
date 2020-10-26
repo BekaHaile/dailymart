@@ -21,7 +21,11 @@ if (isset($_POST['submit'])) {
         if ($found_admin) {
             // Success
             // Mark user as logged in
-            if(!isset($_COOKIE['username'])){
+            if(!isset($_POST["remember-me"])){
+                setcookie("username", '');
+                setcookie("password", '');
+            }
+            else if(!isset($_COOKIE['username'])){
                 setcookie("username", $_POST["username"]);
                 setcookie("password", $password);
             } else if($_COOKIE['username'] != $_POST["username"]){
@@ -100,8 +104,8 @@ if(customer_logged_in()){
                         <div class="form-group text-left mb-4"><span>Mobile Number</span>
                             <div class="otp-form mt-3 " >
                                 <div class="mb-6 d-flex">
-                                    <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;" disabled>
-                                        <option value="">+251</option>
+                                    <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;">
+                                        <option value="+251" label="+251 Ethiopia">hidden val</option>
                                     </select>
                                     <input class="form-control pl-0" name="username" id="username" type="text" value="<?php if(isset($_COOKIE['username'])) { echo $_COOKIE['username'];} else echo htmlentities(substr($username,3)); ?>"
                                     required placeholder="9 1100 0000">
@@ -117,10 +121,14 @@ if(customer_logged_in()){
                         </div>
 						
                         <input class="btn btn-success btn-lg w-100" name="submit" type="submit" value="Log In"/>
-                    </form>
+                    
                 </div>
                 <!-- Login Meta-->
-                <div class="login-meta-data"><a class="forgot-password d-block mt-3 mb-1" href="forget-password.php">Forgot
+                <div class="login-meta-data">
+                <input type='checkbox' name='remember-me' checked>
+                <label for="remember-me" style='color:white;'>Remember Me </label>
+                </form>
+                <a class="forgot-password d-block mt-3 mb-1" href="forget-password.php">Forgot
                         Password?</a>
 
                     <p class="mb-0">Didn't have an account?<a class="ml-1" href="register.php">Register Now</a></p>

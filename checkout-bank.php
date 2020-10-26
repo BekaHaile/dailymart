@@ -59,7 +59,8 @@ if (isset($_POST["submit"])) {
             $get_order_id = find_max_order_id();
             while ($row = sqlsrv_fetch_array($get_order_id, SQLSRV_FETCH_ASSOC)) {
                     $orders_id = $row['order_id'] + 1;
-
+            
+	        $time_range = substr($time_range,0,13);
             $stat = create_order($u_id, $name, $mobile, $code, $descr, $uom, $qty, $unit, $total, $shipping, $payment, $bank, $daily, $account, $trn_id,
                 $payer, $status, $deliver, $location, $deliver_date, $time_range, $landmark, $tin, $bill, $orders_id);
                 }
