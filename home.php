@@ -9,9 +9,11 @@ $slider = find_home_slider();
 $top = find_top_six_item();
 $c_cart = null;
 if (isset($_SESSION["customer_id"])) {
+	//clearstatcache(true);
     $c_cart = find_all_cart_by_customer($_SESSION["customer_id"]);
+    $user = find_all_customer_by_id($_SESSION["customer_id"]);
+
 }
-// clearstatcache(true);
 
 ?>
 <!DOCTYPE html>
@@ -78,18 +80,44 @@ require_once("sidenav.php");
 <div class="page-content-wrapper">
 
     <!-- Hero Slides-->
-    <div class="hero-slides owl-carousel">
-        <?php while ($row = sqlsrv_fetch_array($slider, SQLSRV_FETCH_ASSOC)) { ?>
-            <!-- Single Hero Slide-->
-            <div class="single-hero-slide" style="background-image: url('<?php echo "admin/" . $row["image"]; ?>')">
-                <div class="slide-content h-100 d-flex align-items-center">
-                    <div class="container">
+    <!-- <div class="hero-slides owl-carousel"> -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="color: black;"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+        <div class="carousel-inner">
+        <?php $k = 1;
+        while ($row = sqlsrv_fetch_array($slider, SQLSRV_FETCH_ASSOC)) { ?>
+            
+                    
+                    <div class="carousel-item <?php if($k==1){ ?> active <?php } ?>">
+                        
+                        <?php if (isset($_SESSION['customer_id'])) { ?>
+						<p style="color:black; position: absolute; top: 8px;left: 10px;"> Hello, <strong> <?php echo $user["first_name"] . " ".trim($user["middle_name"]);?>! </strong> </p>
+						<?php } ?>
+                        <img class="d-block w-100" src="<?php echo "admin/" . $row["image"]; ?>" alt="<?php echo $k; ?> slide">
                     </div>
-                </div>
-            </div>
 
-        <?php } ?>
+
+        <?php $k++; } ?>
+        </div>
     </div>
+
+    <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img class="d-block w-100" src="<?php echo "admin/" . $row["image"]; ?>" alt="First slide">
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="img/pickup.png" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="img/dashen.png" alt="Third slide">
+            </div>
+        </div>
+    </div> -->
 
 
     <!-- Product Catagories-->

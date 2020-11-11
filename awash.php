@@ -76,7 +76,7 @@ function Curl($url, $post_data, &$http_status, &$header = null)
     return $body;
 }
 
-$url = "http://197.156.78.113:8800/esbrestapi/postBill";
+$url = "http://197.156.96.28:8800/api/test";
 
 date_default_timezone_set('Africa/Addis_Ababa');
 $timestamp = date_format(date_create(), "Y-m-d H:i:s");

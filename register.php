@@ -19,14 +19,14 @@ if (isset($_POST['submit'])) {
     $mname = trim($_POST["mname"]);
     $gender = trim($_POST["gender"]);
     $email = trim($_POST["email"]);
-    $mobile = trim(str_replace(" ", "", $_POST["mobile"]));
+    $mobile = trim(str_replace(" ", "", "+251".$_POST["mobile"]));
     //$date_of_birth = trim($_POST["date_of_birth"]);
     $password = $_POST["password"];
     $message = rand(1000, 9999);
+	$message1 = "Dear Customer:- to complete your registration for Daily Mini Mart online shopping please use PIN code ".$message.".";
 
     if ($_POST["password"] == $_POST["confirm_password"]) {
         $check = check_account(str_replace(" ", "", "+251".$_POST["mobile"]));
-        $mobile = trim(str_replace(" ", "", "+251".$_POST["mobile"]));
         if (!$check) {
             $required_fields = array("fname", "mname", "mobile", "password");
 
@@ -39,11 +39,11 @@ if (isset($_POST['submit'])) {
                 if ($val) {
                     $action = "GET";
                     $url = "http://172.16.32.42/sms/main/send_sms_code";
-                    $parameters = array("phone_number" => "$mobile", "message" => "$message");
+                    $parameters = array("phone_number" => "$mobile", "message" => "$message1");
                     $result = CurlHelper::perform_http_request($action, $url, $parameters);
                     //echo print_r($result);
 
-                    redirect_to("otp-confirm.php?mobile=" .$_POST["mobile"] . "&message=" . $message);
+                    redirect_to("otp-confirm.php?mobile=" . $_POST["mobile"] . "&message=" . $message);
 
                 } else {
                     $_SESSION["art_error"] = "Please try again.";
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
                     // Success
                     $action = "GET";
                     $url = "http://172.16.32.42/sms/main/send_sms_code";
-                    $parameters = array("phone_number" => "$mobile", "message" => "$message");
+                    $parameters = array("phone_number" => "$mobile", "message" => "$message1");
                     $result = CurlHelper::perform_http_request($action, $url, $parameters);
                     //echo print_r($result);
 
@@ -152,12 +152,13 @@ if (isset($_POST['submit'])) {
                                    type="text" required placeholder="Second Name"
                                    value="<?php echo htmlentities($mname); ?>">
                         </div>
-
+<!--
                         <div class="form-group text-left mb-4"><span>Gender</span>
                             <label for="gender"><i class="lni lni-users"></i></label>
 
                             <div class="col-lg-4">
-                                <select class="form-control" name="gender" data-plugin-selectTwo id="gender">
+                                <select class="form-control" name="gender" data-plugin-selectTwo
+                                        name="gender" id="gender">
 
                                     <?php if ($gender == null) echo '<option disabled selected value>Select</option>'; ?>
                                     <?php if ($gender == 'Male') echo '<option value="Male" selected>Male</option>';
@@ -168,7 +169,7 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
 
-
+-->
                         <!-- <div class="form-group text-left mb-4"><span>Date of birth</span>
                             <label for="date_of_birth"><i class="lni lni-calendar"></i></label>
                             <input class="form-control" name="date_of_birth" required type="date" data-plugin-datepicker
@@ -183,26 +184,17 @@ if (isset($_POST['submit'])) {
                                    value="<?php echo htmlentities($email); ?>">
                         </div>
 
-                        <div class="form-group text-left mb-4"><span>Mobile Number</span> 
-                             
+                        <div class="form-group text-left mb-4"><span>Mobile Number</span>
                             <div class="otp-form mt-3 " >
                                 <div class="mb-6 d-flex">
                                     <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;">
-                                        <option value="+251" label="+251 Ethiopia"></option>
+                                        <option value="">+251</option>
                                     </select>
-                                    <input class="form-control pl-0" name="mobile" id="mobile" type="text" value="<?php echo htmlentities($mobile); ?>"
+                                    <input class="form-control pl-0" name="mobile" id="mobile" type="text" value="<?php echo htmlentities(substr($mobile,4)); ?>"
                                     required placeholder="9 1100 0000">
                                 </div>
                             </div>
-                        </div>   
-                            <!-- <label for="mobile"><i class="lni lni-phone"></i></label> -->
-                            <!-- <input class="form-control" name="mobile" id="mobile"
-                                   type="text" required placeholder="09 0000 0000"
-                                   value="<?php echo htmlentities($mobile); ?>"> -->
-                                   <!-- OTP Send Form
-                                    <div class="otp-form mt-5 mx-4">
-                                        
-                                    </div> -->
+                        </div>
 
                         <div class="form-group text-left mb-4"><span>Password</span>
                             <label for="password"><i class="lni lni-lock"></i></label>
@@ -232,12 +224,15 @@ if (isset($_POST['submit'])) {
 								   value="<?php echo htmlentities($city); ?>">
                         </div> -->
 
-                        <input class="btn btn-success btn-lg w-100" name="submit" type="submit" value="Sign Up"/>
+                        <input class="btn btn-success w-100" name="submit" type="submit" value="Register"
+						 style="background-color: #a6ce39;border-color: #a6ce39;"/>
                     </form>
                 </div>
                 <!-- Login Meta-->
-                <div class="login-meta-data">
-                    <p class="mt-3 mb-0">Already have an account?<a class="ml-1" href="login.php">Sign In</a></p>
+                <div class="login-meta-data" style="padding-right: 1.5rem !important;">
+                    <p class="mt-3 mb-0">Already have an account?
+					<a class="ml-1 btn btn-success" href="login.php" style="background-color: #a6ce39;border-color: #a6ce39;float:right">Sign In </a>
+					</p>
                 </div>
             </div>
         </div>

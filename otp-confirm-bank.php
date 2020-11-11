@@ -74,11 +74,11 @@ if (isset($_POST['submit'])) {
         <div class="row justify-content-center">
             <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
                 <div class="text-left px-4">
-                    <h5 class="mb-1 text-white">Verify Phone Number</h5>
+                    <h5 class="mb-1">Enter the verification PIN code that you recive from Your Bank</h5>
 
-                    <p class="mb-4 text-white">Enter the verification code
+                    <!--<p class="mb-4">
                         <strong class="ml-1"><?php echo""; ?></strong>
-                    </p>
+                    </p>-->
                 </div>
                 <!-- OTP Verify Form-->
                 <div class="otp-verify-form mt-5 px-4">
@@ -97,8 +97,8 @@ if (isset($_POST['submit'])) {
                                value="Verify &amp; Proceed">
 
                         <div class="login-meta-data px-4">
-                            <p class="mt-3 mb-0">Don't received the message?
-                                <span class="otp-sec ml-1 text-white" id="resendOTP"></span>
+                            <p class="mt-3 mb-0">Don't received the PIN Code?
+                                <span class="otp-sec ml-1" id="resendOTP"></span>
                             </p>
                         </div>
                     </form>

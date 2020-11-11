@@ -107,8 +107,8 @@ require_once("sidenav.php");
             <div class="credit-card-info-wrapper"><img class="d-block mb-4" src="img/bg-img/credit-card.png" alt="">
 
                 <div class="bank-ac-info">
-                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment
-                        reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                    <p>Make your payment directly into one of our bank account below over mobile bank transfer or direct deposit and Please use your Order ID as the payment reference. </p>
+					
                 </div>
                 <form action="" method="post">
                     <div class="shipping-method-choose mb-3">
@@ -143,7 +143,7 @@ require_once("sidenav.php");
                                                     </tr>
                                                     <tr>
                                                         <td style="padding: 0;border-bottom-width:0">
-                                                            <span style="margin-left: 0">Name = Daily Mart</span>
+                                                            <span style="margin-left: 0">Name = Daily Mini Mart</span>
                                                         </td>
 
                                                     </tr>
@@ -240,7 +240,7 @@ require_once("sidenav.php");
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
                 <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fa fa-search"></i>Search</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -265,6 +265,8 @@ require_once("sidenav.php");
         </div>
     </div>
 </div>
+<?php require_once("footer.php"); ?>
+
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>
@@ -280,6 +282,16 @@ require_once("sidenav.php");
 <script src="js/default/dark-mode-switch.js"></script>
 <script src="js/default/active.js"></script>
 <script src="js/pwa.js"></script>
+<script>
+    function searchBtn() {
+
+        $search = document.getElementById("search").value;
+
+        if ($search != "")
+            window.open("search.php?search=" + $search, "_self");
+
+    }
+</script>
 </body>
 
 </html>

@@ -3005,8 +3005,8 @@ progress {
 
 .btn-success.disabled, .btn-success:disabled {
     color: #fff;
-    background-color: #28a745;
-    border-color: #28a745
+    background-color: #d89609;
+    border-color: #d89609
 }
 
 .btn-info {
@@ -3110,8 +3110,8 @@ progress {
 
 .btn-danger.disabled, .btn-danger:disabled {
     color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545
+    background-color: #d89609;
+    border-color: #d89609
 }
 
 .btn-light {
@@ -5990,7 +5990,8 @@ button.close {
 }
 
 .carousel-indicators .active {
-    opacity: 1
+    opacity: 1;
+    background-color: #000000;
 }
 
 .carousel-caption {

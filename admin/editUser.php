@@ -1,6 +1,8 @@
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/session.php"); ?>
-<?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/functions.php");
+confirm_admin_logged_in()
+?>
 <?php
 
 $ids = $_GET["id"];
@@ -38,7 +40,7 @@ if (isset($_POST['submit'])) {
                 redirect_to("users.php");
             } else {
                 // Failure
-                $_SESSION["art_error"] = "Update failed." .$query ;
+                $_SESSION["art_error"] = "Update failed." . $query;
             }
 
         } else {
@@ -142,13 +144,17 @@ include_once("header.php")
                                 <select name="role" data-plugin-selectTwo class="form-control populate">
                                     <option
                                         value="admin" <?php echo trim($user["role"]) === "admin" ? "selected" : ""; ?> >
-                                         Admin
+                                        Admin
                                     </option>
                                     <option
                                         value="editor" <?php echo trim($user["role"]) === "editor" ? "selected" : ""; ?> >
                                         Editor
                                     </option>
-                                    
+                                    <option
+                                        value="salessupervisor" <?php echo trim($user["role"]) === "salessupervisor" ? "selected" : ""; ?> >
+                                        Sales Supervisor
+                                    </option>
+
                                 </select>
                             </div>
                         </div>

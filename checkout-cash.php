@@ -31,7 +31,14 @@ if (isset($_POST["submit"])) {
     $deliver = str_replace("T", " ", $_GET["date_time"]) . ":00";
     $trn_id = "";
     $payer = "";
-    $status = 0;			
+    $status = 0;
+
+	$orders_id;
+
+	$get_order_id = find_max_order_id();	
+	if($get_order_id['order_id'] != null)
+	$orders_id = $get_order_id['order_id'] + 1;
+	else $orders_id = '100000000000';
 
     while ($cart = sqlsrv_fetch_array($carts, SQLSRV_FETCH_ASSOC)) {
         $code = $cart["item"];
@@ -54,17 +61,11 @@ if (isset($_POST["submit"])) {
                 $unit = $price["price"];
 
             $total = $unit * $qty;
+                    
 			
-			$orders_id;
-
-            $get_order_id = find_max_order_id();
-            while ($row = sqlsrv_fetch_array($get_order_id, SQLSRV_FETCH_ASSOC)) {
-                    $orders_id = $row['order_id'] + 1;
-            
-	        $time_range = substr($time_range,0,13);
+			$time_range = substr($time_range,0,13);
             $stat = create_order($u_id, $name, $mobile, $code, $descr, $uom, $qty, $unit, $total, $shipping, $payment, $bank, $daily, $account, $trn_id,
                 $payer, $status, $deliver, $location, $deliver_date, $time_range, $landmark, $tin, $bill, $orders_id);
-                }
 
 
             echo $_SESSION["art_error"];
@@ -141,6 +142,9 @@ require_once("sidenav.php");
 
                 <div class="cod-info text-center mb-3">
                     <p>Pay when you receive your products.</p>
+					<p class="mb-4">
+                        <strong class="ml-1"><?php echo""; ?>We will call you when we receive your order for confirmation</strong>
+                    </p>
                 </div>
                 <form action="" method="post">
                     <input class="btn btn-warning btn-lg w-100" type="submit" name="submit" value="Order Now">

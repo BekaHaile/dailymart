@@ -1831,6 +1831,28 @@ function confirm_user_logged_in()
     }
 }
 
+function confirm_sales_supervisor_logged_in()
+{
+    if (!logged_in() || strtolower(trim($_SESSION['role'])) != 'salessupervisor') {
+        $_SESSION["admin_id"] = null;
+        $_SESSION["username"] = null;
+        $_SESSION["role"] = null;
+        $_SESSION['art_error'] = 'Please try again!!';
+        redirect_to("../account/login.php");
+    }
+}
+
+function confirm_admin_logged_in()
+{
+    if (!logged_in() && (strtolower(trim($_SESSION["role"])) !== "admin" || trim($_SESSION["role"]) !== "editor")) {
+        $_SESSION["admin_id"] = null;
+        $_SESSION["username"] = null;
+        $_SESSION["role"] = null;
+        redirect_to("../account/login.php");
+        $_SESSION['art_error'] = 'Please try again!!';
+    }
+}
+
 function confirm_company_logged_in()
 {
     if (!logged_in() || strtolower($_SESSION['role']) != 'company') {
@@ -2659,7 +2681,7 @@ function find_all_order_by_order_grouping()
 {
     global $connection;
 
-    $query = "SELECT order_id, CAST(date_time AS DATE) as order_date, name, mobile_no, payment_method, delivery_method, SUM(CAST(total_price as decimal)) as 'total_price', SUM(CAST(qty as int)) as 'total_quantity', customer_id, location, status, delivery_date, time_range, land_mark ";
+    $query = "SELECT order_id, CAST(date_time AS DATE) as order_date, name, mobile_no, payment_method, delivery_method, SUM(CAST(total_price as decimal(18,2))) as 'total_price', SUM(CAST(qty as int)) as 'total_quantity', customer_id, location, status, delivery_date, time_range, land_mark ";
     $query .= "FROM [dbo].[order] where status = '0' GROUP BY name, order_id, mobile_no, payment_method, delivery_method, CAST(date_time AS DATE), customer_id, location, status, delivery_date, time_range, land_mark order by CAST(date_time AS DATE) DESC, order_id DESC";
     $result_set = sqlsrv_query($connection, $query);
     if ($result_set === false) {
@@ -2706,8 +2728,11 @@ function find_max_order_id()
     if ($result_set === false) {
         die(print_r(sqlsrv_errors(), true));
     }
-
-    return $result_set;
+	if ($row = sqlsrv_fetch_array($result_set, SQLSRV_FETCH_ASSOC)) {
+        return $row;
+    } else {
+        return null;
+    }
 }
 
 function find_all_faq()
@@ -2790,6 +2815,22 @@ function check_inventory_total_balance($item, $quantity)
         return $result_set;
     }
 
+}
+
+function find_item_by_category_id($id)
+{
+    global $connection;
+
+    $query = "SELECT * ";
+    $query .= "FROM [dbo].[item] WHERE category_id = '{$id}'";
+    $result_set = sqlsrv_query($connection, $query);
+    confirm_query($result_set);
+
+    if ($result_set === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
+
+    return $result_set;
 }
 
 ?>

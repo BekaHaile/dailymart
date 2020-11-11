@@ -1,7 +1,8 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/db_connection.php"); ?>
-<?php require_once("../includes/functions.php"); ?>
-<?php confirm_logged_in(); ?>
+<?php require_once("../includes/functions.php");
+confirm_admin_logged_in()
+?>
 <?php
 $id=$_GET['id'];
 

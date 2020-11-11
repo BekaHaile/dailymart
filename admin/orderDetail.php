@@ -46,6 +46,9 @@ $customer_id = $_GET["customer_id"];
         <style>
             .alnright { text-align: right; }
             .space {margin-top: 20px;}
+            tr.noBorder td {
+                border: 0;
+                    }
         </style>
         
     </header>
@@ -107,39 +110,46 @@ $customer_id = $_GET["customer_id"];
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                       Address 
+                       Address: Addis Ababa, Yeka Sub City, Woreda 13
                     </div>
-                    <div class="col-sm-4">
-                        DATE: <?php $string=$row["date_time"]->format('Y-m-d'); echo $string; ?>
+                    <div class="col-sm-2">
+                        DATE
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        Addis Ababa City, Yeka Sub City, Woreda 13
-                    </div>
-                    <div class="col-sm-4">
-                        #Order No: <?php $string=$row["order_id"]; echo $string; ?>
+                    <div class="col-sm-2" style="margin-left: -50px;">
+                        <?php $string=$row["date_time"]->format('Y-m-d'); echo $string; ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <?php $string=$row["delivery_method"]; echo $string; ?>
+                        Delivery method: <?php $string=$row["delivery_method"]; echo $string; ?>
                     </div>
-                    <div class="col-sm-4">
-                    Payment Method: <?php $string=$row["payment_method"]; echo $string; ?>
+                    <div class="col-sm-2">
+                        #Order No
+                    </div>
+                    <div class="col-sm-2" style="margin-left: -50px;">
+                        <?php $string=$row["order_id"]; echo $string; ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        Telephone No.: +251978155119
+                        Phone No: +251978155119
                     </div>
-                    <div class="col-sm-4">
-                        Status: <?php if($row['status'] == 0) {echo 'Open';} else echo 'Delivered'?>
+                    <div class="col-sm-2">
+                        Payment Method
+                    </div>
+                    <div class="col-sm-2" style="margin-left: -50px;">
+                        <?php $string=$row["payment_method"]; echo $string; ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
                         Shop Location: <?php echo $location['title_en']?>
+                    </div>
+                    <div class="col-sm-2">
+                        Status
+                    </div>
+                    <div class="col-sm-2" style="margin-left: -50px;">
+                        <?php if($row['status'] == 0) {echo 'Open';} else echo 'Delivered'?>
                     </div>
                 </div>
 
@@ -151,31 +161,25 @@ $customer_id = $_GET["customer_id"];
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        Name: <?php echo $row['name']?>
+                        <?php echo $row['name']?>
                     </div>
                 </div>
                 <?php if(isset($landmark)){ ?>
                     <div class="row">
                         <div class="col-sm-4">
-                            Delivery Address: <?php echo $landmark['title_en']?>
+                            <?php echo $landmark['title_en']?>
                         </div>
                     </div>
                 <?php } ?>
                 <div class="row">
                     <div class="col-sm-4">
-                        Addis Ababa
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        Phone No: <?php echo $row['mobile_no']?>
+                    Phone No: <?php echo $row['mobile_no']?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
                         Delivery Date: <?php echo $row['delivery_date']?> <?php echo $row['time_range']?>
                     </div>
-                    
                 </div>
 
                 <?php } ?>
@@ -195,6 +199,7 @@ $customer_id = $_GET["customer_id"];
                         <?php
                         $k = 1;
                         while ($row = sqlsrv_fetch_array($order, SQLSRV_FETCH_ASSOC)) {
+                            $barcode = find_item_by_item_id($row['item']);
                             ?>
                             <tr class="">
                                     <td><?php echo $row["item"]; ?></td>
@@ -206,13 +211,45 @@ $customer_id = $_GET["customer_id"];
                             </tr>
                         <?php
                         } ?>
-                        <tr>
-                        <td style="visibility: hidden;"></td>
-                        <td style="visibility: hidden;"></td>
-                        <td style="visibility: hidden;"></td>
-                        <td style="visibility: hidden;"></td>
-                        <td style="visibility: hidden;"></td>
-                        <td class='alnright'>Total: <?php echo $_GET["total_price"]."<br>";?></td>
+                        <tr class="noBorder">
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="border: 0px !important;" class='alnright'> SUBTOTAL </td>
+                            <td class='alnright'> <?php echo $_GET["total_price"]."<br>";?></td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="border: 0px !important;" class='alnright'> TAX </td>
+                            <td class='alnright'> - </td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="border: 0px !important;" class='alnright'> SHIPPING </td>
+                            <td class='alnright'> - </td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="border: 0px !important;" class='alnright'> OTHER </td>
+                            <td class='alnright'> - </td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="visibility: hidden;"></td>
+                            <td style="border: 0px !important;" class='alnright'> <strong> TOTAL </strong> </td>
+                            <td class='alnright'> <strong> <?php echo $_GET["total_price"]."<br>";?> </strong> </td>
                         </tr>
                         </tbody>
                     </table>

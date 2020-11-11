@@ -40,7 +40,7 @@ require_once("includes/validation_functions.php");
 
         <p  style="color: #187844;">We will notify you of all the details via email. Thank you! 
 		<?php echo art_message(); ?></p>
-		<img src="img/dashen.png"/> <br>
+		<!--<img src="img/dashen.png"/> <br>-->
 		<a class="btn btn-warning mt-3" href="home.php">Buy Again</a>
     </div>
 </div>

@@ -24,8 +24,10 @@ if (isset($_POST['submit'])) {
             $_SESSION["username"] = $found_admin["user_name"];
             $_SESSION["role"] = $found_admin["role"];
 
-            if (trim($_SESSION["role"]) === "admin" || trim($_SESSION["role"]) === "editor" )
+            if (trim($_SESSION["role"]) === "admin" || trim($_SESSION["role"]) === "editor")
                 redirect_to("../admin/index.php");
+            elseif (trim($_SESSION["role"]) === "salessupervisor")
+                redirect_to("../admin/order.php");
             else
                 $_SESSION["art_error"] = "You Have No Permission.";
 

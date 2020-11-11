@@ -49,6 +49,9 @@ if (isset($_POST["submit"])) {
                          <h4 style="position: fixed;bottom: 58px;width: 100%;height: 30px;background-color: #00b894;z-index: 1000;color: #ffffff;text-align: center;font-size: 12px;line-height: 30px;font-weight: 700;margin-bottom: 0"><i class="icon fa fa-check"></i>Error!</h4>
                   </div>';
         }
+//        usleep(10000);
+//
+//        redirect_to("product.php?id=" . $item["brand_id"]);
 
 
     } else {
@@ -128,9 +131,10 @@ require_once("sidenav.php");
         <div class="product-title-meta-data bg-white mb-3 py-3">
             <div class="container d-flex justify-content-between">
                 <div class="p-title-price">
-                    <h6 class="mb-1"><?php echo $item["title_en"]; ?></h6>
+				<?php $check = sqlsrv_num_rows(check_inventory_total_balance($item["item_id"], "1")); ?>
+                    <h6 class="mb-1" <?php if($check == 0|| !isset($price["price"])) { ?> style="color: gray;"<?php } ?>><?php echo $item["title_en"]; ?></h6>
 
-                    <p class="sale-price mb-0">
+                    <p class="sale-price mb-0" <?php if($check == 0|| !isset($price["price"])) { ?> style="color: gray;"<?php } ?>>
                         <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
                         <span style="font-size: 12px;">
                            <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
@@ -170,21 +174,19 @@ require_once("sidenav.php");
                             <div class="quantity-button-handler">+</div>
 
                         </div>
-                        
-                        <span style="text-align: center;"><?php $check = sqlsrv_num_rows(check_inventory_total_balance($item["item_id"], "1"));
+						<span style="text-align: center; color: red;"><?php
                                                             if($check == 0 || !isset($price["price"])) echo 'Out of stock'; ?></span>
-
                     </div>
 
 
                     <div class="col-md-10 text-center">
                         <?php if(isset($_SESSION["customer_id"])) { ?>
                         <input type="submit" name="submit" id="submit" style="width:75%" class="btn btn-danger ml-3"
-                               value="Add To Cart" <?php if($check == 0|| !isset($price["price"])) { ?> disabled <?php } ?>/>
+                               value="Add To Cart" <?php if($check == 0|| !isset($price["price"])) { ?> disabled style="color: gray;"<?php } ?>/>
                     <?php }
                         else { ?>
 
-                        <a href="#" data-toggle="modal" data-target="#myModal1"><input type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
+                        <a href="#" data-toggle="modal" data-target="#myModal2"><input type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
                                value="Add To Cart"/></a>
                         <?php } ?>
 
@@ -214,7 +216,7 @@ require_once("sidenav.php");
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
                 <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fa fa-search"></i>Search</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -239,6 +241,7 @@ require_once("sidenav.php");
     </div>
 </div>
 <?php require_once("register-modal.php"); ?>
+<?php require_once("footer.php"); ?>
 
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
@@ -256,6 +259,16 @@ require_once("sidenav.php");
 <script src="js/default/active.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/notify.js"></script>
+<script>
+    function searchBtn() {
+
+        $search = document.getElementById("search").value;
+
+        if ($search != "")
+            window.open("search.php?search=" + $search, "_self");
+
+    }
+</script>
 <script>
     $(document).ready(function () {
         $('#flash-msg').delay(1000).hide(500);

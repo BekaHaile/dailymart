@@ -205,7 +205,7 @@ require_once("sidenav.php");
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
                 <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fa fa-search"></i>Search</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -230,6 +230,8 @@ require_once("sidenav.php");
         </div>
     </div>
 </div>
+<?php require_once("footer.php"); ?>
+
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>
@@ -260,6 +262,16 @@ require_once("sidenav.php");
                 $("#cartStatus").html(resp);
             }
         });
+
+    }
+</script>
+<script>
+    function searchBtn() {
+
+        $search = document.getElementById("search").value;
+
+        if ($search != "")
+            window.open("search.php?search=" + $search, "_self");
 
     }
 </script>

@@ -475,7 +475,7 @@
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
                 <li class="active"><a href="home.php"><i class="lni lni-home"></i>Home</a></li>
-                <li><a href="message.php"><i class="lni lni-life-ring"></i>Support</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
                 <li><a href="cart.php"><i class="lni lni-shopping-basket"></i>Cart</a></li>
 <!--                <li><a href="pages.php"><i class="lni lni-heart"></i>Pages</a></li>-->
                 <li><a href="settings.php"><i class="lni lni-cog"></i>Settings</a></li>
@@ -483,6 +483,8 @@
         </div>
     </div>
 </div>
+<?php require_once("footer.php"); ?>
+
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>
@@ -498,6 +500,16 @@
 <script src="js/default/dark-mode-switch.js"></script>
 <script src="js/default/active.js"></script>
 <script src="js/pwa.js"></script>
+<script>
+    function searchBtn() {
+
+        $search = document.getElementById("search").value;
+
+        if ($search != "")
+            window.open("search.php?search=" + $search, "_self");
+
+    }
+</script>
 </body>
 
 </html>

@@ -84,14 +84,16 @@ elseif (isset($_POST['TinNumber']) && isset($_POST['UID']) && isset($_POST['bill
 							$orders ++;
                             $total += ($unit * $row["qty"]);
                             $os = "	" . number_format($unit,2) . " * " . $row["qty"];
+							$value = "color: black";
                         } else {
-                            $value = "color: #747794;text-decoration: line-through;";
+                           // $value = "color: #747794; text-decoration: line-through;";
+						   $value = "color: #747794;text-decoration:line-through ";
                             $os = "Out of stock";
                         }
 
                         ?>
 
-                        <tr style="<?php echo $value; ?>">
+                        <tr style="">
                             <th scope="row">
                                 <a class="remove-product" href="deleteCart.php?id=<?php echo $row["id"]; ?>">
                                     <i class="lni lni-close"></i>
@@ -102,8 +104,9 @@ elseif (isset($_POST['TinNumber']) && isset($_POST['UID']) && isset($_POST['bill
                                      alt="">
                             </td>
                             <td>
-                                <a href="single-product.php?id=<?php echo find_item_by_item_id($row["item"])["id"]; ?>"><?php echo $row["item_description"]; ?>
-                                    <span><?php echo $os; ?></span>
+						     <?php if($os == "Out of stock"){}?>
+                                <a href="single-product.php?id=<?php echo find_item_by_item_id($row["item"])["id"]; ?>"><span style="<?php echo $value; ?>"><?php echo $row["item_description"]; ?></span>
+                                    <span style="color:black"><?php echo $os; ?></span>
                                 </a>
                             </td>
                             <td>

@@ -82,7 +82,7 @@ require_once("sidenav.php");
 			</div>
             <span></span>
         </div>
-        <a class="btn btn-danger btn-sm" style="margin-top: -0.5rem!important;margin-bottom: 1.0rem;"
+		<a class="btn btn-danger btn-sm" style="margin-top: -0.5rem!important;margin-bottom: 1.0rem;"
                href="allProduct.php?type=catagory&id=<?php echo $_GET['id']; ?>">Browse All <?php echo $category["title_en"]; ?></a>
         <div class="product-catagory-wrap">
             <div class="row g-3">
@@ -371,7 +371,7 @@ require_once("sidenav.php");
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
                 <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fa fa-search"></i>Search</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -395,6 +395,8 @@ require_once("sidenav.php");
         </div>
     </div>
 </div>
+<?php require_once("footer.php"); ?>
+
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>
@@ -410,6 +412,16 @@ require_once("sidenav.php");
 <script src="js/default/dark-mode-switch.js"></script>
 <script src="js/default/active.js"></script>
 <script src="js/pwa.js"></script>
+<script>
+    function searchBtn() {
+
+        $search = document.getElementById("search").value;
+
+        if ($search != "")
+            window.open("search.php?search=" + $search, "_self");
+
+    }
+</script>
 </body>
 
 </html>

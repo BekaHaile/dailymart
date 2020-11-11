@@ -31,16 +31,10 @@ $total = 0;
     <!-- The above tags *must* come first in the head, any other head content must come *after* these tags-->
     <!-- Title-->
     <title>Daily Mart</title>
-
-
-    <!-- Stylesheet-->
-    <link rel="stylesheet" href="style.css">
-    <!-- Web App Manifest-->
-    <link rel="manifest" href="manifest.json">
-
-    <style> 
+	<style> 
         .blink {
         color: #008000; 
+		font-weight: bold;
         margin-top: -10px;
         white-space: nowrap;
         overflow: hidden;
@@ -52,6 +46,12 @@ $total = 0;
         from { width: 0; } 
         } 
     </style> 
+
+
+    <!-- Stylesheet-->
+    <link rel="stylesheet" href="style.css">
+    <!-- Web App Manifest-->
+    <link rel="manifest" href="manifest.json">
 </head>
 <!--<body>-->
 <!-- Preloader-->
@@ -90,7 +90,7 @@ require_once("sidenav.php");
 
                 <label for="cardNumber"> <span style="display: none">Waiting</span></label>
 				
-                <div class='blink'> Select your nearby Shop </div>
+				<div class='blink'> Select your nearby Shop </div>
 				<div class="input-append date form_datetime" data-date="2013-02-21T15:25:00Z" id="DTime"
                              style="display: flex;">
                             <select class="form-control" id="locations" name="locations" 
@@ -183,7 +183,7 @@ require_once("sidenav.php");
                     </h5>
                     <?php if ($total > 0) { ?>
                         <button type="button" id="confirm" onclick="checkoutBtn()" class="btn btn-warning add2cart-notification">
-                            Confirm shopping
+         444                   Confirm shopping
                         </button>
                     <?php } ?>
 
@@ -202,7 +202,7 @@ require_once("sidenav.php");
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
                 <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fa fa-search"></i>Search</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -227,6 +227,9 @@ require_once("sidenav.php");
         </div>
     </div>
 </div>
+
+<?php require_once("footer.php"); ?>
+
 <!-- All JavaScript Files-->
 
 <script src="js/bootstrap.bundle.min.js"></script>
@@ -270,6 +273,17 @@ require_once("sidenav.php");
 
         if ($loc != "" && $balance != "")
             window.open("checkout.php?location=" + $loc + "&total=" + orders + "&amount=" + amount, "_self");
+
+    }
+</script>
+
+<script>
+    function searchBtn() {
+
+        $search = document.getElementById("search").value;
+
+        if ($search != "")
+            window.open("search.php?search=" + $search, "_self");
 
     }
 </script>

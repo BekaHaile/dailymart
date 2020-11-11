@@ -1,7 +1,9 @@
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
-<?php require_once("../includes/validation_functions.php"); ?>
+<?php require_once("../includes/validation_functions.php");
+confirm_admin_logged_in()
+?>
 <?php
 $land_mark_price = find_all_land_mark_price();
 $k = 1;

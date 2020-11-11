@@ -99,7 +99,7 @@ require_once("sidenav.php");
                                                     <th scope="row" rowspan="2" colspan="2" style="padding: 0">
                                                         <img src="img/pickup.png">
                                                     </th>
-                                                    <td style="padding: 0;color: #1613d2;border-bottom-width:0">
+                                                    <td style="padding: 0;color: ##020310;border-bottom-width:0">
                                                         Collect from shop
                                                     </td>
                                                 </tr>
@@ -127,7 +127,7 @@ require_once("sidenav.php");
                                                     <th scope="row" rowspan="2" colspan="2" style="padding: 0">
                                                         <img src="img/deliver.png">
                                                     </th>
-                                                    <td style="padding: 0;color: #1613d2;border-bottom-width:0">
+                                                    <td style="padding: 0;color: ##020310;border-bottom-width:0">
                                                         Home Delivery
                                                     </td>
                                                 </tr>
@@ -198,7 +198,7 @@ require_once("sidenav.php");
                                                     <!--                                    <th scope="row" rowspan="2" colspan="2" style="padding: 0">-->
                                                     <!--                                        <img src="img/pickup.png">-->
                                                     <!--                                    </th>-->
-                                                    <td style="padding: 0;color: #1613d2;border-bottom-width:0">
+                                                    <td style="padding: 0;color: #020310;border-bottom-width:0">
                                                         Today
                                                     </td>
                                                 </tr>
@@ -218,7 +218,7 @@ require_once("sidenav.php");
                                                     <!--                                    <th scope="row" rowspan="2" colspan="2" style="padding: 0">-->
                                                     <!--                                        <img src="img/deliver.png">-->
                                                     <!--                                    </th>-->
-                                                    <td style="padding: 0;color: #1613d2;border-bottom-width:0">
+                                                    <td style="padding: 0;color: #020310;border-bottom-width:0">
                                                         Tomorrow
                                                     </td>
                                                 </tr>
@@ -308,7 +308,7 @@ require_once("sidenav.php");
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
                 <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fa fa-search"></i>Search</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -333,6 +333,8 @@ require_once("sidenav.php");
         </div>
     </div>
 </div>
+<?php require_once("footer.php"); ?>
+
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>
@@ -349,6 +351,16 @@ require_once("sidenav.php");
 <script src="js/default/active.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/jquery.js"></script>
+<script>
+    function searchBtn() {
+
+        $search = document.getElementById("search").value;
+
+        if ($search != "")
+            window.open("search.php?search=" + $search, "_self");
+
+    }
+</script>
 <script>
 
     function changeDeliveryTitle() {

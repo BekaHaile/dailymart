@@ -56,15 +56,12 @@ include_once("header.php")
                             <th>View Detail</th>
                             <th>Order No</th>
                             <th>Order Date</th>
-                            <th>Customer Name</th>
-                            <th>Phone Number</th>
-                            <th>Total quantity</th>
-                            <th>Total Price</th>
-                            <th>Payment Method</th>
-                            <th>Delivery Type</th>
-                            <th>Status</th>
                             <th>Delivery Date</th>
                             <th>Delivery Time</th>
+                            <th>Customer Name</th>
+                            <th>Phone Number</th>
+                            <th>Payment Method</th>
+                            <th>Delivery Type</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -76,15 +73,12 @@ include_once("header.php")
                                 <td><a href="orderDetail.php?id=<?php echo urldecode($row["order_id"]);?>&customer_id=<?php echo urldecode($row["customer_id"]);?>&total_price=<?php echo urldecode(number_format($row["total_price"],2));?>"><i class="fa fa-eye"></i></a></td>
                                 <td><?php echo $row["order_id"]; ?></td>
                                 <td><?php echo $row["order_date"]->format('Y-m-d'); ?></td>
-                                <td><?php echo $row["name"]; ?></td>
-                                <td><?php echo $row["mobile_no"]; ?></td>
-                                <td><?php echo $row["total_quantity"]; ?></td>
-                                <td><?php echo number_format($row["total_price"],2)."<br>"; ?></td>
-                                <td><?php echo $row["payment_method"]; ?></td>
-                                <td><?php echo $row["delivery_method"]; ?></td>
-                                <td><?php if($row["status"] == 0) { echo 'Open'; } else echo 'Delivered'; ?></td>
                                 <td><?php echo $row["delivery_date"]; ?></td>
                                 <td><?php echo $row["time_range"]; ?></td>
+                                <td><?php echo $row["name"]; ?></td>
+                                <td><?php echo $row["mobile_no"]; ?></td>
+                                <td><?php echo $row["payment_method"]; ?></td>
+                                <td><?php echo $row["delivery_method"]; ?></td>
                             </tr>
                         <?php
                         } ?>

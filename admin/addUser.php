@@ -1,7 +1,9 @@
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
-<?php require_once("../includes/validation_functions.php"); ?>
+<?php require_once("../includes/validation_functions.php");
+confirm_admin_logged_in()
+?>
 <?php
 
 if (isset($_POST["submit"])) {
@@ -11,7 +13,7 @@ if (isset($_POST["submit"])) {
         $compass = trim($_POST["compass"]);
         if ($pass === $compass) {
             $name = trim($_POST["name"]);
-            $check = check_user($uname);
+            $check = check_user($name);
             if (!$check) {
                 $fname = trim($_POST["fname"]);
                 $lname = trim($_POST["lname"]);
@@ -117,6 +119,7 @@ include_once("header.php")
                                     <option value="">Select Role</option>
                                     <option value="admin">Admin</option>
                                     <option value="editor">Editor</option>
+                                    <option value="salessupervisor">Sales Supervisor</option>
                                 </select>
                             </div>
                         </div>

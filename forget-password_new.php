@@ -13,12 +13,12 @@ if (isset($_POST['submit'])) {
     if (isset($_POST["password"])) {
         // Attempt Login
 
-        $mobile = $_GET["mobile"];
+        $mobile = "+".trim($_GET["mobile"]);
         $password = trim($_POST["password"]);
 
-        $query = "UPDATE [dbo].[customer] SET ";
+        $query = "UPDATE [DailyMart].[dbo].[customer] SET ";
         $query .= "[password] = '{$password}' ";
-        $query .= "WHERE [mobile_number] = '{$mobile}'; ";
+        $query .= "WHERE [mobile_number] = '{$mobile}';";
 
         $result = sqlsrv_query($connection, $query);
 
@@ -74,12 +74,13 @@ if (isset($_POST['submit'])) {
                 <div class="register-form mt-5 px-4">
                     <form action="#" method="post">
                         <div class="form-group text-left mb-4"><span>New Password</span>
-                            <label for="password"><i class="lni lni-lock"></i></label>
+                            <label for="password" style="padding-left:2px"><i class="lni lni-lock"></i></label>
                             <input class="input-psswd form-control" name="password" id="registerPassword" required
-                                   type="password"
+                                   type="password" style="border-radius:5px"
                                    placeholder="********************">
                         </div>
-                        <input name="submit" class="btn btn-warning btn-lg w-100" type="submit" value="Reset Password">
+                        <input name="submit" class="btn btn-warning w-100" type="submit" value="Reset Password"
+						 style="background-color: #a6ce39;border-color: #a6ce39;">
                     </form>
                 </div>
             </div>

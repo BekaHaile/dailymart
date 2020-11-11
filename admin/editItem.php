@@ -1,7 +1,9 @@
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
-<?php require_once("../includes/validation_functions.php"); ?>
+<?php require_once("../includes/validation_functions.php");
+confirm_admin_logged_in()
+?>
 <?php
 $k = 1;
 $item = find_item_by_item_id($_GET["id"]);
@@ -14,8 +16,8 @@ if (isset($_POST["submit"])) {
 
         $id = $item["id"];
         $image = upload_image_with_title($item["item_id"],"image");
-        $specen = $_POST["specen"];
-        $specam = $_POST["specam"];
+        $specen = sqlsrv_escape($_POST["specen"]);
+        $specam = sqlsrv_escape($_POST["specam"]);
 
         if (empty($image)) {
             $image = $item["image"];
@@ -53,7 +55,7 @@ if (isset($_POST["submit"])) {
             redirect_to("item.php");
         } else {
             // Failure
-            $_SESSION["art_error"] = "Update failed.";
+            $_SESSION["art_error"] = "Update failed.".$query;
         }
 
     } else {

@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 
         $otp = $otp1 . $otp2 . $otp3 . $otp4;
 
-        $mobile = trim(str_replace(" ", "", $_GET["mobile"]));
+        $mobile = trim(str_replace(" ", "", '+251'.$_GET["mobile"]));
 
         $found_admin = check_customer_by_mobile_and_otp($mobile, $otp);
 
@@ -38,12 +38,22 @@ if (isset($_POST['submit'])) {
 if (isset($_POST['submit1'])) {
     // Process the form    width: 90px;background: none;border: none;
 
-    $mobile = $_GET["mobile"];
-    $message = $_GET["message"];
-    $action = "GET";
-    $url = "http://172.16.32.42/sms/main/send_sms_code";
-    $parameters = array("phone_number" => "$mobile", "message" => "$message");
-    $result = CurlHelper::perform_http_request($action, $url, $parameters);
+	$mobile = trim(str_replace(" ", "", '+251'.$_GET["mobile"]));
+	$message = rand(1000, 9999);
+
+	$query = "UPDATE [dbo].[customer] SET ";
+	$query .= "[message] = '{$message}' ";
+	$query .= "WHERE [mobile_number] = '{$mobile}'; ";
+
+	$result = sqlsrv_query($connection, $query);
+
+	if ($result) {
+		$action = "GET";
+		$url = "http://172.16.32.42/sms/main/send_sms_code";
+		$parameters = array("phone_number" => "$mobile", "message" => "$message");
+		$result = CurlHelper::perform_http_request($action, $url, $parameters);
+	}
+	
 }
 
 ?>
@@ -82,9 +92,9 @@ if (isset($_POST['submit1'])) {
         <div class="row justify-content-center">
             <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
                 <div class="text-left px-4">
-                    <h5 class="mb-1 text-white">Verify Phone Number</h5>
+                    <h5 class="mb-1">Verify Phone Number</h5>
 
-                    <p class="mb-4 text-white">Enter the verification code sent to
+                    <p class="mb-4">Enter the PIN verification code sent to
                         <strong class="ml-1"><?php echo $_GET["mobile"]; ?></strong>
                     </p>
                 </div>
@@ -103,12 +113,12 @@ if (isset($_POST['submit1'])) {
                             <input name="otp3" class="form-control inputs" type="text" placeholder="-" maxlength="1">
                             <input name="otp4" class="form-control inputs" type="text" placeholder="-" maxlength="1">
                         </div>
-                        <input class="btn btn-warning btn-lg w-100" name="submit" type="submit"
-                               value="Verify &amp; Proceed">
+                        <input class="btn btn-warning w-100" name="submit" type="submit"
+                               value="Verify &amp; Proceed" style="background-color: #a6ce39;border-color: #a6ce39;">
 
                         <div class="login-meta-data px-4">
                             <p class="mt-3 mb-0">Don't received the message?
-                                <span class="otp-sec ml-1 text-white" id="resendOTP"></span>
+                                <span class="otp-sec ml-1" id="resendOTP"></span>
                             </p>
                         </div>
                     </form>

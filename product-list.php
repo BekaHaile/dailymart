@@ -107,20 +107,22 @@ require_once("sidenav.php");
                                            href="single-product.php?id=<?php echo $row["id"]; ?>">
                                             <img style="border-radius: 0.75rem;"
                                                  src="<?php echo "admin/" . $row["image"]; ?>" alt=""></a></div>
+												 <?php $check = sqlsrv_num_rows(check_inventory_total_balance($row["item_id"], "1")); ?>
                                     <div class="product-description">
                                         <a class="product-title d-block"
-                                           href="single-product.php?id=<?php echo $row["id"]; ?>">
+                                           href="single-product.php?id=<?php echo $row["id"]; ?>" <?php if($check == 0|| !isset($price["price"])) { ?> style="color: gray;"<?php } ?>>
                                             <?php echo $row["title_en"]; ?>
                                         </a>
 
-                                        <p class="sale-price text-center" style="font-size: 12px;">
+                                        <p class="sale-price text-center" style="font-size: 12px; <?php if($check == 0|| !isset($price["price"])) { ?> color: gray;<?php } ?>" >
                                             <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
                                             <span style="font-size: 12px;">
                                                <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
                                             </span><span
                                                 style="font-size: 9px;text-decoration: none;text-transform: lowercase;color: #000"><?php echo "(" . trim($price["uom"]) . ")"; ?></span>
                                         </p>
-                                        <span style="text-align: center;"><?php $check = sqlsrv_num_rows(check_inventory_total_balance($item["item_id"], "1"));
+										
+										<span style="text-align: center; color: red;"><?php
                                                             if($check == 0 || !isset($price["price"])) echo 'Out of stock'; ?></span>
 
                                         <form class="cart-form row" action="#" method="post">
@@ -143,7 +145,7 @@ require_once("sidenav.php");
                                                 <div class="col-md-6"
                                                      style="width: 30%;padding-left: 0;padding-right: 0">
                                                     <div class="col-md-10 text-center">
-                                                        <?php if(isset($_SESSION["customer_id"])) { ?>
+                                                            <?php if(isset($_SESSION["customer_id"])) { ?>
                                                             <input type="button" name="submit" id="submit"
                                                                 style="padding: 0.375rem 0.5rem;"
                                                                 onclick="addBtn(<?php echo $row["item_id"]; ?>)"
@@ -151,9 +153,10 @@ require_once("sidenav.php");
                                                             <?php }
                                                         else { ?>
 
-                                                        <a href="#" data-toggle="modal" data-target="#myModal1"><input style="padding: 0.375rem 0.5rem;" type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
-                                                            value="Add"/></a>
+                                                        <a href="#" data-toggle="modal" data-target="#myModal2"><input style="padding: 0.375rem 0.5rem;" type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
+                                                            value="Add" <?php if($check == 0|| !isset($price["price"])) { ?> disabled <?php } ?> /></a>
                                                         <?php } ?>
+
                                                     </div>
                                                 </div>
 
@@ -182,7 +185,7 @@ require_once("sidenav.php");
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
                 <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fa fa-search"></i>Search</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart" id="cartNumber">
@@ -207,8 +210,10 @@ require_once("sidenav.php");
         </div>
     </div>
 </div>
-
 <?php require_once("register-modal.php"); ?>
+<?php require_once("footer.php"); ?>
+
+
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>
@@ -225,6 +230,16 @@ require_once("sidenav.php");
 <script src="js/default/active.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/jquery.js"></script>
+<script>
+    function searchBtn() {
+
+        $search = document.getElementById("search").value;
+
+        if ($search != "")
+            window.open("search.php?search=" + $search, "_self");
+
+    }
+</script>
 <script>
 
     function addBtn(id) {

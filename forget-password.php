@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 
             $mobile = trim(str_replace(" ", "", '+251'.$_POST["mobile"]));
             $message = rand(1000, 9999);
-
+			$message1 = "Dear Customer:- PIN number to reset password for your Daily Mini Mart online shopping app is ".$message.".";
             $query = "UPDATE [dbo].[customer] SET ";
             $query .= "[message] = '{$message}' ";
             $query .= "WHERE [mobile_number] = '{$mobile}'; ";
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
             if ($result) {
                 $action = "GET";
                 $url = "http://172.16.32.42/sms/main/send_sms_code";
-                $parameters = array("phone_number" => "$mobile", "message" => "$message");
+                $parameters = array("phone_number" => "$mobile", "message" => "$message1");
                 $result = CurlHelper::perform_http_request($action, $url, $parameters);
                 //echo print_r($result);
 
@@ -86,14 +86,14 @@ if (isset($_POST['submit'])) {
                             <div class="otp-form mt-3 " >
                                 <div class="mb-6 d-flex">
                                     <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;">
-                                        <option value="+251" label="+251 Ethiopia"></option>
+                                        <option value="">+251</option>
                                     </select>
                                     <input class="form-control pl-0" name="mobile" id="mobile" type="text"
                                     required placeholder="9 1100 0000">
                                 </div>
                             </div>
                         </div>
-                        <input name="submit" class="btn btn-warning btn-lg w-100" type="submit" value="Reset Password">
+                        <input name="submit" class="btn btn-warning w-100" type="submit" value="Reset Password" style="background-color: #a6ce39;border-color: #a6ce39;">
                     </form>
                 </div>
                 <div class="login-meta-data">
@@ -103,8 +103,6 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </div>
-
-<?php require_once("forget-modal.php"); ?>
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>

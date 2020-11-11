@@ -73,94 +73,97 @@ confirm_logged_in();
 <body>
 <section class="body">
 
-    <!-- start: header -->
-    <header class="header row" style="background: #586166;border: none">
+<!-- start: header -->
+<header class="header row" style="background: #586166;border: none">
 
-        <div class="logo-container col-lg-3">
-            <a href="../index.php" class="logo" style="margin-top: 0;height: 100%"> <img
-                    src="../account/images/logo.png"
-                    style="height: 100%"
-                    alt="Admin"/>
-            </a>
+    <div class="logo-container col-lg-3">
+        <a href="../index.php" class="logo" style="margin-top: 0;height: 100%"> <img
+                src="../account/images/logo.png"
+                style="height: 100%"
+                alt="Admin"/>
+        </a>
 
-            <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
-                 data-fire-event="sidebar-left-opened"><i class="fa fa-bars" aria-label="Toggle sidebar"></i></div>
-        </div>
+        <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
+             data-fire-event="sidebar-left-opened"><i class="fa fa-bars" aria-label="Toggle sidebar"></i></div>
+    </div>
 
-        <div class="col-lg-6">
+    <div class="col-lg-6">
 
-        </div>
-        <!-- start: search & user box -->
-        <div class="header-right col-lg-3">
+    </div>
+    <!-- start: search & user box -->
+    <div class="header-right col-lg-3">
 
-            <div id="userbox" class="userbox float-right border"
-                 style="margin-right: 15%;padding: 8px;border: 1px solid gray !important;">
-                <a href="#" data-toggle="dropdown">
-                    <figure class="profile-picture">
-                        <img src="img/%21logged-user.jpg" alt="Joseph Doe" class="rounded-circle"
-                             data-lock-picture="img/%21logged-user.jpg"/>
-                    </figure>
-                    <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+        <div id="userbox" class="userbox float-right border"
+             style="margin-right: 15%;padding: 8px;border: 1px solid gray !important;">
+            <a href="#" data-toggle="dropdown">
+                <figure class="profile-picture">
+                    <img src="img/%21logged-user.jpg" alt="Joseph Doe" class="rounded-circle"
+                         data-lock-picture="img/%21logged-user.jpg"/>
+                </figure>
+                <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
                     <span class="name"
                           style="color: #f4873d;font-weight: bolder"><?php echo $_SESSION["username"]; ?></span>
-                        <span class="role" style="color: #f4873d"><?php echo $_SESSION["role"]; ?></span>
-                    </div>
-
-                    <i class="fa custom-caret" style="color: #f4873d"></i>
-                </a>
-
-                <div class="dropdown-menu">
-                    <ul class="list-unstyled mb-2">
-                        <li class="divider"></li>
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i>
-                                My Profile</a>
-                        </li>
-
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="logout.php"><i class="fa fa-power-off"></i>
-                                Logout</a>
-                        </li>
-                    </ul>
+                    <span class="role" style="color: #f4873d"><?php echo $_SESSION["role"]; ?></span>
                 </div>
+
+                <i class="fa custom-caret" style="color: #f4873d"></i>
+            </a>
+
+            <div class="dropdown-menu">
+                <ul class="list-unstyled mb-2">
+                    <li class="divider"></li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i>
+                            My Profile</a>
+                    </li>
+
+                    <li>
+                        <a role="menuitem" tabindex="-1" href="logout.php"><i class="fa fa-power-off"></i>
+                            Logout</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <!-- end: search & user box -->
-    </header>
-    <!-- end: header -->
+    </div>
+    <!-- end: search & user box -->
+</header>
+<!-- end: header -->
 
-    <div class="inner-wrapper">
-        <!-- start: sidebar -->
-        <aside id="sidebar-left" class="sidebar-left">
+<div class="inner-wrapper">
+    <!-- start: sidebar -->
+    <aside id="sidebar-left" class="sidebar-left">
 
-            <div class="sidebar-header">
-                <div class="sidebar-title" style="color: #f4873d;font-weight: bold">
-                    Navigation
-                </div>
-                <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html"
-                     data-fire-event="sidebar-left-toggle">
-                    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-                </div>
+        <div class="sidebar-header">
+            <div class="sidebar-title" style="color: #f4873d;font-weight: bold">
+                Navigation
             </div>
+            <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html"
+                 data-fire-event="sidebar-left-toggle">
+                <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+            </div>
+        </div>
 
-            <div class="nano">
-                <div class="nano-content">
-                    <nav id="menu" class="nav-main" role="navigation">
+        <div class="nano">
+            <div class="nano-content">
+                <nav id="menu" class="nav-main" role="navigation">
 
-                        <ul class="nav nav-main">
+                    <ul class="nav nav-main">
+                        <?php if (trim($_SESSION["role"]) !== "salessupervisor") { ?>
                             <li>
                                 <a class="nav-link" href="index.php">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
                             </li>
-                            <!--City-->
-                            <li class="nav-parent <?php echo ($k == 1) ? "nav-expanded" : ""; ?>">
-                                <a class="nav-link" href="#">
-                                    <i class="fa fa-list-alt" aria-hidden="true"></i>
-                                    <span>Configuration</span>
-                                </a>
-                                <ul class="nav nav-children">
+                        <?php } ?>
+                        <!--City-->
+                        <li class="nav-parent <?php echo ($k == 1) ? "nav-expanded" : ""; ?>">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                                <span>Configuration</span>
+                            </a>
+                            <ul class="nav nav-children">
+                                <?php if (trim($_SESSION["role"]) !== "salessupervisor") { ?>
                                     <li>
                                         <a class="nav-link fa fa-link" href="categories.php">
                                             <span style="padding-left: 10px">Category 1</span>
@@ -177,12 +180,15 @@ confirm_logged_in();
                                             <span style="padding-left: 10px">Category 3</span>
                                         </a>
                                     </li>
-
+								<?php } ?>
+								
                                     <li>
                                         <a class="nav-link fa fa-link" href="item.php">
                                             <span style="padding-left: 10px">Item</span>
                                         </a>
                                     </li>
+									
+								<?php if (trim($_SESSION["role"]) !== "salessupervisor") { ?>
                                     <li>
                                         <a class="nav-link fa fa-link" href="price.php">
                                             <span style="padding-left: 10px">Price</span>
@@ -194,18 +200,29 @@ confirm_logged_in();
                                             <span style="padding-left: 10px">Discount</span>
                                         </a>
                                     </li>
+                                <?php } ?>
+                                <li>
+                                    <a class="nav-link fa fa-link" href="order.php">
+                                        <span style="padding-left: 10px">Delivered Orders</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link fa fa-link" href="order.php">
+                                        <span style="padding-left: 10px">Pending Orders</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link fa fa-link" href="order.php">
+                                        <span style="padding-left: 10px">Shorter Orders</span>
+                                    </a>
+                                </li>
+                                <?php if (trim($_SESSION["role"]) != "salessupervisor") { ?>
                                     <li>
-                                        <a class="nav-link fa fa-link" href="order.php">
-                                            <span style="padding-left: 10px">Orders</span>
-                                        </a>
-                                    </li>
-
-									<li>
                                         <a class="nav-link fa fa-link" href="topItem.php">
                                             <span style="padding-left: 10px">Top Product</span>
                                         </a>
                                     </li>
-									<li>
+                                    <li>
                                         <a class="nav-link fa fa-link" href="landMarkPrice.php">
                                             <span style="padding-left: 10px">Land Mark Price</span>
                                         </a>
@@ -215,10 +232,10 @@ confirm_logged_in();
                                             <span style="padding-left: 10px">FAQ</span>
                                         </a>
                                     </li>
-
-                                </ul>
-                            </li>
-
+                                <?php } ?>
+                            </ul>
+                        </li>
+                        <?php if (trim($_SESSION["role"]) !== "salessupervisor") { ?>
                             <!--report-->
                             <li class="nav-parent">
                                 <a class="nav-link" href="#">
@@ -265,29 +282,36 @@ confirm_logged_in();
 
                                 </ul>
                             </li>
-                        </ul>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </nav>
-
-                </div>
-
-                <script>
-                    // Maintain Scroll Position
-                    if (typeof localStorage !== 'undefined') {
-                        if (localStorage.getItem('sidebar-left-position') !== null) {
-                            var initialPosition = localStorage.getItem('sidebar-left-position'),
-                                sidebarLeft = document.querySelector('#sidebar-left .nano-content');
-
-                            sidebarLeft.scrollTop = initialPosition;
-                        }
-                    }
-                </script>
-
+                        <?php } ?>
+                        <li>
+                            <a class="nav-link" href="logout.php">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </nav>
 
             </div>
 
-        </aside>
-        <!-- end: sidebar -->
+            <script>
+                // Maintain Scroll Position
+                if (typeof localStorage !== 'undefined') {
+                    if (localStorage.getItem('sidebar-left-position') !== null) {
+                        var initialPosition = localStorage.getItem('sidebar-left-position'),
+                            sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+                        sidebarLeft.scrollTop = initialPosition;
+                    }
+                }
+            </script>
+
+
+        </div>
+
+    </aside>
+    <!-- end: sidebar -->
