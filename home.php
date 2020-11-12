@@ -139,7 +139,10 @@ require_once("sidenav.php");
                                                 <img src="<?php echo "admin/" . $row["image"]; ?>" alt=""
                                                      style="width: 100%;border-radius: 0.75rem">
                                             </i>
-                                            <span style="color:#000"><?php echo $row["title_en"]; ?></span>
+                                            <span style="color:#000">
+                                            
+                                            <?php if($_SESSION['lang'] == 'en'  || trim($row["title_am"]) == ""){ echo $row["title_en"]; } 
+                                            else echo $row["title_am"];?></span>
                                         </a>
                                     </div>
                                 </div>
@@ -178,7 +181,8 @@ require_once("sidenav.php");
                                 <a href="single-product.php?id=<?php echo $item["id"]; ?>&type=home">
                                     <img style="border-radius: 0.75rem;" src="<?php echo "admin/" . $item["image"]; ?>"
                                          alt="">
-                                    <span class="product-title"><?php echo $item["title_en"]; ?></span>
+                                    <span class="product-title"> <?php if($_SESSION['lang'] == 'en'  || trim($item["title_am"]) == ""){ echo $item["title_en"]; }
+                                    else { echo $item["title_am"];} ?></span>
 
                                     <p class="sale-price">
                                         ETB <?php echo number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ','); ?>
@@ -227,13 +231,14 @@ require_once("sidenav.php");
                                          src="<?php echo "admin/" . $pro["image"]; ?>" alt="">
                                 </a>
                                 <a class="product-title d-block"
-                                   href="single-product.php?id=<?php echo $pro["id"]; ?>&type=home"><?php $title = trim($pro["title_en"]);
+                                   href="single-product.php?id=<?php echo $pro["id"]; ?>&type=home"><?php if($_SESSION['lang'] == 'en' || trim($pro["title_am"]) == ""){ $title = trim($pro["title_en"]); } 
+                                   else {$title = trim($pro["title_am"]);}
                                     echo substr($title, 0, 17) . "..." . substr($title, -4, 4); ?>    </a>
 
                                 <p class="sale-price text-center" style="font-size: 11px;">
-                                    <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
+                                    <?php echo (isset($discount_per["discount_per"])) ? $lang['etb']." " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : $lang['etb']." " . $price["price"]; ?>
                                     <span style="font-size: 12px;">
-                                       <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
+                                       <?php echo (isset($discount_per["discount_per"])) ? $lang['etb']." " . $price["price"] : ""; ?>
                                     </span><span
                                         style="font-size: 9px;text-decoration: none;text-transform: lowercase;color: #000"><?php echo "(" . trim($price["uom"]) . ")"; ?></span>
                                 </p>

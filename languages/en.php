@@ -142,5 +142,11 @@
         "viewAsGuest" => "VIEW AS GUEST",
         "resetPassword" => "Reset Password",
 
+        //catagory
+        "browseAll" => "Browse All",
+        
+        //product
+        "add" => "Add",
+        "outOfStock" => "Out of Stock",
     );
 ?>

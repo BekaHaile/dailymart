@@ -105,7 +105,7 @@ if (isset($_SESSION["customer_id"])) {
                     class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Product Details</h6>
+            <h6 class="mb-0"><?php echo $lang['productDetails']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -132,12 +132,13 @@ require_once("sidenav.php");
             <div class="container d-flex justify-content-between">
                 <div class="p-title-price">
 				<?php $check = sqlsrv_num_rows(check_inventory_total_balance($item["item_id"], "1")); ?>
-                    <h6 class="mb-1" <?php if(!isset($price["price"])) { ?> style="color: gray;"<?php } ?>><?php echo $item["title_en"]; ?></h6>
+                    <h6 class="mb-1" <?php if(!isset($price["price"])) { ?> style="color: gray;"<?php } ?>><?php if($_SESSION['lang'] == 'en' || trim($item["title_am"]) == ""){ echo $item["title_en"]; }
+                    else { echo $item["title_am"]; }?></h6>
 
                     <p class="sale-price mb-0" <?php if(!isset($price["price"])) { ?> style="color: gray;"<?php } ?>>
-                        <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
+                        <?php echo (isset($discount_per["discount_per"])) ? $lang['etb']." " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : $lang['etb']." " . $price["price"]; ?>
                         <span style="font-size: 12px;">
-                           <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
+                           <?php echo (isset($discount_per["discount_per"])) ? $lang['etb']." " . $price["price"] : ""; ?>
                         </span><span style="font-size: 9px;text-decoration: none;text-transform: lowercase;color: #000"><?php echo "(".trim($price["uom"]).")"; ?></span>
                     </p>
                 </div>
@@ -150,7 +151,7 @@ require_once("sidenav.php");
             <div class="container">
                 <!-- Choose Size-->
                 <div class="choose-size-wrapper text-left">
-                    <p class="mb-1 font-weight-bold">Select Item</p>
+                    <p class="mb-1 font-weight-bold"><?php echo $lang['selectItem']; ?> </p>
                 </div>
                 <form class="cart-form row" action="#" method="post">
                     <div class="row col-md-12 mb-3">
@@ -159,7 +160,8 @@ require_once("sidenav.php");
                                 <input class="form-check-input" checked name="item" type="radio"
                                        value="<?php echo $item["item_id"]; ?>">
                                 <label class="form-check-label"
-                                       for="sizeRadio3"><?php echo $item["title_en"]; ?></label>
+                                       for="sizeRadio3"><?php if($_SESSION['lang'] == 'en' ||  trim($item["title_am"]) == ""){ echo $item["title_en"]; }
+                                       else { echo $item["title_am"]; }?></label>
                             </div>
                         </div>
 
@@ -175,19 +177,19 @@ require_once("sidenav.php");
 
                         </div>
 						<span style="text-align: center; color: red;"><?php
-                                                            if(!isset($price["price"])) echo 'Out of stock'; ?></span>
+                                                            if(!isset($price["price"])) echo $lang['outOfStock']; ?></span>
                     </div>
 
 
                     <div class="col-md-10 text-center">
                         <?php if(isset($_SESSION["customer_id"])) { ?>
                         <input type="submit" name="submit" id="submit" style="width:75%" class="btn btn-danger ml-3"
-                               value="Add To Cart" <?php if(!isset($price["price"])) { ?> disabled style="color: gray;"<?php } ?>/>
+                               value="<?php echo $lang['addToCart']; ?>" <?php if(!isset($price["price"])) { ?> disabled style="color: gray;"<?php } ?>/>
                     <?php }
                         else { ?>
 
                         <a href="#" data-toggle="modal" data-target="#myModal2"><input type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
-                               value="Add To Cart" <?php if(!isset($price["price"])) { ?> disabled style="color: gray;"<?php } ?>/></a>
+                               value="<?php echo $lang['addToCart']; ?>" <?php if(!isset($price["price"])) { ?> disabled style="color: gray;"<?php } ?>/></a>
                         <?php } ?>
 
                     </div>
@@ -199,9 +201,10 @@ require_once("sidenav.php");
         <!-- Product Specification-->
         <div class="p-specification bg-white mb-3 py-3">
             <div class="container">
-                <h6>Specifications</h6>
+                <h6><?php echo $lang['specifications']; ?></h6>
 
-                <p><?php echo $item["specifications_en"]; ?></p>
+                <p><?php if($_SESSION['lang'] == 'en'){ echo $item["specifications_en"]; }
+                else { echo $item["specifications_am"]; } ?></p>
             </div>
         </div>
 
@@ -215,8 +218,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -228,14 +231,15 @@ require_once("sidenav.php");
                                               style="background: #ffaf00 !important;margin-left: 45px !important;margin-top: -25px;display: list-item;padding: 1px;z-index: 100;border-radius: 50px;width: 20px;margin-bottom: 15px;">
                                           <?php echo sqlsrv_num_rows($c_cart); ?>
                                     </span>
-                                    <?php }
+                                    <?php
+                                    }
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

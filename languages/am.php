@@ -1,7 +1,7 @@
 <?php
     $lang = array(
         //home page
-        "dailyMartOnline" => "ዕለታዊ ማርት የመስመር ላይ ግብይት",
+        "dailyMartOnline" => "ዴይሊ ማርት የኦንላይን ግብይት",
         "productByCategory" => "ምርት በምድብ",
         "browseAllProducts" => "ሁሉንም ምርቶች ያስሱ",
         "weeklySpecialOffers" => "ሳምንታዊ ልዩ ቅናሾች",
@@ -26,7 +26,7 @@
         
         //single product
         "productDetails" => "Product Details",
-        "etb" => "ETB",
+        "etb" => "ብር",
         "selectItem" => "Select Item",
         "addToCart" => "Add To Cart",
         "specifications" => "Specifications",
@@ -141,6 +141,13 @@
         "registerNow" => "Register Now",
         "viewAsGuest" => "VIEW AS GUEST",
         "resetPassword" => "Reset Password",
+
+        //catagory
+        "browseAll" => "Browse All",
+
+        //product
+        "add" => "ጨምር",
+        "outOfStock" => "Out of Stock",
 
     );
 ?>

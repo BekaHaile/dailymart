@@ -50,7 +50,7 @@ if (isset($_SESSION["customer_id"])) {
                     class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Daily Mart Online Shopping</h6>
+            <h6 class="mb-0"><?php echo $lang['dailyMartOnline']; ?> </h6>
         </div>
         <!-- Filter Option-->
         <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span>
@@ -89,16 +89,21 @@ require_once("sidenav.php");
 						<a href="#"><i class="lni lni-radio-button"></i></a></div>
                 </div>
 				<h6 class="ml-1" style="font-size: 12px;">
-                    <a style="font-style: italic;" href="home.php">Home</a> /
-                    <a style="font-style: italic;" href="catagory.php?id=<?php echo $cat["category_id"]; ?>"><?php echo find_category_by_cat_id($cat["category_id"])["title_en"]; ?></a>
+                    <a style="font-style: italic;" href="home.php"><?php echo $lang['home']; ?></a> /
+                    <a style="font-style: italic;" href="catagory.php?id=<?php echo $cat["category_id"]; ?>">
+                    <?php if($_SESSION['lang'] == 'en'){ echo find_category_by_cat_id($cat["category_id"])["title_en"]; }
+                    else { echo find_category_by_cat_id($cat["category_id"])["title_am"]; } ?></a>
                     /
-                    <?php echo $cat["title_en"]; ?>
+                    <?php if($_SESSION['lang'] == 'en'){ echo $cat["title_en"]; }
+                    else { echo $cat["title_am"]; } ?>
                 </h6>
 
 
             </div>
 			<a class="btn btn-danger btn-sm" style="margin-top: -0.5rem!important;margin-bottom: 1.0rem;"
-               href="allProduct.php?type=sub-catagory&id=<?php echo $_GET['id']; ?>&path=All <?php echo $cat["title_en"]; ?>">Browse All <?php echo $cat["title_en"]; ?></a>
+               href="allProduct.php?type=sub-catagory&id=<?php echo $_GET['id']; ?>&path=All <?php echo $cat["title_en"]; ?>"> <?php echo $lang['browseAll']; ?> 
+               <?php if($_SESSION['lang'] == 'en'){ echo $cat["title_en"]; }
+               else { echo $cat["title_am"]; } ?></a>
             
             <div class="product-catagory-wrap">
                 <div class="row g-3">
@@ -114,7 +119,8 @@ require_once("sidenav.php");
                                                 <img src="<?php echo "admin/" . $row["image"]; ?>" alt=""
                                                      style="width: 100%">
                                             </i>
-                                            <span style="color:#000"><?php echo $row["title_en"]; ?></span></a></div>
+                                            <span style="color:#000"><?php if($_SESSION['lang'] == 'en'){ echo $row["title_en"]; }
+                                            else { echo $row["title_am"]; } ?></span></a></div>
                                 </div>
                             </div>
                         <?php }
@@ -251,8 +257,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>	
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -264,14 +270,15 @@ require_once("sidenav.php");
                                               style="background: #ffaf00 !important;margin-left: 45px !important;margin-top: -25px;display: list-item;padding: 1px;z-index: 100;border-radius: 50px;width: 20px;margin-bottom: 15px;">
                                           <?php echo sqlsrv_num_rows($c_cart); ?>
                                     </span>
-                                    <?php }
+                                    <?php
+                                    }
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

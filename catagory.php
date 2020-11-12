@@ -47,7 +47,7 @@ if (isset($_SESSION["customer_id"]))
         <div class="back-button"><a href="home.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Daily Mart Online Shopping</h6>
+            <h6 class="mb-0"> <?php echo $lang['dailyMartOnline']; ?></h6>
         </div>
         <!-- Filter Option-->
         <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span>
@@ -77,13 +77,15 @@ require_once("sidenav.php");
             </div>
 			<div style="width: 71%;text-align: right;">
 			<h6 class="ml-1" style="font-size: 12px;">
-				<a style="font-style: italic;" href="home.php">Home</a> / <?php echo $category["title_en"]; ?>
+                <a style="font-style: italic;" href="home.php"> <?php echo $lang['home']; ?></a> / <?php if($_SESSION['lang'] == 'en'){ echo $category["title_en"]; }
+                else { echo $category["title_am"]; } ?>
 			</h6>
 			</div>
             <span></span>
         </div>
 		<a class="btn btn-danger btn-sm" style="margin-top: -0.5rem!important;margin-bottom: 1.0rem;"
-               href="allProduct.php?type=catagory&id=<?php echo $_GET['id']; ?>">Browse All <?php echo $category["title_en"]; ?></a>
+               href="allProduct.php?type=catagory&id=<?php echo $_GET['id']; ?>"><?php echo $lang['browseAll']; ?> <?php if($_SESSION['lang'] == 'en'){ echo $category["title_en"]; }
+               else { echo $category["title_am"]; } ?></a>
         <div class="product-catagory-wrap">
             <div class="row g-3">
                 <?php while ($row = sqlsrv_fetch_array($product, SQLSRV_FETCH_ASSOC)) {
@@ -98,7 +100,8 @@ require_once("sidenav.php");
                                             <img src="<?php echo "admin/" . $row["image"]; ?>" alt=""
                                                  style="width: 100%">
                                         </i>
-                                        <span style="color:#000"><?php echo $row["title_en"]; ?></span></a></div>
+                                        <span style="color:#000"><?php if($_SESSION['lang'] == 'en'){ echo $row["title_en"]; }
+                                        else { echo $row["title_am"]; } ?></span></a></div>
                             </div>
                         </div>
                     <?php
@@ -370,8 +373,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -383,14 +386,15 @@ require_once("sidenav.php");
                                               style="background: #ffaf00 !important;margin-left: 45px !important;margin-top: -25px;display: list-item;padding: 1px;z-index: 100;border-radius: 50px;width: 20px;margin-bottom: 15px;">
                                           <?php echo sqlsrv_num_rows($c_cart); ?>
                                     </span>
-                                    <?php }
+                                    <?php
+                                    }
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>
