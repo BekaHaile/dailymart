@@ -102,25 +102,27 @@ require_once("sidenav.php");
 
                         <!-- Single Top Product Card-->
                         <div class="col-6 col-md-6 col-lg-4">
-                            <div class="card top-product-card">
+                            <div class="card top-product-card" <?php if(!isset($price["price"])) { ?> style="opacity: 0.4; filter: alpha(opacity=40); background-color: #FFFFFF;" <?php } ?>>
                                 <div class="card-body" style="padding:0.3rem">
                                     <a class="wishlist-btn" href="#"></a>
-                                    <a class="product-thumbnail d-block"
-                                       href="single-product.php?id=<?php echo $row["id"]; ?>">
-                                        <img style="border-radius: 0.75rem;" class="mb-2" src="<?php echo "admin/" . $row["image"]; ?>" alt="">
-                                    </a>
+                                    <?php if(isset($price["price"])) { ?> <a class="product-thumbnail d-block"
+                                       href="single-product.php?id=<?php echo $row["id"]; ?>"> <?php } ?>
+                                        <img style="border-radius: 0.75rem; " class="mb-2" src="<?php echo "admin/" . $row["image"]; ?>" alt="">
+                                    <?php if(isset($price["price"])) { ?> </a> <?php } ?>
 									<?php $check = sqlsrv_num_rows(check_inventory_total_balance($row["item_id"], "1")); ?>
-                                    <a class="product-title d-block text-center" style="font-size:12px; <?php if($check == 0|| !isset($price["price"])) { ?> color: gray;<?php } ?>"
-                                       href="single-product.php?id=<?php echo $row["id"]; ?>"><?php echo $row["title_en"]; ?></a>
+                                    <?php if(isset($price["price"])) { ?> <a class="product-title d-block text-center" style="font-size:12px; <?php if(!isset($price["price"])) { ?> color: gray;<?php } ?>"
+                                       href="single-product.php?id=<?php echo $row["id"]; ?>"><?php } ?> 
+									   <div style="margin-bottom: 0.5rem; font-weight: 700; font-size: 12px;"> <?php echo $row["title_en"]; ?> </div>
+									   <?php if(isset($price["price"])) { ?> </a> <?php } ?>
 
-                                    <p class="sale-price text-center" style="font-size: 12px; <?php if($check == 0|| !isset($price["price"])) { ?> color: gray;<?php } ?>">
+                                    <p class="sale-price text-center" style="font-size: 12px; <?php if(!isset($price["price"])) { ?> color: gray;<?php } ?>">
                                         <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
                                         <span style="font-size: 12px;">
 										   <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
 										</span><span style="font-size: 9px;text-decoration: none;text-transform: lowercase;color: #000"><?php echo "(".trim($price["uom"]).")"; ?></span>
                                     </p>
-									<span style="text-align: center; color:red;"><?php
-                                                            if($check == 0 || !isset($price["price"])) echo 'Out of stock'; ?></span>
+									<span style="text-align: center; color:red; margin-bottom: 0.5rem; font-weight: 700; font-size: 12px;"><?php
+                                                            if(!isset($price["price"])) echo 'Out of stock'; ?></span>
 															
                                     <form class="cart-form row" action="#" method="post">
                                         <div class="row col-md-12 mb-3">
@@ -146,12 +148,12 @@ require_once("sidenav.php");
                                                             <input type="button" name="submit" id="submit"
                                                                 style="padding: 0.375rem 0.5rem;"
                                                                 onclick="addBtn(<?php echo $row["item_id"]; ?>)"
-                                                                class="btn btn-danger" value="Add" <?php if($check == 0|| !isset($price["price"])) { ?> disabled <?php }?>/>
+                                                                class="btn btn-danger" value="Add" <?php if(!isset($price["price"])) { ?> disabled <?php }?>/>
                                                             <?php }
                                                         else { ?>
 
-                                                        <a href="#" data-toggle="modal" data-target="#myModal2"><input style="padding: 0.375rem 0.5rem;" type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
-                                                            value="Add" <?php if($check == 0|| !isset($price["price"])) { ?> disabled <?php }?>/></a>
+                                                        <?php if(isset($price["price"])) { ?> <a href="#" data-toggle="modal" data-target="#myModal2"> <?php }?> <input style="padding: 0.375rem 0.5rem;" type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
+                                                            value="Add" <?php if(!isset($price["price"])) { ?> disabled <?php }?>/> <?php if(isset($price["price"])) { ?> </a> <?php }?>
                                                         <?php } ?>
 
                                                 </div>

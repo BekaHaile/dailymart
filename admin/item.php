@@ -54,15 +54,15 @@ if(!isset($_POST['category'])){
                 <div class="card-actions">
 
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                                 <div class="mb-3">
-                                        <button class="btn btn-info" onclick="printItemWithBarcode()">Print item with barcode <i class="fa fa-download"></i>
+                                        <button class="btn btn-info" onclick="printItemWithBarcode()">Product Price <i class="fa fa-download"></i>
                                         </button>
                                 </div>
                         </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <button class="btn btn-info" onclick="printItemWithImage()">Print item with image <i class="fa fa-download"></i>
+                                    <button class="btn btn-info" onclick="printItemWithImage()">Item with Image/Barcode <i class="fa fa-download"></i>
                                     </button>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@ if(!isset($_POST['category'])){
                             <th>Item Title</th>
 							<th>Price </th>
                             <th>Image</th>
-                            <th>Barcode</th>
+                            <!-- <th>Barcode</th> -->
 							<?php if (trim($_SESSION["role"]) !== "salessupervisor") { ?>
                             <th>Actions</th>
 							<?php } ?>
@@ -164,9 +164,10 @@ if(!isset($_POST['category'])){
                                          style="height: 50px;width: auto">
                                 </td>
                                 <!-- <td><?php echo find_all_admin_by_id($row["created_by"])["user_name"]; ?></td> -->
-                                <td>
+                                <!-- <td>
                                     <img alt='testing' src='barcode.php?codetype=Code39&size=60&text=<?php echo $row["item_code1"]; ?>&print=true'/>
-                                </td>
+
+                                </td> -->
 								<?php if (trim($_SESSION["role"]) !== "salessupervisor") { ?>
                                 <td class="actions">
                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
@@ -251,8 +252,6 @@ function changeFilter(){
     var sel = document.getElementById("sel1");
     var category= sel.options[sel.selectedIndex].value;
 
-    alert(category);
-
     $.ajax({
             url: "item.php",
             data: {category: category},
@@ -270,8 +269,6 @@ function changeFilter2(){
 
     var sel2 = document.getElementById("sel2");
     var product_group = sel2.options[sel2.selectedIndex].value;
-
-    alert(category + product_group);
 
     $.ajax({
             url: "item.php",
@@ -294,7 +291,6 @@ function changeFilter3(){
     var sel3 = document.getElementById("sel3");
     var brand = sel3.options[sel3.selectedIndex].value;
 
-    alert(category + product_group + brand );
 
     $.ajax({
             url: "item.php",
@@ -317,9 +313,6 @@ function printItemWithBarcode (){
 
     var sel3 = document.getElementById("sel3");
     var brand = sel3.options[sel3.selectedIndex].value;
-
-    alert(category + product_group + brand );
-
     
     window.location.href = "printItemBarcode.php?category=" + category+"&product_group="+product_group+"&brand="+brand;
 
@@ -334,9 +327,6 @@ function printItemWithImage (){
 
     var sel3 = document.getElementById("sel3");
     var brand = sel3.options[sel3.selectedIndex].value;
-
-    alert(category + product_group + brand );
-
     
     window.location.href = "printItemImage.php?category=" + category+"&product_group="+product_group+"&brand="+brand;
 
@@ -351,14 +341,10 @@ function exportItems (){
 
     var sel3 = document.getElementById("sel3");
     var brand = sel3.options[sel3.selectedIndex].value;
-
-    alert(category + product_group + brand );
-
     
     window.location.href = "exportItems.php?category=" + category+"&product_group="+product_group+"&brand="+brand;
 
 }
-
 </script>
 </body>
 

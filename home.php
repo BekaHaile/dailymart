@@ -15,6 +15,13 @@ if (isset($_SESSION["customer_id"])) {
 
 }
 
+if (isset($_POST['submit'])) {
+    if($_SESSION['lang'] == 'en')
+        $_SESSION['lang'] = 'am';
+    else $_SESSION['lang'] = 'en';
+    echo "<meta http-equiv='refresh' content='0'>";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +57,9 @@ if (isset($_SESSION["customer_id"])) {
 <!-- Header Area-->
 <div class="header-area" id="headerArea">
     <div class="container h-100 d-flex align-items-center justify-content-between">
+        <!-- Navbar Toggler-->
+        <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span>
+        </div>
         <!-- Logo Wrapper-->
         <div class="logo-wrapper">
             <a href="home.php">
@@ -58,15 +68,19 @@ if (isset($_SESSION["customer_id"])) {
         </div>
         <!-- Search Form-->
         <div class="top-search-form">
-            <h6 class="mb-0">Daily Mart Online Shopping</h6>
+            <h6 class="mb-0"> <?php echo $lang['dailyMartOnline']; ?></h6>
             <!--            <form action="#" method="">-->
             <!--                <input class="form-control" type="search" placeholder="Enter your keyword">-->
             <!--                <button type="submit"><i class="fa fa-search"></i></button>-->
             <!--            </form>-->
         </div>
-        <!-- Navbar Toggler-->
-        <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span>
-        </div>
+        <!-- Language Toggler-->
+        <form action="#" method="post">
+            <div>
+                <?php if($_SESSION['lang'] == 'en'){ ?> <button type="submit" name="submit" value="Save" onclick="changeLan()" style="border: 1; background: none; box-shadow: none; border-radius: 0px;">EN</button> <?php }
+                else { ?><button type="submit" name="submit" value="Save" onclick="changeLan()" style="border: 1; background: none; box-shadow: none; border-radius: 0px;">አማ</button> <?php } ?>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -105,26 +119,11 @@ require_once("sidenav.php");
         </div>
     </div>
 
-    <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img class="d-block w-100" src="<?php echo "admin/" . $row["image"]; ?>" alt="First slide">
-            </div>
-            <div class="carousel-item">
-            <img class="d-block w-100" src="img/pickup.png" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-            <img class="d-block w-100" src="img/dashen.png" alt="Third slide">
-            </div>
-        </div>
-    </div> -->
-
-
     <!-- Product Catagories-->
     <div class="product-catagories-wrapper py-3">
         <div class="container">
             <div class="section-heading d-flex align-items-center justify-content-between">
-                <h6 class="ml-1" style="margin-top: 0.5 rem;">Product by category</h6>
+                <h6 class="ml-1" style="margin-top: 0.5 rem;"> <?php echo $lang['productByCategory']; ?> </h6>
             </div>
             <div class="product-catagory-wrap">
                 <div class="row g-3">
@@ -153,7 +152,7 @@ require_once("sidenav.php");
             </div>
 
             <a class="btn btn-danger btn-sm" style="margin-top: 1.5rem!important;margin-bottom: -1.0rem;"
-               href="allProduct.php?type=all&id=0">Browse All Products</a>
+               href="allProduct.php?type=all&id=0"> <?php echo $lang['browseAllProducts']; ?> </a>
         </div>
     </div>
 
@@ -206,8 +205,8 @@ require_once("sidenav.php");
     <div class="top-products-area clearfix py-3">
         <div class="container">
             <div class="section-heading d-flex align-items-center justify-content-between">
-                <h6 class="ml-1">Weekly Special Offers</h6><a class="btn btn-danger btn-sm" href="topItem.php">View
-                    All</a>
+                <h6 class="ml-1"><?php echo $lang['weeklySpecialOffers']; ?> </h6><a class="btn btn-danger btn-sm" href="topItem.php">
+                <?php echo $lang['viewAll']; ?> </a>
             </div>
             <div class="row g-3">
                 <?php while ($row = sqlsrv_fetch_array($top, SQLSRV_FETCH_ASSOC)) {
@@ -255,8 +254,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -273,10 +272,10 @@ require_once("sidenav.php");
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

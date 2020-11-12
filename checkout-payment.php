@@ -66,90 +66,14 @@ require_once("sidenav.php");
         <!-- Checkout Wrapper-->
         <div class="checkout-wrapper-area py-3">
 
-            <!-- Billing Address-->
-            <div class="billing-information-card mb-3">
-                <div class="card billing-information-title-card bg-success">
-                    <div class="card-body">
-                        <h6 class="text-center mb-0 text-white">Billing Information</h6>
-                    </div>
-                </div>
-                <div class="card user-data-card">
-                    <div class="card-body">
-                        <div class="single-profile-data d-flex align-items-center justify-content-between">
-                            <div class="title d-flex align-items-center"><i
-                                    class="lni lni-user"></i><span>Deliver from Shop</span></div>
-                            <div
-                                class="data-content">
-									<?php 
-									$shop = find_shop_by_id($_GET["shope"]);
-									echo $shop["title_en"]; 
-									?>
-								</div>
-                        </div>
-						<div class="single-profile-data d-flex align-items-center justify-content-between">
-                            <div class="title d-flex align-items-center"><i
-                                    class="lni lni-user"></i><span>Number of Item</span></div>
-                            <div
-                                class="data-content"><?php echo $_GET["total"]." items"; ?></div>
-                        </div>
-						<div class="single-profile-data d-flex align-items-center justify-content-between">
-                            <div class="title d-flex align-items-center"><i
-                                    class="lni lni-user"></i><span>Total Amount</span></div>
-                            <div
-                                class="data-content"><?php echo number_format($_GET["amount"],2) . " ETB"; ?></div>
-                        </div>
-						<div class="single-profile-data d-flex align-items-center justify-content-between">
-                            <div class="title d-flex align-items-center"><i
-                                    class="lni lni-user"></i><span>Order Type</span></div>
-                            <div
-                                class="data-content"><?php echo $_GET["type"]; ?></div>
-                        </div>
-						<div class="single-profile-data d-flex align-items-center justify-content-between">
-                            <div class="title d-flex align-items-center"><i
-                                    class="lni lni-user"></i><span>Date Time</span></div>
-                            <div
-                                class="data-content"><?php echo $_GET["CDdate"]." /".$_GET["CDtime"]; ?></div>
-                        </div>
-                        <div class="single-profile-data d-flex align-items-center justify-content-between">
-                            <div class="title d-flex align-items-center"><i class="lni lni-phone"></i><span>Phone</span>
-                            </div>
-                            <div class="data-content"><?php echo $user["mobile_number"]; ?></div>
-                        </div>
-                        <div class="single-profile-data d-flex align-items-center justify-content-between">
-                            <div class="title d-flex align-items-center"><i
-                                    class="lni lni-cart"></i><span>Invoice To Name</span>
-                            </div>
-
-                            <input class="form-control" id="billTo"
-                                   value="<?php echo (trim($user["bill_to_name"]) === "" || trim($user["bill_to_name"]) === NULL )?trim($user["first_name"]) . " " . trim($user["middle_name"]) . " " . trim($user["last_name"]):trim($user["bill_to_name"]); ?>"/>
-                        </div>
-                        <div class="single-profile-data d-flex align-items-center justify-content-between">
-                            <div class="title d-flex align-items-center"><i
-                                    class="lni lni-cart"></i><span>Tin Number</span>
-                            </div>
-
-                            <input class="form-control" id="tinNumber"
-                                   value="<?php echo trim($user["tin_number"]); ?>"/>
-                        </div>
-                        <div class="single-profile-data d-flex align-items-center justify-content-between"
-                             style="float: right">
-                            <button type="button" class="btn btn-warning"
-                                    onclick="updateTin(<?php echo $user["id"]; ?>)">
-                                Confirm Information
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
+ 
             <!-- Choose Payment Method-->
-            <div class="choose-payment-method">
+            <div class="choose-payment-method" style="padding-top:50px;">
                 <h6 class="mb-3 text-center">Choose Payment Method</h6>
 
-                <div class="row justify-content-center g-3">
+                <div class="row justify-content-center g-3" >
                     <!-- Single Payment Method-->
-                    <div class="col-4 col-md-4">
+                   <div class="col-4 col-md-4">
                         <div class="single-payment-method">
                             <a class="credit-card"
                                href="checkout-credit-card.php?type=<?php echo $_GET["type"] . "&CDdate=" . $_GET["CDdate"] . "&CDtime=" . $_GET["CDtime"] . "&location=" . $_GET["location"] . "&shope=" . $_GET["shope"]. "&total=" . $_GET["total"] . "&amount=" . $_GET["amount"]; ?>">

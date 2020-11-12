@@ -12,6 +12,9 @@ if (isset($_SESSION["customer_id"])) {
     $user = find_all_customer_by_id($_SESSION["customer_id"]);
 }
 $total = 0;
+
+//print_r (json_decode($body, true)["statusDescription "]);
+
 if (isset($_POST["submit"])) {
 
     $u_id = $_SESSION["customer_id"];
@@ -39,16 +42,16 @@ if (isset($_POST["submit"])) {
 	$orders_id = $get_order_id['order_id'] + 1;
 	else $orders_id = '100000000000';
 
-   /* while ($cart = sqlsrv_fetch_array($carts, SQLSRV_FETCH_ASSOC)) {
+   while ($cart = sqlsrv_fetch_array($carts, SQLSRV_FETCH_ASSOC)) {
         $code = $cart["item"];
         $qty = $cart["qty"];
+		$qtys = find_all_cart_by_customer_group($_SESSION["customer_id"],$code);
         $location = $_GET["shope"];
-        $check = sqlsrv_num_rows(check_inventory_balance($code, $location, $qty));
+        $check = sqlsrv_num_rows(check_inventory_balance($code, $location, $qtys));
 
         if ($check > 0) {
             $descr = $cart["item_description"];
             $uom = $cart["uom"];
-
 
             $price = find_price_by_item_id($code);
             $discount_per = find_discount_by_item_id($code);
@@ -75,7 +78,7 @@ if (isset($_POST["submit"])) {
                 $result = sqlsrv_query($connection, $query);
             }
         }
-    }*/
+    }
     redirect_to("otp-confirm-bank.php");
 }
 ?>

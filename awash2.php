@@ -39,7 +39,7 @@ function Curl($url, $post_data, &$http_status, &$header = null)
     }
 
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization:' . base64_encode("11233487:ZZi2HCH6Ku")));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization:' . base64_encode("44133736:R4P3JCYDOW")));
 
     curl_setopt($ch, CURLOPT_VERBOSE, true);
 
@@ -72,20 +72,20 @@ function Curl($url, $post_data, &$http_status, &$header = null)
     }
 
     curl_close($ch);
-
+	
     return $body;
 }
 
-$url = "http://197.156.78.113:8800/esbrestapi/statusCheck";
+$url = "http://197.156.96.28:8800/esbrestapi/statusCheck";
 
 date_default_timezone_set('Africa/Addis_Ababa');
 $timestamp = date_format(date_create(), "Y-m-d H:i:s");
 
 $json = json_encode(
     array(
-        "phone_Number" => "251911993445",
-        "transaction_Id" => "DMM65QWWU369",
-        "amount" => 150.70
+        "phone_Number" => "251911233487",
+        "transaction_Id" => "DMM65QWWU279",
+        "amount" => 10.70
     ));
 
 //Log::debug("Curl $url JsonData=" . $json);

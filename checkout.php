@@ -530,7 +530,7 @@ require_once("sidenav.php");
 
 
         if (type != "" && CDdate != "" && CDtime != "" && shope != "")
-            window.open("checkout-payment.php?type=" + type + "&CDdate=" + CDdate + "&CDtime=" + CDtime + "&location=" + location + "&shope=" + shope + "&total=" + total + "&amount=" + amount, "_self");
+            window.open("payment-information.php?type=" + type + "&CDdate=" + CDdate + "&CDtime=" + CDtime + "&location=" + location + "&shope=" + shope + "&total=" + total + "&amount=" + amount, "_self");
 
     }
 

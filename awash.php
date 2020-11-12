@@ -24,7 +24,7 @@ function Curl($url, $post_data, &$http_status, &$header = null)
 
     $ch = curl_init();
     // user credencial
-    //curl_setopt($ch, CURLOPT_USERPWD, "11233487:ZZi2HCH6Ku");
+    //curl_setopt($ch, CURLOPT_USERPWD, "44133736:R4P3JCYDOW");
     //curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -39,7 +39,7 @@ function Curl($url, $post_data, &$http_status, &$header = null)
     }
 
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization:' . base64_encode("11233487:ZZi2HCH6Ku")));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization:' . base64_encode("44133736:R4P3JCYDOW")));
 
     curl_setopt($ch, CURLOPT_VERBOSE, true);
 
@@ -76,18 +76,19 @@ function Curl($url, $post_data, &$http_status, &$header = null)
     return $body;
 }
 
-$url = "http://197.156.96.28:8800/api/test";
+
+$url = "http://197.156.96.28:8800/esbrestapi/postBill";
 
 date_default_timezone_set('Africa/Addis_Ababa');
 $timestamp = date_format(date_create(), "Y-m-d H:i:s");
 
 $json = json_encode(
     array(
-        "debit_Account" => "01320055802901",
-        "phone_Number" => "251911993445",
-        "credit_Account" => "01336108846200",
-        "transaction_Id" => "DMM65QWWU279",
-        "amount" => 150.70,
+        "debit_Account" => "0911654149",
+        "phone_Number" => "251911233487",
+        "credit_Account" => "01320830033201",
+        "transaction_Id" => "DMM65QWWU478",
+        "amount" => 10.70,
         "timestamp" => "$timestamp",
         "payload" => array("name" => "melkamu")
     ));

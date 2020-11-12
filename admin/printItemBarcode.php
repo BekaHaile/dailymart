@@ -9,8 +9,9 @@ include("../includes/db_connection.php");
 include("../includes/functions.php");
 
 // Include the main TCPDF library (search for installation path).
-require_once('tcpdf/tcpdf.php');
-require_once('tcpdf/tcpdf_barcodes_1d.php');
+//require_once('tcpdf/tcpdf.php');
+//require_once('tcpdf/tcpdf_barcodes_1d.php');
+require_once('tcpdf_lib/tcpdf_include.php');
 
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -52,7 +53,9 @@ $pdf->SetFont($fontname, '', 9, '', false);
 // add a page
 $pdf->AddPage('p', 'A4');
 
+//$html .= '<tcpdf method="write1DBarcode" params="'.$params.'" />';
 //    $flp = fetch_flp();
+
 if($_GET['category'] == "All"){
     $item = find_all_item();
 }
@@ -65,6 +68,7 @@ else if($_GET['product_group'] != "All" && $_GET['brand'] == "All"){
 else if($_GET['brand'] != "All"){
     $item = find_item_by_brand_id($_GET['brand']);
 }
+
 $k = 1;
 $i = 1;
 $item1 = "";
@@ -121,19 +125,24 @@ while ($row = sqlsrv_fetch_array($item, SQLSRV_FETCH_ASSOC)) {
             if ($x == 1) {
 
                 $output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 20%;"><br><div>' . $item1['item_code1'] . '</div>' . $item1['title_en'] . '<div class="bolded">' . find_price_by_item_id($item1['item_id'])["price"] . ' birr' . '</div><br>';
-                $output .= '</th>';
+               
+				$output .= '</th>';
             } else if ($x == 2) {
                 $output .= '<th style="font-weight: normal;text-align: center;font-size: 13px;width: 20%"><br><div>' . $item2['item_code1'] . '</div>' . $item2['title_en'] . '<div class="bolded">' . find_price_by_item_id($item2['item_id'])["price"] . ' birr' . '</div><br>';
-                $output .= '</th>';
+               
+				$output .= '</th>';
             } else if ($x == 3) {
                 $output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 20%"><br><div>' . $item3['item_code1'] . '</div>'. $item3['title_en'] . '<div class="bolded">' . find_price_by_item_id($item3['item_id'])["price"] . ' birr' . '</div><br>';
-                $output .= '</th>';
+               
+				$output .= '</th>';
             } else if ($x == 4) {
                 $output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 20%"><br><div>' . $item4['item_code1'] . '</div>' . $item4['title_en'] . '<div class="bolded">' . find_price_by_item_id($item4['item_id'])["price"] . ' birr' . '</div><br>';
-                $output .= '</th>';
+              
+				$output .= '</th>';
             } else if ($x == 5) {
                 $output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 20%"><br><div>' . $item5['item_code1'] . '</div>' . $item5['title_en'] . '<div class="bolded">' . find_price_by_item_id($item5['item_id'])["price"] . ' birr' . '</div><br>';
-                $output .= '</th>';
+               
+				$output .= '</th>';
             }
         }
 

@@ -1205,6 +1205,31 @@ function find_all_cart_by_customer($id)
 
 }
 
+function find_all_cart_by_customer_group($id, $item)
+{
+    global $connection;
+
+    $query = "SELECT sum(qty) as qty FROM [dbo].[cart] ";
+    $query .= "where customer_id = '{$id}' and item = '{$item}' group by item ;";
+    $params = array();
+    $options = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
+    $result_set = sqlsrv_query($connection, $query, $params, $options);
+
+    confirm_query($result_set);
+
+    if ($result_set === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
+
+    if ($row = sqlsrv_fetch_array($result_set, SQLSRV_FETCH_ASSOC)) {
+        return $row["qty"];
+    } else {
+        return null;
+    }
+
+
+}
+
 function find_all_order_by_customer($id)
 {
     global $connection;

@@ -9,8 +9,9 @@ include("../includes/db_connection.php");
 include("../includes/functions.php");
 
 // Include the main TCPDF library (search for installation path).
-require_once('tcpdf/tcpdf.php');
-require_once('tcpdf/tcpdf_barcodes_1d.php');
+//require_once('tcpdf/tcpdf.php');
+//require_once('tcpdf/tcpdf_barcodes_1d.php');
+require_once('tcpdf_lib/tcpdf_include.php');
 
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -77,7 +78,7 @@ $output = "<style>
         text-align:center;
     }
     th, tr {
-        padding: 10px;
+        padding: 0px;
     }
     tr { page-break-inside:avoid; page-break-after:auto }
 
@@ -100,7 +101,7 @@ $output = "<style>
 	  }
 </style>";
 
-$output .= '<table CELLSPACING=10 CELLPADDING=10 border="1"> <tbody>';
+$output .= '<table CELLSPACING=5 CELLPADDING=5 border="1"> <tbody>';
 while ($row = sqlsrv_fetch_array($item, SQLSRV_FETCH_ASSOC)) {
     $price = find_price_by_item_id($row['item_id']);
 	if($row['item_code1'] == $row['item_id']){
@@ -111,34 +112,38 @@ while ($row = sqlsrv_fetch_array($item, SQLSRV_FETCH_ASSOC)) {
     } else if ($k == 3) {
         $item3 = $row;
 
-        $output .= '<tr nobr="true" style="font-weight: normal;text-align: center;padding-bottom: 20px;font-size: 8px;width: 100%">';
+        $output .= '<tr nobr="true" style="font-weight: normal;text-align: center;padding-bottom: 0px;font-size: 8px;width: 100%">';
         for ($x = 1; $x <= 3; $x++) {
 
             if ($x == 1) {
 				if(file_exists($item1["image"])){
-                    $params = $pdf->serializeTCPDFtagParameters(array('CODE 128', 'C128', '', '', 80, 30, 0.4, array('position'=>'S', 'border'=>true, 'padding'=>4, 'fgcolor'=>array(0,0,0), 'bgcolor'=>array(255,255,255), 'text'=>true, 'font'=>'helvetica', 'fontsize'=>8, 'stretchtext'=>4), 'N'));
-                    // $html .= '<tcpdf method="write1DBarcode" params="'.$params.'" />';
-					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%;"><br><div>' . $item1['item_code1'] . '</div>'. $item1['title_en'] .'<br>'.'<img src="'.$item1["image"].'"style="height: 105px;width: auto"> <br>';
+					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%;"><div>' . $item1['title_en'] . '</div>'. '<img src="'.$item1["image"].'"style="height: 95px;width: auto"> '; //105
 				}
 				else{
-					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%;"><br><div>' . $item1['item_code1'] . '</div>'. $item1['title_en'] .'<br>';
+					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%;"><div>' . $item1['title_en'] . '</div>' .'';
 				}
+				$params = $pdf->serializeTCPDFtagParameters(array($item1['item_code1'], 'C39', '', '', 38, 15, 0.4, array('position'=>'S', 'border'=>false, 'padding'=>1, 'fgcolor'=>array(0,0,0), 'bgcolor'=>array(255,255,255), 'text'=>true, 'font'=>'helvetica', 'fontsize'=>8, 'stretchtext'=>4), 'N'));
+				$output .= '<div ><tcpdf method="write1DBarcode" params="'.$params.'" /></div>';
                 $output .= '</th>';
             } else if ($x == 2) {
 				if(file_exists($item2["image"])){
-					$output .= '<th style="font-weight: normal;text-align: center;font-size: 13px;width: 33%"><br><div>' . $item2['item_code1'] . '</div>' . $item2['title_en'] .'<br>'. '<img src="'.$item2["image"].'"style="height: 105px;width: auto;"> <br>';
+					$output .= '<th style="font-weight: normal;text-align: center;font-size: 13px;width: 33%; "><div >' . $item2['title_en'] . '</div>'  .''. '<img src="'.$item2["image"].'"style="height: 95px;width: auto;  "> ';
                 }
 				else{
-					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%;"><br><div>' . $item2['item_code1'] . '</div>'. $item2['title_en'] .'<br>';
+					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%; "><div>' . $item2['title_en'] . '</div>' .'';
 				}
+				$params = $pdf->serializeTCPDFtagParameters(array($item2['item_code1'], 'C39', '', '', 38, 15, 0.4, array('position'=>'S', 'border'=>false, 'padding'=>1, 'fgcolor'=>array(0,0,0), 'bgcolor'=>array(255,255,255), 'text'=>true, 'font'=>'helvetica', 'fontsize'=>8, 'stretchtext'=>4), 'N'));
+				$output .= '<div ><tcpdf method="write1DBarcode" params="'.$params.'" /></div>';
 				$output .= '</th>';
             } else if ($x == 3) {
 				if(file_exists($item2["image"])){
-					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%"><br><div>' . $item3['item_code1'] . '</div>'. $item3['title_en'] .'<br>'. '<img src="'.$item3["image"].'"style="height: 105px;width: auto"> <br>';
+					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%; "><div>' . $item3['title_en'] . '</div>' .''. '<img src="'.$item3["image"].'"style="height: 95px;width: auto; "> ';
                 }
 				else{
-					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%;"><br><div>' . $item3['item_code1'] . '</div>'. $item3['title_en'] .'<br>';
+					$output .= '<th style="font-weight: bolder;text-align: center;font-size: 13px;width: 33%; " ><div>' . $item3['title_en'] . '</div>' .'';
 				}
+				$params = $pdf->serializeTCPDFtagParameters(array($item3['item_code1'], 'C39', '', '', 38, 15, 0.4, array('position'=>'S', 'border'=>false, 'padding'=>1, 'fgcolor'=>array(0,0,0), 'bgcolor'=>array(255,255,255), 'text'=>true, 'font'=>'helvetica', 'fontsize'=>8, 'stretchtext'=>4), 'N'));
+				$output .= '<div ><tcpdf method="write1DBarcode" params="'.$params.'" /></div>';
 				$output .= '</th>';
             } 
         }

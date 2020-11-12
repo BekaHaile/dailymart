@@ -132,9 +132,9 @@ require_once("sidenav.php");
             <div class="container d-flex justify-content-between">
                 <div class="p-title-price">
 				<?php $check = sqlsrv_num_rows(check_inventory_total_balance($item["item_id"], "1")); ?>
-                    <h6 class="mb-1" <?php if($check == 0|| !isset($price["price"])) { ?> style="color: gray;"<?php } ?>><?php echo $item["title_en"]; ?></h6>
+                    <h6 class="mb-1" <?php if(!isset($price["price"])) { ?> style="color: gray;"<?php } ?>><?php echo $item["title_en"]; ?></h6>
 
-                    <p class="sale-price mb-0" <?php if($check == 0|| !isset($price["price"])) { ?> style="color: gray;"<?php } ?>>
+                    <p class="sale-price mb-0" <?php if(!isset($price["price"])) { ?> style="color: gray;"<?php } ?>>
                         <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
                         <span style="font-size: 12px;">
                            <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
@@ -175,19 +175,19 @@ require_once("sidenav.php");
 
                         </div>
 						<span style="text-align: center; color: red;"><?php
-                                                            if($check == 0 || !isset($price["price"])) echo 'Out of stock'; ?></span>
+                                                            if(!isset($price["price"])) echo 'Out of stock'; ?></span>
                     </div>
 
 
                     <div class="col-md-10 text-center">
                         <?php if(isset($_SESSION["customer_id"])) { ?>
                         <input type="submit" name="submit" id="submit" style="width:75%" class="btn btn-danger ml-3"
-                               value="Add To Cart" <?php if($check == 0|| !isset($price["price"])) { ?> disabled style="color: gray;"<?php } ?>/>
+                               value="Add To Cart" <?php if(!isset($price["price"])) { ?> disabled style="color: gray;"<?php } ?>/>
                     <?php }
                         else { ?>
 
                         <a href="#" data-toggle="modal" data-target="#myModal2"><input type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
-                               value="Add To Cart"/></a>
+                               value="Add To Cart" <?php if(!isset($price["price"])) { ?> disabled style="color: gray;"<?php } ?>/></a>
                         <?php } ?>
 
                     </div>

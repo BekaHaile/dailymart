@@ -7,7 +7,7 @@ require_once("includes/validation_functions.php");
 if (isset($_POST['submit'])) {
     // Process the form
 
-    /*$required_fields = array("otp1", "otp2", "otp3", "otp4");
+    $required_fields = array("otp1", "otp2", "otp3", "otp4");
 
     if (isset($_POST["otp1"]) && isset($_POST["otp2"]) && isset($_POST["otp3"]) && isset($_POST["otp4"])) {
 
@@ -23,11 +23,80 @@ if (isset($_POST['submit'])) {
         $found_admin = check_customer_by_mobile_and_otp($mobile, $otp);
 
         if ($found_admin) {
-            $sql = "UPDATE [DailyMart].[dbo].[customer] SET [status] = 1 WHERE [mobile_number] = '{$mobile}';";
-            $stmt = sqlsrv_query($connection, $sql);
+            $user = null;
+			$carts = null;
+			$c_cart = null;
+			if (isset($_SESSION["customer_id"])) {
+				$c_cart = find_all_cart_by_customer($_SESSION["customer_id"]);
+				$carts = find_all_cart_by_customer($_SESSION["customer_id"]);
+				$user = find_all_customer_by_id($_SESSION["customer_id"]);
+			}
+			$total = 0;
 
-            $_SESSION["art_message"] = "Your account is activated.";
-            redirect_to("login.php");
+			$u_id = $_SESSION["customer_id"];
+			$name = trim($user["first_name"]) . " " . trim($user["middle_name"]) . " " . trim($user["last_name"]);
+			$mobile = trim($user["mobile_number"]);
+			$tin = trim($user["tin_number"]);
+			$bill = trim($user["bill_to_name"]);
+
+			$shipping = $_GET["type"];
+			$deliver_date = $_GET["CDdate"];
+			$time_range = $_GET["CDtime"];
+			$landmark = $_GET["location"];
+			$payment = "Online Banking";
+			$bank = $_POST["bank"];
+			$account = $_POST["account"];
+			$daily = "10000254879";
+			$deliver = str_replace("T", " ", $_GET["date_time"]) . ":00";
+			$trn_id = "";
+			$payer = "";
+			$status = 0;
+			
+			$orders_id;
+			$get_order_id = find_max_order_id();	
+			if($get_order_id['order_id'] != null)
+			$orders_id = $get_order_id['order_id'] + 1;
+			else $orders_id = '100000000000';
+
+		   while ($cart = sqlsrv_fetch_array($carts, SQLSRV_FETCH_ASSOC)) {
+				$code = $cart["item"];
+				$qty = $cart["qty"];
+				$qtys = find_all_cart_by_customer_group($_SESSION["customer_id"],$code);
+				$location = $_GET["shope"];
+				$check = sqlsrv_num_rows(check_inventory_balance($code, $location, $qtys));
+
+				if ($check > 0) {
+					$descr = $cart["item_description"];
+					$uom = $cart["uom"];
+
+					$price = find_price_by_item_id($code);
+					$discount_per = find_discount_by_item_id($code);
+
+					if (isset($discount_per["discount_per"]))
+						$unit = $price["price"] - $price["price"] * ($discount_per["discount_per"] / 100);
+
+					else
+						$unit = $price["price"];
+
+					$total = $unit * $qty;
+
+					$orders_id;
+
+					$time_range = substr($time_range,0,13);
+					$stat = create_order($u_id, $name, $mobile, $code, $descr, $uom, $qty, $unit, $total, $shipping, $payment, $bank, $daily, $account, $trn_id,
+						$payer, $status, $deliver, $location, $deliver_date, $time_range, $landmark, $tin, $bill, $orders_id);
+
+
+					if ($stat) {
+						$id = $cart["id"];
+
+						$query = "DELETE FROM [dbo].[cart] WHERE [id] = '{$id}'";
+						$result = sqlsrv_query($connection, $query);
+					}
+				}
+			}
+			redirect_to("otp-confirm-bank.php");
+
         } else {
             //Failure
             $_SESSION["art_error"] = "Incorrect inputs please try again.";
@@ -35,7 +104,7 @@ if (isset($_POST['submit'])) {
     } else {
         //Failure
         $_SESSION["art_error"] = "Please fill all forms.";
-    }*/
+    }
 }
 
 ?>
