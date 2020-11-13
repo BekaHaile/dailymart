@@ -8,7 +8,7 @@
                     <div class="card-body" style="padding: 10px">
                         <div class="top-search-form">
                             <form>
-                                <input class="form-control" id="search" type="text" placeholder="Enter your keyword"
+                                <input class="form-control" id="search" type="text" placeholder="<?php echo $lang['enterYourKeyword']; ?>"
                                        style="height: 40px;width: 100%;max-width: none" autofocus>
                             </form>
                         </div>
@@ -18,9 +18,9 @@
             </div>
             <div class="modal-footer" style="text-align: center;display: block">
                 <button type="submit" name="submit_status" id="status_btn" onclick="searchBtn()"
-                        class="btn btn-success" style="padding: 3px 25px;">Search
+                        class="btn btn-success" style="padding: 3px 25px;"><?php echo $lang['search']; ?>
                 </button>
-                <button class="btn btn-info" data-dismiss="modal" style="padding: 3px 25px;">Close</button>
+                <button class="btn btn-info" data-dismiss="modal" style="padding: 3px 25px;"><?php echo $lang['close']; ?></button>
 
             </div>
         </div>

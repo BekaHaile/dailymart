@@ -114,7 +114,6 @@
         "dateOfBirth" => "Date of Birth",
         "myOrder" => "My Order",
         "view" => "View",
-        "editProfile" => "Edite Profile",
 
         //edit profile
         "editProfile" => "Edit Profile",
@@ -127,7 +126,6 @@
         "ordered" => "Ordered",
 
         //live chat
-        "liveChat" => "Live Chat",
         "startAConversation" => "Start A Conversation",
         "comingSoon" => "Coming Soon",
 
@@ -148,5 +146,9 @@
         //product
         "add" => "Add",
         "outOfStock" => "Out of Stock",
+
+        //search
+        "enterYourKeyword" => "Enter your keyword",
+        "close" => "Close",
     );
 ?>

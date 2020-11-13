@@ -55,7 +55,7 @@ if(isset($_GET["type"])){
                     class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Daily Mart Online Shopping</h6>
+            <h6 class="mb-0"><?php echo $lang['dailyMartOnline']; ?></h6>
         </div>
         <!-- Filter Option-->
         <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span>
@@ -69,34 +69,33 @@ if(isset($_GET["type"])){
 require_once("sidenav.php");
 ?>
 
-<!--Footer Pages-->
+<!-- Footer Nav-->
 <div class="footer-nav-area" id="footerNav">
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a>
-                </li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
-                            <i class="fa fa-shopping-cart" id="cartNumber">
+                            <i class="fa fa-shopping-cart">
                                 <?php
                                 if ($c_cart != null) {
-                                    if (sqlsrv_num_rows($c_cart) > 0) {
+                                    if ((sqlsrv_num_rows($c_cart) > 0) > 0) {
                                         ?>
                                         <span class="ml-3 badge badge-warning"
                                               style="background: #ffaf00 !important;margin-left: 45px !important;margin-top: -25px;display: list-item;padding: 1px;z-index: 100;border-radius: 50px;width: 20px;margin-bottom: 15px;">
-                                              <?php echo sqlsrv_num_rows($c_cart); ?>
-                                        </span>
+                                          <?php echo sqlsrv_num_rows($c_cart); ?>
+                                    </span>
                                     <?php
                                     }
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>
@@ -121,7 +120,8 @@ require_once("sidenav.php");
                 <div class="single_container" style="padding-left: 1.5rem;padding-right: 1.5rem;">
                     <div class="single_container_header" style="padding: 0;background: #006e35;color: white">
                         <div class="dv_header3"
-                             style="padding-left: 10px;"> <?php echo find_category_by_cat_id($row1["category_id"])["title_en"] . " / " . $row1["title_en"]; ?> </div>
+                             style="padding-left: 10px;"> <?php if($_SESSION['lang'] == 'en'){ echo find_category_by_cat_id($row1["category_id"])["title_en"] . " / " . $row1["title_en"]; }
+                             else {echo find_category_by_cat_id($row1["category_id"])["title_am"] . " / " . $row1["title_am"];} ?> </div>
                     </div>
                     <div class="row g-3" style="margin-bottom: var(--bs-gutter-y);">
                         <?php
@@ -146,18 +146,18 @@ require_once("sidenav.php");
                                                 <?php if(isset($price["price"])) { ?> <a class="product-title d-block"
                                                    href="single-product.php?id=<?php echo $row["id"]; ?>&type=allProduct&mainType=<?php echo $_GET["type"]; ?>&mainId=<?php echo $_GET["id"]; ?>"
 												   <?php if(!isset($price["price"])) { ?> style="color: gray;"<?php } ?>> <?php } ?>
-                                                    <div style="margin-bottom: 0.5rem; font-weight: 700; font-size: 12px;"> <?php echo $row["title_en"]; ?> </div>
+                                                    <div style="margin-bottom: 0.5rem; font-weight: 700; font-size: 12px;"> <?php if($_SESSION['lang'] == 'en' || trim($row["title_am"]) == ""){ echo $row["title_en"]; } else { echo $row["title_am"];}?> </div>
                                                 <?php if(isset($price["price"])) { ?> </a> <?php } ?>
 
                                                 <p class="sale-price text-center" style="font-size: 12px; <?php if(!isset($price["price"])) { ?> color: gray;<?php } ?>">
-                                                    <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
+                                                    <?php echo (isset($discount_per["discount_per"])) ? $lang['etb']." " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : $lang['etb']." " . $price["price"]; ?>
                                                     <span style="font-size: 12px;">
-                                               <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
+                                               <?php echo (isset($discount_per["discount_per"])) ? $lang['etb']." " . $price["price"] : ""; ?>
                                             </span><span
                                                         style="font-size: 9px;text-decoration: none;text-transform: lowercase;color: #000"><?php echo "(" . trim($price["uom"]) . ")"; ?></span>
                                                 </p>
 												<span><?php
-                                                            if(!isset($price["price"])) echo '<span style="color:red; margin-bottom: 0.5rem; font-weight: 700; font-size: 12px;">Out of stock</span>'; ?></span>
+                                                            if(!isset($price["price"])) echo '<span style="color:red; margin-bottom: 0.5rem; font-weight: 700; font-size: 12px;">'.$lang['outOfStock'].'</span>'; ?></span>
 															
                                                 <form class="cart-form row" action="#" method="post">
                                                     <div class="row col-md-12 mb-3">
@@ -183,12 +183,12 @@ require_once("sidenav.php");
                                                                 <input type="button" name="submit" id="submit"
                                                                        style="padding: 0.375rem 0.5rem;"
                                                                        onclick="addBtn(<?php echo $row["item_id"]; ?>)"
-                                                                       class="btn btn-success" value="Add" <?php if(!isset($price["price"])) { ?> disabled <?php } ?>/>
+                                                                       class="btn btn-success" value="<?php echo $lang['add']; ?>" <?php if(!isset($price["price"])) { ?> disabled <?php } ?>/>
                                                                        <?php }
                                                             else { ?>
 
                                                             <?php if(isset($price["price"])) { ?> <a href="#" data-toggle="modal" data-target="#myModal2"> <?php } ?> <input style="padding: 0.375rem 0.5rem;" type="button" name="toggle" id="toggle" style="width:75%" class="btn btn-danger ml-3"
-                                                                value="Add" <?php if(!isset($price["price"])) { ?> disabled <?php } ?>/> <?php if(isset($price["price"])) { ?> </a> <?php } ?>
+                                                                value="<?php echo $lang['add']; ?>" <?php if(!isset($price["price"])) { ?> disabled <?php } ?>/> <?php if(isset($price["price"])) { ?> </a> <?php } ?>
                                                             <?php } ?>
 
                                                             </div>

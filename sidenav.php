@@ -30,16 +30,16 @@ if (isset($_SESSION["customer_id"])) {
         </div>
         <!-- Sidenav Nav-->
         <ul class="sidenav-nav pl-0">
-            <li><a href="home.php"><i class="lni lni-home"></i>Home</a></li>
-            <li><a href="profile.php"><i class="lni lni-user"></i>My Profile</a></li>
-            <li><a href="my-order.php"><i class="lni lni-cart"></i>Order History</a></li>
-            <li><a href="message.php"><i class="lni lni-wechat"></i>Live Chat</a></li>
-            <li><a href="notifications.php"><i class="lni lni-alarm lni-tada-effect"></i>Notifications<span
+            <li><a href="home.php"><i class="lni lni-home"></i><?php echo $lang['home']; ?></a></li>
+            <li><a href="profile.php"><i class="lni lni-user"></i><?php echo $lang['myProfile']; ?></a></li>
+            <li><a href="my-order.php"><i class="lni lni-cart"></i><?php echo $lang['orderHistory']; ?></a></li>
+            <li><a href="message.php"><i class="lni lni-wechat"></i><?php echo $lang['liveChat']; ?></a></li>
+            <li><a href="notifications.php"><i class="lni lni-alarm lni-tada-effect"></i><?php echo $lang['notifications']; ?><span
                         class="ml-3 badge badge-warning"><?php echo sqlsrv_num_rows($notification);?></span></a></li>
 <!--            <li><a href="settings.php"><i class="lni lni-cog"></i>Settings</a></li>-->
-            <li><a href="settings.php"><i class="lni lni-cog"></i>Settings</a></li>
-            <li><a href="faq.php"><i class="fa fa-question-circle"></i>FAQ</a></li>
-            <li><a href="logout.php"><i class="lni lni-power-switch"></i>Sign Out</a></li>
+            <li><a href="settings.php"><i class="lni lni-cog"></i><?php echo $lang['settings']; ?></a></li>
+            <li><a href="faq.php"><i class="fa fa-question-circle"></i><?php echo $lang['faq']; ?></a></li>
+            <li><a href="logout.php"><i class="lni lni-power-switch"></i><?php echo $lang['signOut']; ?></a></li>
         </ul>
     <?php } else { ?>
         <ul class="sidenav-nav pl-0">

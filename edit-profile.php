@@ -86,7 +86,7 @@ if (isset($_POST['submit'])) {
         <div class="back-button"><a href="profile.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Edit Profile</h6>
+            <h6 class="mb-0"><?php echo $lang['editProfile']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -121,7 +121,7 @@ require_once("sidenav.php");
                         <!--                        </div>-->
                     </div>
                     <div class="user-info">
-                        <p class="mb-0 text-white">Mobile Number</p>
+                        <p class="mb-0 text-white"><?php echo $lang['mobileNumber']; ?></p>
                         <h5 class="mb-0"><?php echo $user["mobile_number"]; ?></h5>
                     </div>
                 </div>
@@ -131,23 +131,23 @@ require_once("sidenav.php");
                 <div class="card-body">
                     <form action="#" method="post">
                         <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-user"></i><span>Mobile Number</span></div>
+                            <div class="title mb-2"><i class="lni lni-user"></i><span><?php echo $lang['mobileNumber']; ?></span></div>
                             <input class="form-control" name="mobile" disabled type="text"
                                    value="<?php echo $user["mobile_number"]; ?>">
                         </div>
                         <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-user"></i><span>First Name</span></div>
+                            <div class="title mb-2"><i class="lni lni-user"></i><span><?php echo $lang['firstName']; ?></span></div>
                             <input class="form-control" name="fname" type="text" required="required"
                                    value="<?php echo trim($user["first_name"]); ?>">
                         </div>
                         <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-user"></i><span>Second Name</span></div>
+                            <div class="title mb-2"><i class="lni lni-user"></i><span><?php echo $lang['secondName']; ?></span></div>
                             <input class="form-control" name="mname" type="text" required="required"
                                    value="<?php echo trim($user["middle_name"]); ?>">
                         </div>
 
                         <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-users"></i><span>Gender</span></div>
+                            <div class="title mb-2"><i class="lni lni-users"></i><span><?php echo $lang['gender']; ?></span></div>
                                 <div class="col-lg-4">
                                     <select class="form-control" name="gender"  data-plugin-selectTwo 
                                     name="gender" id="gender">
@@ -159,29 +159,13 @@ require_once("sidenav.php");
                                 </div>
                         </div>
 
-                        <!-- <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-calendar"></i><span>Date of birth</span></div>
-                                    <input class="form-control" name="date_of_birth" required type="date" value="<?php echo trim($user["date_of_birth"]); ?>">
-                        </div> -->
-
                         <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-envelope"></i><span>Email Address</span></div>
+                            <div class="title mb-2"><i class="lni lni-envelope"></i><span><?php echo $lang['emailAddress']; ?></span></div>
                             <input class="form-control" name="email" type="email"
                                    value="<?php echo trim($user["email"]); ?>">
                         </div>
-                        <!-- <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-map-marker"></i><span>Country</span>
-                            </div>
-                            <input class="form-control" name="country" type="text"
-                                   value="<?php echo trim($user["country"]); ?>">
-                        </div>
-                        <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-map-marker"></i><span>City</span>
-                            </div>
-                            <input class="form-control" name="city" type="text"
-                                   value="<?php echo trim($user["city"]); ?>">
-                        </div> -->
-                        <input class="btn btn-success w-100 p-2" type="submit" name="submit" value="Save All Changes">
+
+                        <input class="btn btn-success w-100 p-2" type="submit" name="submit" value="<?php echo $lang['saveAllChanges']; ?>">
                     </form>
                 </div>
             </div>
@@ -195,8 +179,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -208,14 +192,15 @@ require_once("sidenav.php");
                                               style="background: #ffaf00 !important;margin-left: 45px !important;margin-top: -25px;display: list-item;padding: 1px;z-index: 100;border-radius: 50px;width: 20px;margin-bottom: 15px;">
                                           <?php echo sqlsrv_num_rows($c_cart); ?>
                                     </span>
-                                    <?php }
+                                    <?php
+                                    }
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

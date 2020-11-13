@@ -1,153 +1,155 @@
 <?php
     $lang = array(
         //home page
-        "dailyMartOnline" => "ዴይሊ ማርት የኦንላይን ግብይት",
+        "dailyMartOnline" => "ዴይሊ ማርት የመስመር ግብይት",
         "productByCategory" => "ምርት በምድብ",
-        "browseAllProducts" => "ሁሉንም ምርቶች ያስሱ",
+        "browseAllProducts" => "ሁሉንም ምርቶች ፈልግ",
         "weeklySpecialOffers" => "ሳምንታዊ ልዩ ቅናሾች",
-        "viewAll" => "ሁሉንም ይመልከቱ",
+        "viewAll" => "ሁሉንም አሳይ",
 
         //footer menu
-        "home" => "ቤት",
+        "home" => "መነሻ ገጽ",
         "search" => "ፈልግ",
-        "cart" => "ጋሪ",
+        "cart" => "ቅርጫት",
         "settings" => "ቅንብሮች",
         
         //Side nav
         "myProfile" => "የግል ማህደሬ",
-        "orderHistory" => "ትዕዛዝ ታሪክ",
+        "orderHistory" => "የትእዛዝ ታሪክ",
         "liveChat" => "የቀጥታ ውይይት",
         "notifications" => "ማሳወቂያዎች",
-        "faq" => "በየጥ",
+        "faq" => "ተደጋግሞ የሚነሱ ጥያቄዎች",
         "signOut" => "ዘግተህ ውጣ",
         
         //special offers
-        "specialOffers" => "Special Offers",
+        "specialOffers" => "ልዩ ቅናሽ",
         
         //single product
-        "productDetails" => "Product Details",
+        "productDetails" => "የምርት ዝርዝሮች",
         "etb" => "ብር",
-        "selectItem" => "Select Item",
-        "addToCart" => "Add To Cart",
-        "specifications" => "Specifications",
-        "success" => "Success",
+        "selectItem" => "ይምረጡ",
+        "addToCart" => "ወደ ግዢው ቅርጫት ጨምር",
+        "specifications" => "መግለጫዎች",
+        "success" => "ስኬት",
 
         //cart
-        "myBasket" => "My Basket",
-        "selectYourNearby" => "Select Your Nearby Shop",
-        "confirmShopping" => "Confirm Shopping",
+        "myBasket" => "የእኔ ቅርጫት",
+        "selectYourNearby" => "በአቅራቢያዎ የሚገኘውን ሱቅ ይምረጡ",
+        "confirmShopping" => "ግብይቶን ያረጋግጡ",
 
         //checkout
-        "deliveryOption" => "Delivery Option",
-        "howWouldYou" => "How would you like to collect?",
-        "collectFromShop" => "Collect From Shop",
-        "collectYourShopping" => "Collect your shopping from your selected location",
-        "homeDelivery" => "Home Delivery",
-        "yourOnlineShopping" => "Your online shopping delivered to your home door.",
-        "selectCollectionDate" => "Select collection date and time",
-        "today" => "Today",
-        "tommorow" => "Tommorow",
-        "chooseConvenientTime" => "Choose a convenient time",
-        "localTimeRange" => "Local Time Range",
-        "location" => "Location",
-        "price" => "Price",
-        "bookSlot" => "Book Slot",
+        "deliveryOption" => "የመላኪያ አማራጭ",
+        "howWouldYou" => "እንዴት መረከብ ይፈልጋሉ?",
+        "collectFromShop" => "ከሱቅ ይሰብስቡ",
+        "collectYourShopping" => "ግብይትዎን ከመረጡበት ቦታ ይሰብስቡ",
+        "homeDelivery" => "የቤት አቅርቦት",
+        "yourOnlineShopping" => "የመስመር ላይ ግብይትዎ ወደ ቤትዎ በር ደርሷል.",
+        "selectCollectionDate" => "የመረከቢያ ቀን እና ሰዓት ይምረጡ",
+        "today" => "ዛሬ",
+        "tommorow" => "ነገ",
+        "chooseConvenientTime" => "አመቺ ጊዜን ይምረጡ",
+        "localTimeRange" => "የአከባቢ የጊዜ ክልል",
+        "location" => "አካባቢ",
+        "price" => "ዋጋ",
+        "bookSlot" => "ቦታ ያሲዙ",
 
         //Checkout payment
-        "checkoutAndPay" => "Checkout and pay",
-        "billingInformation" => "Billing Information",
-        "deliverFromShop" => "Deliver From Shop",
-        "numberOfItem" => "Number of Item",
-        "totalAmount" => "Total Amount",
-        "orderType" => "Order Type",
-        "dateTime" => "Date Time",
-        "phone" => "Phone",
-        "invoiceToName" => "Invoice To Name",
-        "tinNumber" => "Tin Number",
-        "confirmInformation" => "Confirm Information",
-        "choosePaymentMethod" => "Choose Payment Method",
-        "onlineBanking" => "Online Banking",
-        "cashOnDelivery" => "Cash on delivery",
-        "bankTransfer" => "Bank Transfer",
+        "checkoutAndPay" => "ከፋለው ይውጡ",
+        "billingInformation" => "የሂሳብ አከፋፈል መረጃ",
+        "deliverFromShop" => "አቅርቦት ከሱቃችን",
+        "numberOfItem" => "የእቃው ብዛት",
+        "totalAmount" => "አጠቃላይ ድምሩs",
+        "orderType" => "የትዕዛዝ ዓይነት",
+        "dateTime" => "ቀን ሰዓት",
+        "phone" => "ስልክ",
+        "invoiceToName" => "ደረሰኝ ለመሰየም",
+        "tinNumber" => "የግብር መክፈያ መለያ ቁጥር",
+        "confirmInformation" => "መረጃን ያረጋግጡ",
+        "choosePaymentMethod" => "የክፍያ ዘዴን ይምረጡ",
+        "onlineBanking" => "ኦንላይን ባንኪንግ",
+        "cashOnDelivery" => "በጥሬ ገንዘብ አቅርቦት ላይ",
+        "bankTransfer" => "በባንክ ማስተላለፍ",
 
         //checkout credit card
-        "onlinePaymentInfo" => "Online Payment Info",
-        "selectYourBank" => "Select Your Bank",
-        "enterYourAccount" => "ENTER YOUR ACCOUNT NUMBER",
-        "yourPaymentInfo" => "Your payment info is stored successfully",
-        "payNow" => "Pay Now",
+        "onlinePaymentInfo" => "የመስመር ላይ የክፍያ መረጃ",
+        "selectYourBank" => "ባንክዎን ይምረጡ",
+        "enterYourAccount" => "የሂሳብ ቁጥርዎን ያስገቡ ",
+        "yourPaymentInfo" => "የክፍያ መረጃዎ በተሳካ ሁኔታ ተሳክቷል",
+        "payNow" => "አሁን ይክፈሉ",
 
         //checkout cash
-        "cashPayment" => "Cash - Payment",
-        "payWhenYou" => "Pay when you recieve your products",
-        "orderNow" => "Order Now",
+        "cashPayment" => "ጥሬ ገንዘብ - ክፍያ",
+        "payWhenYou" => "ምርቶችዎን ሲቀበሉ ይክፈሉ",
+        "orderNow" => "አሁን እዘዝ",
 
         //checkout bank account
-        "bankAccountInfo" => "Bank Account Info",
-        "makeYourPayment" => "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.",
-        "chooseBank" => "Choose Bank",
+        "bankAccountInfo" => "የባንክ ሂሳብ መረጃ",
+        "makeYourPayment" => "ክፍያዎን በቀጥታ ወደ የባንክ አካውንታችን ያስገቡ። እባክዎ የትእዛዝ መታወቂያዎን እንደ የክፍያ ማጣቀሻ ይጠቀሙበት። ገንዘቡ በሂሳባችን ውስጥ እስኪያልቅ ድረስ ትዕዛዝዎ አይላክም። ",
+        "chooseBank" => "ባንክ ይምረጡ",
 
         //payment success
-        "paymentDone" => "Payment Done",
-        "weWillNotify" => "We will notify you of all the details via email. Thank you!",
-        "buyAgain" => "Buy Again",
+        "paymentDone" => "ክፍያ ተከናውኗል",
+        "weWillNotify" => "ሁሉንም ዝርዝሮች በኢሜል እናሳውቅዎታለን ፡፡ አመሰግናለሁ!",
+        "buyAgain" => "እንደገና ይግዙ",
 
         //settings
-        "language" => "Language",
-        "password" => "Password",
-        "change" => "Change",
+        "language" => "ቋንቋ",
+        "password" => "የይለፍ ቃል",
+        "change" => "ለውጥ",
 
         //change password
-        "changePassword" => "Change Password",
-        "phoneNumber" => "Phone Number",
-        "oldPassword" => "Old Password",
-        "newPassword" => "New Password",
-        "repeatNewPassword" => "Repeat New Password",
-        "updatePassword" => "Update Password",
+        "changePassword" => "የሚስጥር ቁልፍ ይቀይሩ",
+        "phoneNumber" => "ስልክ ቁጥር",
+        "oldPassword" => "የድሮ የይለፍ ቃል",
+        "newPassword" => "አዲስ የይለፍ ቃል",
+        "repeatNewPassword" => "አዲስ የይለፍ ቃል ይድገሙ",
+        "updatePassword" => "የይለፍ ቃል ያዘምኑ",
 
         //profile
-        "profile" => "Profile",
-        "mobileNumber" => "Mobile Number",
-        "fullName" => "Full Name",
-        "emailAddress" => "Email Address",
-        "gender" => "Gender",
-        "dateOfBirth" => "Date of Birth",
-        "myOrder" => "My Order",
-        "view" => "View",
-        "editProfile" => "Edite Profile",
+        "profile" => "መገለጫ",
+        "mobileNumber" => "የእጅ ስልክ ቁጥር",
+        "fullName" => "ሙሉ ስም",
+        "emailAddress" => "የኢሜል አድራሻ",
+        "gender" => "ፆታ",
+        "dateOfBirth" => "የትውልድ ቀን",
+        "myOrder" => "የእኔ ትዕዛዝ",
+        "view" => "አሳይ",
+        "editProfile" => "መገለጫ አርትዕ",
 
         //edit profile
-        "editProfile" => "Edit Profile",
-        "firstName" => "First Name",
-        "secondName" => "Second Name",
-        "saveAllChanges" => "Save All Changes",
+        "firstName" => "የመጀመሪያ ስም",
+        "secondName" => "የአባት ስም",
+        "saveAllChanges" => "ሁሉንም ለውጦች ይመዝግብ",
 
         //my order
-        "myOrderHistory" => "My Order History",
-        "ordered" => "Ordered",
+        "myOrderHistory" => "የእኔ ትዕዛዝ ታሪክ",
+        "ordered" => "የታዘዘ",
 
         //live chat
-        "liveChat" => "Live Chat",
-        "startAConversation" => "Start A Conversation",
-        "comingSoon" => "Coming Soon",
+        "startAConversation" => "ውይይት ይጀምሩ",
+        "comingSoon" => "በቅርብ ቀን",
 
         //faq
-        "frequentlyAskedQuestions" => "Frequently Asked Questions",
+        "frequentlyAskedQuestions" => "ተደጋግሞ የሚነሱ ጥያቄዎች",
 
         //login
-        "logIn" => "Log In",
-        "forgotPassword" => "Forgot Password",
-        "didntHaveAn" => "Didn't have an account?",
-        "registerNow" => "Register Now",
-        "viewAsGuest" => "VIEW AS GUEST",
-        "resetPassword" => "Reset Password",
+        "logIn" => "ግባ",
+        "forgotPassword" => "መክፈቻ ቁልፉን ረሳኽው",
+        "didntHaveAn" => "መለያ አልነበረውም?",
+        "registerNow" => "አሁን ይመዝገብ",
+        "viewAsGuest" => "እንደ እንግዳ ይመልከቱ",
+        "resetPassword" => "የይለፍ ቃል ዳግም ያስጀምሩ",
 
         //catagory
-        "browseAll" => "Browse All",
+        "browseAll" => "ሁሉንም አሳይ",
 
         //product
         "add" => "ጨምር",
-        "outOfStock" => "Out of Stock",
+        "outOfStock" => "ከመጋዘን ተጠናቋል",
+
+        //search
+        "enterYourKeyword" => "ቁልፍ ቃልዎን ያስገቡ",
+        "close" => "ዝጋ",
 
     );
 ?>

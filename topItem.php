@@ -46,7 +46,7 @@ if (isset($_SESSION["customer_id"])) {
         <div class="back-button"><a href="home.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Special Offers</h6>
+            <h6 class="mb-0"><?php echo $lang['specialOffers']; ?></h6>
         </div>
         <!-- Filter Option-->
         <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span>
@@ -66,7 +66,7 @@ require_once("sidenav.php");
     <div class="top-products-area py-3">
         <div class="container">
             <div class="section-heading d-flex align-items-center justify-content-between">
-                <h6 class="ml-1">Special Offers</h6>
+                <h6 class="ml-1"><?php echo $lang['specialOffers']; ?></h6>
             </div>
             <div class="row g-3">
                 <?php
@@ -81,12 +81,13 @@ require_once("sidenav.php");
                             <div class="card-body">
                                 <a href="single-product.php?id=<?php echo $item["id"]; ?>&type=topItem">
                                     <img src="<?php echo "admin/" . $item["image"]; ?>" alt="">
-                                    <span class="product-title"><?php echo $item["title_en"]; ?></span>
+                                    <span class="product-title"> <?php if($_SESSION['lang'] == 'en' || trim($item["title_am"]) == ""){ echo $item["title_en"]; }
+                                    else { echo $item["title_am"];} ?></span>
 
                                     <p class="sale-price mb-0">
-                                        <?php echo (isset($discount_per["discount_per"])) ? "ETB " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : "ETB " . $price["price"]; ?>
+                                        <?php echo (isset($discount_per["discount_per"])) ? $lang['etb']." " . number_format($price["price"] - $price["price"] * ($discount_per["discount_per"] / 100), 2, '.', ',') : $lang['etb']." " . $price["price"]; ?>
                                         <span style="font-size: 12px;">
-                                           <?php echo (isset($discount_per["discount_per"])) ? "ETB " . $price["price"] : ""; ?>
+                                           <?php echo (isset($discount_per["discount_per"])) ? $lang['etb']." " . $price["price"] : ""; ?>
                                         </span>
                                     </p>
 
@@ -108,8 +109,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -126,10 +127,10 @@ require_once("sidenav.php");
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

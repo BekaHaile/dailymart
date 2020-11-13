@@ -45,7 +45,7 @@ if (isset($_SESSION["customer_id"])) {
         <div class="back-button"><a href="home.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Settings</h6>
+            <h6 class="mb-0"><?php echo $lang['settings']; ?> </h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -125,7 +125,7 @@ require_once("sidenav.php");
                         <div class="card-body">
                             <!-- Single Settings-->
                             <div class="single-settings d-flex align-items-center justify-content-between">
-                                <div class="title"><i class="lni lni-world"></i><span>Language</span></div>
+                                <div class="title"><i class="lni lni-world"></i><span><?php echo $lang['language']; ?></span></div>
                                 <div class="data-content"><a href="language.php"><?php if($_SESSION['lang'] == 'en'){ ?> English <?php } else{ ?> አማርኛ <?php } ?> <i
                                             class="lni lni-chevron-right"></i></a></div>
                             </div>
@@ -158,8 +158,8 @@ require_once("sidenav.php");
                                 <!-- Single Settings-->
                                 <div class="single-settings d-flex align-items-center justify-content-between">
                                     <div class="title"><i
-                                            class="lni lni-lock"></i><span>Password</span></div>
-                                    <div class="data-content"><a href="change-password.php">Change<i
+                                            class="lni lni-lock"></i><span><?php echo $lang['password']; ?></span></div>
+                                    <div class="data-content"><a href="change-password.php"><?php echo $lang['change']; ?><i
                                                 class="lni lni-chevron-right"></i></a></div>
                                 </div>
                             </div>
@@ -175,28 +175,28 @@ require_once("sidenav.php");
             <div class="container h-100 px-0">
                 <div class="suha-footer-nav h-100">
                     <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                        <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                        <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                         <li><a href="cart.php">
-                        <span>
-                            <i class="fa fa-shopping-cart">
-                                <?php
-                                if ($c_cart != null) {
-                                    if ((sqlsrv_num_rows($c_cart) > 0) > 0) {
-                                        ?>
-                                        <span class="ml-3 badge badge-warning"
-                                              style="background: #ffaf00 !important;margin-left: 45px !important;margin-top: -25px;display: list-item;padding: 1px;z-index: 100;border-radius: 50px;width: 20px;margin-bottom: 15px;">
-                                          <?php echo sqlsrv_num_rows($c_cart); ?>
-                                    </span>
-                                    <?php
-                                    }
-                                } ?>
-                            </i>
-                        </span>
-                                <span>Cart</span>
+                                <span>
+                                    <i class="fa fa-shopping-cart">
+                                        <?php
+                                        if ($c_cart != null) {
+                                            if ((sqlsrv_num_rows($c_cart) > 0) > 0) {
+                                                ?>
+                                                <span class="ml-3 badge badge-warning"
+                                                    style="background: #ffaf00 !important;margin-left: 45px !important;margin-top: -25px;display: list-item;padding: 1px;z-index: 100;border-radius: 50px;width: 20px;margin-bottom: 15px;">
+                                                <?php echo sqlsrv_num_rows($c_cart); ?>
+                                            </span>
+                                            <?php
+                                            }
+                                        } ?>
+                                    </i>
+                                </span>
+                                <span><?php echo $lang['cart']; ?></span>
                             </a>
                         </li>
-                        <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                        <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
                     </ul>
                 </div>
             </div>
