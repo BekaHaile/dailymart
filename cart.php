@@ -67,7 +67,7 @@ $total = 0;
         <div class="back-button"><a href="home.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">My Basket</h6>
+            <h6 class="mb-0"><?php echo $lang['myBasket']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -90,13 +90,13 @@ require_once("sidenav.php");
 
                 <label for="cardNumber"> <span style="display: none">Waiting</span></label>
 				
-				<div class='blink'> Select your nearby Shop </div>
+				<div class='blink'> <?php echo $lang['selectYourNearby']; ?></div>
 				<div class="input-append date form_datetime" data-date="2013-02-21T15:25:00Z" id="DTime"
                              style="display: flex;">
                             <select class="form-control" id="locations" name="locations" 
                                     onchange="updateCart()"
                                     style="border-radius: 0 0 15px 15px;;border: 3px solid lightgray;">
-                                <option value="" disabled selected hidden>Location</option>
+                                <option value="" disabled selected hidden><?php echo $lang['location']; ?></option>
                                 <?php if ($c_cart != null) {
 								while ($row = sqlsrv_fetch_array($location, SQLSRV_FETCH_ASSOC)) {
 									?>
@@ -125,6 +125,7 @@ require_once("sidenav.php");
 
                                 $price = find_price_by_item_id($row["item"]);
                                 $discount_per = find_discount_by_item_id($row["item"]);
+                                $item = find_item_by_item_id($row["item"]);
 
 //                                $value = "";
 
@@ -147,13 +148,14 @@ require_once("sidenav.php");
                                              alt="">
                                     </td>
                                     <td>
-                                        <a href="single-product.php?id=<?php echo find_item_by_item_id($row["item"])["id"]; ?>"><?php echo $row["item_description"]; ?>
-                                            <span>ETB  <?php echo number_format($unit,2) . " * " . $row["qty"].  "<strong style=\"font-size: 9px;text-decoration: none;text-transform: lowercase;color: #81849d\">(".trim($price["uom"]).")</strong>"; ?></span>
+                                        <a href="single-product.php?id=<?php echo find_item_by_item_id($row["item"])["id"]; ?>"><?php if($_SESSION['lang'] == 'en' || trim($item["title_am"]) == "") { echo $item["title_en"]; }
+                                        else { echo $item["title_am"]; } ?>
+                                            <span><?php echo $lang['etb']; ?>  <?php echo number_format($unit,2) . " * " . $row["qty"].  "<strong style=\"font-size: 9px;text-decoration: none;text-transform: lowercase;color: #81849d\">(".trim($price["uom"]).")</strong>"; ?></span>
                                         </a>
                                     </td>
                                     <td style="vertical-align: bottom">
                                         <a>
-                                            <span>ETB <?php echo number_format($unit,2) * $row["qty"] ?></span>
+                                            <span> <?php echo $lang['etb']; ?> <?php echo number_format($unit,2) * $row["qty"] ?></span>
                                         </a>
                                     </td>
                                     <td>
@@ -179,7 +181,7 @@ require_once("sidenav.php");
             <div class="card cart-amount-area">
 
                 <div class="card-body d-flex align-items-center justify-content-between">
-                    <h5 class="total-price mb-0">ETB <span class="" id="totalAmount"><?php echo number_format($total,2); ?></span>
+                    <h5 class="total-price mb-0"><?php echo $lang['etb']; ?> <span class="" id="totalAmount"><?php echo number_format($total,2); ?></span>
                     </h5>
                     <?php if ($total > 0) { ?>
                         <button type="button" id="confirm" onclick="checkoutBtn()" class="btn btn-warning add2cart-notification">
@@ -201,8 +203,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -219,10 +221,10 @@ require_once("sidenav.php");
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
         <div class="back-button"><a href="settings.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Change Password</h6>
+            <h6 class="mb-0"><?php echo $lang['changePassword']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -116,7 +116,7 @@ require_once("sidenav.php");
                     <div class="user-profile mr-3"><img src="" alt=""></div>
                     <div class="user-info">
                         <p class="mb-0 text-white" style="font-size: 16px"><?php echo $user["mobile_number"]; ?></p>
-                        <h6 class="mb-0">Phone Number</h6>
+                        <h6 class="mb-0"><?php echo $lang['phoneNumber']; ?></h6>
                     </div>
                 </div>
             </div>
@@ -125,18 +125,18 @@ require_once("sidenav.php");
                 <div class="card-body">
                     <form action="#" method="post">
                         <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-key"></i><span>Old Password</span></div>
+                            <div class="title mb-2"><i class="lni lni-key"></i><span><?php echo $lang['oldPassword']; ?></span></div>
                             <input class="form-control" type="password" name="old">
                         </div>
                         <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-key"></i><span>New Password</span></div>
+                            <div class="title mb-2"><i class="lni lni-key"></i><span><?php echo $lang['newPassword']; ?></span></div>
                             <input class="form-control" type="password" name="new">
                         </div>
                         <div class="mb-3">
-                            <div class="title mb-2"><i class="lni lni-key"></i><span>Repeat New Password</span></div>
+                            <div class="title mb-2"><i class="lni lni-key"></i><span><?php echo $lang['repeatNewPassword']; ?></span></div>
                             <input class="form-control" type="password" name="newRepeat">
                         </div>
-                        <input class="btn btn-danger w-100" type="submit" value="Update Password" name="submit">
+                        <input class="btn btn-danger w-100" type="submit" value="<?php echo $lang['updatePassword']; ?>" name="submit">
                     </form>
                 </div>
             </div>
@@ -150,8 +150,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -168,14 +168,15 @@ require_once("sidenav.php");
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>
 </div>
+
 <?php require_once("footer.php"); ?>
 
 <!-- All JavaScript Files-->

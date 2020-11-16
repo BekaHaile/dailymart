@@ -36,12 +36,12 @@ require_once("includes/validation_functions.php");
 <!-- Order/Payment Success-->
 <div class="order-success-wrapper" style="background: #fff;">
     <div class="content"><i class="lni lni-checkmark-circle" style="color: #187844;"></i>
-        <h5  style="color: #187844;">Payment Done</h5>
+        <h5  style="color: #187844;"><?php echo $lang['paymentDone']; ?></h5>
 
-        <p  style="color: #187844;">We will notify you of all the details via email. Thank you! 
+        <p  style="color: #187844;"><?php echo $lang['weWillNotify']; ?> 
 		<?php echo art_message(); ?></p>
 		<!--<img src="img/dashen.png"/> <br>-->
-		<a class="btn btn-warning mt-3" href="home.php">Buy Again</a>
+		<a class="btn btn-warning mt-3" href="home.php"><?php echo $lang['buyAgain']; ?></a>
     </div>
 </div>
 <!-- All JavaScript Files-->

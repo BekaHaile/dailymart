@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
                 <!-- Register Form-->
                 <div class="register-form mt-5 px-4">
                     <form action="#" method="post">
-                        <div class="form-group text-left mb-4"><span>Mobile Number</span>
+                        <div class="form-group text-left mb-4"><span><?php echo $lang['mobileNumber']; ?></span>
                             <div class="otp-form mt-3 " >
                                 <div class="mb-6 d-flex">
                                     <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;">
@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                             </div>
                         </div>
-                        <input name="submit" class="btn btn-warning w-100" type="submit" value="Reset Password" style="background-color: #a6ce39;border-color: #a6ce39;">
+                        <input name="submit" class="btn btn-warning w-100" type="submit" value="<?php echo $lang['resetPassword']; ?>" style="background-color: #a6ce39;border-color: #a6ce39;">
                     </form>
                 </div>
                 <div class="login-meta-data">

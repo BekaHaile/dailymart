@@ -101,9 +101,9 @@ if(customer_logged_in()){
 
                     <form action="#" method="post">
                         <div class="form-group text-left mb-4">
-						<span style="font-size: 20px;text-align: center;margin-bottom: 25px;">Member Login</span>
+						<span style="font-size: 20px;text-align: center;margin-bottom: 25px;"><?php echo $lang['logIn']; ?></span>
 						
-						<span>Mobile Number</span>
+						<span><?php echo $lang['mobileNumber']; ?></span>
                             <div class="otp-form mt-3 " >
                                 <div class="mb-6 d-flex">
                                     <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;">
@@ -116,32 +116,31 @@ if(customer_logged_in()){
                         </div>
 						
                         <div class="form-group text-left mb-4" style="margin-top: 15px;">
-							<span style="margin-bottom: 10px;">Password</span>
+							<span style="margin-bottom: 10px;"><?php echo $lang['password']; ?></span>
                             <label for="password" style="color:#fff;padding-left: 3px;"><i class="lni lni-lock"></i></label>
                             <input class="form-control" name="password" id="password" type="password" value="<?php if(isset($_COOKIE['password'])) { echo $_COOKIE['password'];}?>"
                                    placeholder="********************" style="border-radius: 8px;margin-top: -30px;">
 							<div>
 								<div style="float: left;">
 									<input type='checkbox' name='remember-me' checked>
-									<label for="remember-me" style="color: #000">Remember Me </label>
+									<label for="remember-me" style="color: #000"><?php echo $lang['rememberMe']; ?> </label>
 								</div>
-								<a class="forgot-password d-block mt-3 mb-1" style="color: #000;text-align: right;" href="forget-password.php">Forgot
-								Password?</a>
+								<a class="forgot-password d-block mt-3 mb-1" style="color: #000;text-align: right;" href="forget-password.php"><?php echo $lang['forgotPassword']; ?></a>
 							</div>
 						</div>
 						
-                        <input class="btn btn-success w-100" name="submit" type="submit" value="Log In" style="background-color: #a6ce39;border-color: #a6ce39;"/>
+                        <input class="btn btn-success w-100" name="submit" type="submit" value="<?php echo $lang['logIn']; ?>" style="background-color: #a6ce39;border-color: #a6ce39;"/>
                     </form>
                 </div>
                 <!-- Login Meta-->
                 <div class="login-meta-data" style="margin-bottom: 50px;">
 				
-                    <p class="mb-0">Didn't have an account?
-					<a class="ml-1 btn btn-success" style="background-color: #a6ce39;border-color: #a6ce39;float: right;" href="register.php">Register Now</a></p>
+                    <p class="mb-0"><?php echo $lang['didntHaveAn']; ?>
+					<a class="ml-1 btn btn-success" style="background-color: #a6ce39;border-color: #a6ce39;float: right;" href="register.php"><?php echo $lang['registerNow']; ?></a></p>
                 </div>
                 <!-- View As Guest-->
                 <div class="view-as-guest mt-3"><a class="btn" href="home.php" 
-					style="font-size: 15px;box-shadow: 0 1px 3px 0px #b2b3b6;">View as Guest</a>
+					style="font-size: 15px;box-shadow: 0 1px 3px 0px #b2b3b6;"><?php echo $lang['viewAsGuest']; ?></a>
 				</div>
             </div>
         </div>

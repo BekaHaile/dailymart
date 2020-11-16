@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
         <div class="back-button"><a href="settings.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Choose Language</h6>
+            <h6 class="mb-0"><?php echo $lang['chooseLanguage']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -85,7 +85,7 @@ require_once("sidenav.php");
                             <div class="check"></div>
                         </li>
                     </ul>
-                    <input class="btn btn-success w-100 p-2" type="submit" name="submit" value="Save" style="margin-top: 50px; margin-left: auto; margin-right: auto;">
+                    <input class="btn btn-success w-100 p-2" type="submit" name="submit" value="<?php echo $lang['save']; ?>" style="margin-top: 50px; margin-left: auto; margin-right: auto;">
                     
                 </div>
             </form>
@@ -99,8 +99,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>	
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -112,14 +112,15 @@ require_once("sidenav.php");
                                               style="background: #ffaf00 !important;margin-left: 45px !important;margin-top: -25px;display: list-item;padding: 1px;z-index: 100;border-radius: 50px;width: 20px;margin-bottom: 15px;">
                                           <?php echo sqlsrv_num_rows($c_cart); ?>
                                     </span>
-                                    <?php }
+                                    <?php
+                                    }
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

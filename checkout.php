@@ -57,7 +57,7 @@ if (isset($_POST["submit"])) {
         <div class="back-button"><a href="cart.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Delivery Option</h6>
+            <h6 class="mb-0"><?php echo $lang['deliveryOption']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -81,7 +81,7 @@ require_once("sidenav.php");
                 <div class="shipping-method-choose mb-3">
                     <div class="card shipping-method-choose-title-card bg-success">
                         <div class="card-body">
-                            <h6 class="text-center mb-0 text-white">How would you like to collect?</h6>
+                            <h6 class="text-center mb-0 text-white"><?php echo $lang['howWouldYou']; ?></h6>
                         </div>
                     </div>
                     <div class="card shipping-method-choose-card">
@@ -100,13 +100,13 @@ require_once("sidenav.php");
                                                         <img src="img/pickup.png">
                                                     </th>
                                                     <td style="padding: 0;color: ##020310;border-bottom-width:0">
-                                                        Collect from shop
+                                                    <?php echo $lang['collectFromShop']; ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 0;border-bottom-width:0">
                                         <span
-                                            style="margin-left: 0">Collect your shopping from your selected location</span>
+                                            style="margin-left: 0"><?php echo $lang['collectYourShopping']; ?> </span>
                                                     </td>
 
                                                 </tr>
@@ -128,13 +128,13 @@ require_once("sidenav.php");
                                                         <img src="img/deliver.png">
                                                     </th>
                                                     <td style="padding: 0;color: ##020310;border-bottom-width:0">
-                                                        Home Delivery
+                                                    <?php echo $lang['homeDelivery']; ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 0;border-bottom-width:0">
                                         <span
-                                            style="margin-left: 0">Your online shopping delivered to your home door.</span>
+                                            style="margin-left: 0"><?php echo $lang['yourOnlineShopping']; ?></span>
                                                     </td>
 
                                                 </tr>
@@ -158,7 +158,7 @@ require_once("sidenav.php");
                     <!--        <div class="card-body">-->
                     <h6 class="text-center mb-0 text-white" id="CDtitle"
                         style="color: #000000 !important;text-align: left !important;">
-                        Select collection date and time</h6>
+                        <?php echo $lang['selectCollectionDate']; ?></h6>
                     <!--        </div>-->
                     <!--    </div>-->
 
@@ -171,7 +171,7 @@ require_once("sidenav.php");
                             <select class="form-control" id="locations" name="locations" required="required"
                                     style="border-radius: 0 0 15px 15px;;border: 3px solid lightgray;"
                                     onchange="enableDateTime(this.value)">
-                                <option disabled selected hidden>Select Delivery Location Area</option>
+                                <option disabled selected hidden><?php echo $lang['selectDeliveryLocation']; ?></option>
                                 <?php
                                 while ($row = sqlsrv_fetch_array($landmark, SQLSRV_FETCH_ASSOC)) {
                                     ?>
@@ -199,7 +199,7 @@ require_once("sidenav.php");
                                                     <!--                                        <img src="img/pickup.png">-->
                                                     <!--                                    </th>-->
                                                     <td style="padding: 0;color: #020310;border-bottom-width:0">
-                                                        Today
+                                                    <?php echo $lang['today']; ?>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -219,7 +219,7 @@ require_once("sidenav.php");
                                                     <!--                                        <img src="img/deliver.png">-->
                                                     <!--                                    </th>-->
                                                     <td style="padding: 0;color: #020310;border-bottom-width:0">
-                                                        Tomorrow
+                                                    <?php echo $lang['tomorrow']; ?>
                                                     </td>
                                                 </tr>
 
@@ -240,7 +240,7 @@ require_once("sidenav.php");
                             <select class="form-control" id="timerange" name="timerange" required="required"
                                     onchange="displayPrice()"
                                     style="border-radius: 0 0 15px 15px;;border: 3px solid lightgray;">
-                                    <option disabled selected hidden>Choose a convenient time</option>
+                                    <option disabled selected hidden><?php echo $lang['chooseConvenientTime']; ?></option>
                                 <?php 
                                     $var2 = strtotime(date('H:00')) + 60*60;
 									$var = date('H:i', $var2);
@@ -265,7 +265,7 @@ require_once("sidenav.php");
                                 <!-- <?php
                                     while ($row = sqlsrv_fetch_array($time_range, SQLSRV_FETCH_ASSOC)) {
                                 ?>
-                                    <option value="">Choose a convenient time</option>
+                                    <option value=""><?php echo $lang['chooseAConvenient']; ?></option>
 
                                 <option value="<?php echo $row['time_range']?>"><?php echo $row['time_range']?></option>
 
@@ -291,7 +291,7 @@ require_once("sidenav.php");
                         <!--                        <h5 class="total-price mb-0">ETB <span class="">-->
                         <?php //echo $_GET["total"] ?><!--</span></h5>-->
                         <button type="button" name="confirm" onclick="checkout()" class="btn btn-warning" style="margin-left: auto; margin-right: auto;">
-                            Book Slot
+                            <?php echo $lang['bookSlot']; ?>
                         </button>
                     </div>
                 </div>
@@ -307,8 +307,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -325,10 +325,10 @@ require_once("sidenav.php");
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

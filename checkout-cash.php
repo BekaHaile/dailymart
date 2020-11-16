@@ -120,7 +120,7 @@ if (isset($_POST["submit"])) {
                     class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Cash - Payment</h6>
+            <h6 class="mb-0"><?php echo $lang['cashPayment']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -141,13 +141,13 @@ require_once("sidenav.php");
             <div class="credit-card-info-wrapper"><img class="d-block mb-4" src="img/bg-img/credit-card.png" alt="">
 
                 <div class="cod-info text-center mb-3">
-                    <p>Pay when you receive your products.</p>
+                    <p><?php echo $lang['payWhenYou']; ?></p>
 					<p class="mb-4">
-                        <strong class="ml-1"><?php echo""; ?>We will call you when we receive your order for confirmation</strong>
+                        <strong class="ml-1"><?php echo""; ?><?php echo $lang['weWillCall']; ?></strong>
                     </p>
                 </div>
                 <form action="" method="post">
-                    <input class="btn btn-warning btn-lg w-100" type="submit" name="submit" value="Order Now">
+                    <input class="btn btn-warning btn-lg w-100" type="submit" name="submit" value="<?php echo $lang['orderNow']; ?>">
                 </form>
             </div>
         </div>
@@ -160,8 +160,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -178,14 +178,16 @@ require_once("sidenav.php");
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>
 </div>
+
+<?php require_once("footer.php"); ?>
 <!-- All JavaScript Files-->
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.min.js"></script>

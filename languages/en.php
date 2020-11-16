@@ -46,12 +46,13 @@
         "yourOnlineShopping" => "Your online shopping delivered to your home door.",
         "selectCollectionDate" => "Select collection date and time",
         "today" => "Today",
-        "tommorow" => "Tommorow",
+        "tomorrow" => "Tomorrow",
         "chooseConvenientTime" => "Choose a convenient time",
         "localTimeRange" => "Local Time Range",
         "location" => "Location",
         "price" => "Price",
         "bookSlot" => "Book Slot",
+        "selectDeliveryLocation" => "Select Delivery Location Area",
 
         //Checkout payment
         "checkoutAndPay" => "Checkout and pay",
@@ -81,11 +82,18 @@
         "cashPayment" => "Cash - Payment",
         "payWhenYou" => "Pay when you recieve your products",
         "orderNow" => "Order Now",
+        "weWillCall" => "We will call you when we receive your order for confirmation",
 
         //checkout bank account
         "bankAccountInfo" => "Bank Account Info",
         "makeYourPayment" => "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.",
         "chooseBank" => "Choose Bank",
+        "nameDailyMart" => "Name = Daily Mart",
+        "nameDailyMini" => "Name = Daily Mini Mart",
+        "account" => "Account",
+        "dashenBank" => "Dashen Bank",
+        "awashBank" => "Awash Bank",
+        "commercialBankOf" => "Commercial Bank Of Ethiopia",
 
         //payment success
         "paymentDone" => "Payment Done",
@@ -96,6 +104,8 @@
         "language" => "Language",
         "password" => "Password",
         "change" => "Change",
+        "chooseLanguage" => "Choose Language",
+        "save" => "Save",
 
         //change password
         "changePassword" => "Change Password",
@@ -139,6 +149,13 @@
         "registerNow" => "Register Now",
         "viewAsGuest" => "VIEW AS GUEST",
         "resetPassword" => "Reset Password",
+        "rememberMe" => "Rmeember Me",
+
+        //register
+        "email" => "email",
+        "confirmPassword" => "Confirm Password",
+        "register" => "Register",
+        "alreadyHaveAn" => "Already have an account",
 
         //catagory
         "browseAll" => "Browse All",
@@ -150,5 +167,12 @@
         //search
         "enterYourKeyword" => "Enter your keyword",
         "close" => "Close",
+
+        //OTP
+        "verifyPhoneNumber" => "Verify Phone Number",
+        "didntReceiveThe" => "Didn't receive the message?",
+        "verifyAndProceed" => "Verify & Proceed",
+        "enterThePin" => "Enter the Pin sent to",
+        "resendOtp" => "Resend OTP",
     );
 ?>

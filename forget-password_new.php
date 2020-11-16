@@ -73,13 +73,13 @@ if (isset($_POST['submit'])) {
                 <!-- Register Form-->
                 <div class="register-form mt-5 px-4">
                     <form action="#" method="post">
-                        <div class="form-group text-left mb-4"><span>New Password</span>
+                        <div class="form-group text-left mb-4"><span><?php echo $lang['newPassword']; ?></span>
                             <label for="password" style="padding-left:2px"><i class="lni lni-lock"></i></label>
                             <input class="input-psswd form-control" name="password" id="registerPassword" required
                                    type="password" style="border-radius:5px"
                                    placeholder="********************">
                         </div>
-                        <input name="submit" class="btn btn-warning w-100" type="submit" value="Reset Password"
+                        <input name="submit" class="btn btn-warning w-100" type="submit" value="<?php echo $lang['resetPassword']; ?>"
 						 style="background-color: #a6ce39;border-color: #a6ce39;">
                     </form>
                 </div>

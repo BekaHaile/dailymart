@@ -46,19 +46,20 @@
         "yourOnlineShopping" => "የመስመር ላይ ግብይትዎ ወደ ቤትዎ በር ደርሷል.",
         "selectCollectionDate" => "የመረከቢያ ቀን እና ሰዓት ይምረጡ",
         "today" => "ዛሬ",
-        "tommorow" => "ነገ",
+        "tomorrow" => "ነገ",
         "chooseConvenientTime" => "አመቺ ጊዜን ይምረጡ",
         "localTimeRange" => "የአከባቢ የጊዜ ክልል",
         "location" => "አካባቢ",
         "price" => "ዋጋ",
         "bookSlot" => "ቦታ ያሲዙ",
+        "selectDeliveryLocation" => "የመላኪያ ሥፍራ አካባቢን ይምረጡ",
 
         //Checkout payment
         "checkoutAndPay" => "ከፋለው ይውጡ",
         "billingInformation" => "የሂሳብ አከፋፈል መረጃ",
         "deliverFromShop" => "አቅርቦት ከሱቃችን",
         "numberOfItem" => "የእቃው ብዛት",
-        "totalAmount" => "አጠቃላይ ድምሩs",
+        "totalAmount" => "አጠቃላይ ድምሩ",
         "orderType" => "የትዕዛዝ ዓይነት",
         "dateTime" => "ቀን ሰዓት",
         "phone" => "ስልክ",
@@ -74,28 +75,37 @@
         "onlinePaymentInfo" => "የመስመር ላይ የክፍያ መረጃ",
         "selectYourBank" => "ባንክዎን ይምረጡ",
         "enterYourAccount" => "የሂሳብ ቁጥርዎን ያስገቡ ",
-        "yourPaymentInfo" => "የክፍያ መረጃዎ በተሳካ ሁኔታ ተሳክቷል",
+        "yourPaymentInfo" => "የክፍያ መረጃዎ በተሳካ ሁኔታ ተከማችቷል",
         "payNow" => "አሁን ይክፈሉ",
 
         //checkout cash
         "cashPayment" => "ጥሬ ገንዘብ - ክፍያ",
         "payWhenYou" => "ምርቶችዎን ሲቀበሉ ይክፈሉ",
         "orderNow" => "አሁን እዘዝ",
+        "weWillCall" => "ለማረጋገጫ ትዕዛዝዎ እንደደረሰን እንጠራዎታለን",
 
         //checkout bank account
         "bankAccountInfo" => "የባንክ ሂሳብ መረጃ",
         "makeYourPayment" => "ክፍያዎን በቀጥታ ወደ የባንክ አካውንታችን ያስገቡ። እባክዎ የትእዛዝ መታወቂያዎን እንደ የክፍያ ማጣቀሻ ይጠቀሙበት። ገንዘቡ በሂሳባችን ውስጥ እስኪያልቅ ድረስ ትዕዛዝዎ አይላክም። ",
         "chooseBank" => "ባንክ ይምረጡ",
+        "nameDailyMart" => "ስም = ዴይሊ ማርት",
+        "nameDailyMini" => "ስም = ዴይሊ ሚኒ ማርት",
+        "account" => "የመለያ ቁጥር",
+        "dashenBank" => "ዳሽን ባንክ",
+        "awashBank" => "አዋሽ ባንክ",
+        "commercialBankOf" => "የኢትዮጵያ ንግድ ባንክ",
 
         //payment success
         "paymentDone" => "ክፍያ ተከናውኗል",
-        "weWillNotify" => "ሁሉንም ዝርዝሮች በኢሜል እናሳውቅዎታለን ፡፡ አመሰግናለሁ!",
+        "weWillNotify" => "ሁሉንም ዝርዝሮች በኢሜል እናሳውቅዎታለን ፡፡ እናመሰግናለን!",
         "buyAgain" => "እንደገና ይግዙ",
 
         //settings
         "language" => "ቋንቋ",
         "password" => "የይለፍ ቃል",
         "change" => "ለውጥ",
+        "chooseLanguage" => "ቋንቋ ይምረጡ",
+        "save" => "አስቀምጥ",
 
         //change password
         "changePassword" => "የሚስጥር ቁልፍ ይቀይሩ",
@@ -139,6 +149,13 @@
         "registerNow" => "አሁን ይመዝገብ",
         "viewAsGuest" => "እንደ እንግዳ ይመልከቱ",
         "resetPassword" => "የይለፍ ቃል ዳግም ያስጀምሩ",
+        "rememberMe" => "Remember Me",
+
+        //register
+        "email" => "ኢሜል",
+        "confirmPassword" => "የይለፍ ቃል አረጋግጥ",
+        "register" => "ይመዝገቡ",
+        "alreadyHaveAn" => "ቀድሞውኑ መለያ አለዎት",
 
         //catagory
         "browseAll" => "ሁሉንም አሳይ",
@@ -150,6 +167,13 @@
         //search
         "enterYourKeyword" => "ቁልፍ ቃልዎን ያስገቡ",
         "close" => "ዝጋ",
+
+        //OTP
+        "verifyPhoneNumber" => "የስልክ ቁጥርዎን ያረጋግጡ",
+        "didntReceiveThe" => "መልዕክቱ አልደረስዎትም?",
+        "verifyAndProceed" => "ያረጋግጡ እና ይቀጥሉ",
+        "enterThePin" => "በዚህ ቁጥር የተላከውን ፒን ያስገቡ",
+        "resendOtp" => "ኦቲፒን እንደገና ይላኩ",
 
     );
 ?>

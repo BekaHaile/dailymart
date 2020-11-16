@@ -139,17 +139,17 @@ if (isset($_POST['submit'])) {
                     </span>
 
                     <form action="#" method="post">
-                        <div class="form-group text-left mb-4"><span>First Name</span>
+                        <div class="form-group text-left mb-4"><span><?php echo $lang['firstName']; ?></span>
                             <label for="fname"><i class="lni lni-user"></i></label>
                             <input class="form-control" name="fname" id="fname"
-                                   type="text" required placeholder="First Name"
+                                   type="text" required placeholder="<?php echo $lang['firstName']; ?>"
                                    value="<?php echo htmlentities($fname); ?>">
                         </div>
 
-                        <div class="form-group text-left mb-4"><span>Second Name</span>
+                        <div class="form-group text-left mb-4"><span><?php echo $lang['secondName']; ?></span>
                             <label for="mname"><i class="lni lni-user"></i></label>
                             <input class="form-control" name="mname" id="mname"
-                                   type="text" required placeholder="Second Name"
+                                   type="text" required placeholder="<?php echo $lang['secondName']; ?>"
                                    value="<?php echo htmlentities($mname); ?>">
                         </div>
 <!--
@@ -177,14 +177,14 @@ if (isset($_POST['submit'])) {
                                    value="<?php echo htmlentities($date_of_birth); ?>">
                         </div> -->
 
-                        <div class="form-group text-left mb-4"><span>Email</span>
+                        <div class="form-group text-left mb-4"><span><?php echo $lang['email']; ?></span>
                             <label for="email"><i class="lni lni-envelope"></i></label>
                             <input class="form-control" name="email" id="email"
                                    type="email" placeholder="help@example.com"
                                    value="<?php echo htmlentities($email); ?>">
                         </div>
 
-                        <div class="form-group text-left mb-4"><span>Mobile Number</span>
+                        <div class="form-group text-left mb-4"><span><?php echo $lang['mobileNumber']; ?></span>
                             <div class="otp-form mt-3 " >
                                 <div class="mb-6 d-flex">
                                     <select class="form-select" name="" aria-label="Default select example" style="height:40px !important;">
@@ -196,14 +196,14 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
 
-                        <div class="form-group text-left mb-4"><span>Password</span>
+                        <div class="form-group text-left mb-4"><span><?php echo $lang['password']; ?></span>
                             <label for="password"><i class="lni lni-lock"></i></label>
                             <input class="input-psswd form-control" name="password" id="registerPassword" required
                                    type="password"
                                    placeholder="********************">
                         </div>
 
-                        <div class="form-group text-left mb-4"><span>Confirm Password</span>
+                        <div class="form-group text-left mb-4"><span><?php echo $lang['confirmPassword']; ?></span>
                             <label for="confirm_password"><i class="lni lni-lock"></i></label>
                             <input class="input-psswd form-control" name="confirm_password" id="confirmPassword"
                                    required type="password"
@@ -224,14 +224,14 @@ if (isset($_POST['submit'])) {
 								   value="<?php echo htmlentities($city); ?>">
                         </div> -->
 
-                        <input class="btn btn-success w-100" name="submit" type="submit" value="Register"
+                        <input class="btn btn-success w-100" name="submit" type="submit" value="<?php echo $lang['register']; ?>"
 						 style="background-color: #a6ce39;border-color: #a6ce39;"/>
                     </form>
                 </div>
                 <!-- Login Meta-->
                 <div class="login-meta-data" style="padding-right: 1.5rem !important;">
-                    <p class="mt-3 mb-0">Already have an account?
-					<a class="ml-1 btn btn-success" href="login.php" style="background-color: #a6ce39;border-color: #a6ce39;float:right">Sign In </a>
+                    <p class="mt-3 mb-0"><?php echo $lang['alreadyHaveAn']; ?>
+					<a class="ml-1 btn btn-success" href="login.php" style="background-color: #a6ce39;border-color: #a6ce39;float:right"><?php echo $lang['logIn']; ?> </a>
 					</p>
                 </div>
             </div>

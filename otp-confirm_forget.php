@@ -92,9 +92,9 @@ if (isset($_POST['submit1'])) {
         <div class="row justify-content-center">
             <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
                 <div class="text-left px-4">
-                    <h5 class="mb-1">Verify Phone Number</h5>
+                    <h5 class="mb-1"><?php echo $lang['verifyPhoneNumber']; ?></h5>
 
-                    <p class="mb-4">Enter the PIN verification code sent to
+                    <p class="mb-4"><?php echo $lang['enterThePin']; ?>
                         <strong class="ml-1"><?php echo $_GET["mobile"]; ?></strong>
                     </p>
                 </div>
@@ -114,10 +114,10 @@ if (isset($_POST['submit1'])) {
                             <input name="otp4" class="form-control inputs" type="text" placeholder="-" maxlength="1">
                         </div>
                         <input class="btn btn-warning w-100" name="submit" type="submit"
-                               value="Verify &amp; Proceed" style="background-color: #a6ce39;border-color: #a6ce39;">
+                               value="<?php echo $lang['verifyAndProceed']; ?>" style="background-color: #a6ce39;border-color: #a6ce39;">
 
                         <div class="login-meta-data px-4">
-                            <p class="mt-3 mb-0">Don't received the message?
+                            <p class="mt-3 mb-0"><?php echo $lang['didntReceiveThe']; ?>
                                 <span class="otp-sec ml-1" id="resendOTP"></span>
                             </p>
                         </div>
@@ -141,7 +141,11 @@ if (isset($_POST['submit1'])) {
 <script src="js/jarallax.min.js"></script>
 <script src="js/jarallax-video.min.js"></script>
 <script src="js/default/dark-mode-switch.js"></script>
+<?php if($_SESSION['lang'] == 'en'){ ?>
 <script src="js/default/otp-timer.js"></script>
+<?php } else { ?>
+<script src="js/default/otp-timerAm.js"></script>
+<?php } ?>
 <script src="js/default/active.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/jquery.js"></script>

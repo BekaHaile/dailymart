@@ -47,7 +47,7 @@ if (isset($_SESSION["customer_id"])) {
         <div class="back-button"><a href="cart.php"><i class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Checkout &amp Pay</h6>
+            <h6 class="mb-0"><?php echo $lang['checkoutAndPay']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -69,7 +69,7 @@ require_once("sidenav.php");
  
             <!-- Choose Payment Method-->
             <div class="choose-payment-method" style="padding-top:50px;">
-                <h6 class="mb-3 text-center">Choose Payment Method</h6>
+                <h6 class="mb-3 text-center"><?php echo $lang['choosePaymentMethod']; ?></h6>
 
                 <div class="row justify-content-center g-3" >
                     <!-- Single Payment Method-->
@@ -78,7 +78,7 @@ require_once("sidenav.php");
                             <a class="credit-card"
                                href="checkout-credit-card.php?type=<?php echo $_GET["type"] . "&CDdate=" . $_GET["CDdate"] . "&CDtime=" . $_GET["CDtime"] . "&location=" . $_GET["location"] . "&shope=" . $_GET["shope"]. "&total=" . $_GET["total"] . "&amount=" . $_GET["amount"]; ?>">
                                 <i class="lni lni-credit-cards"></i>
-                                <h6>Online Banking</h6>
+                                <h6><?php echo $lang['onlineBanking']; ?></h6>
                             </a>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ require_once("sidenav.php");
                             <a class="paypal"
                                href="checkout-cash.php?type=<?php echo $_GET["type"] . "&CDdate=" . $_GET["CDdate"] . "&CDtime=" . $_GET["CDtime"] . "&location=" . $_GET["location"] . "&shope=" . $_GET["shope"]. "&total=" . $_GET["total"] . "&amount=" . $_GET["amount"]; ?>">
                                 <i class="lni lni-revenue"></i>
-                                <h6>Cash on delivery</h6>
+                                <h6><?php echo $lang['cashOnDelivery']; ?></h6>
                             </a>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ require_once("sidenav.php");
                             <a class="bank"
                                href="checkout-bank_account.php?type=<?php echo $_GET["type"] . "&CDdate=" . $_GET["CDdate"] . "&CDtime=" . $_GET["CDtime"] . "&location=" . $_GET["location"] . "&shope=" . $_GET["shope"]. "&total=" . $_GET["total"] . "&amount=" . $_GET["amount"]; ?>">
                                 <i class="lni lni-restaurant"></i>
-                                <h6>Bank Transfer</h6>
+                                <h6><?php echo $lang['bankTransfer']; ?></h6>
                             </a>
                         </div>
                     </div>
@@ -128,8 +128,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -146,10 +146,10 @@ require_once("sidenav.php");
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

@@ -71,6 +71,7 @@ elseif (isset($_POST['TinNumber']) && isset($_POST['UID']) && isset($_POST['bill
 
                         $price = find_price_by_item_id($row["item"]);
                         $discount_per = find_discount_by_item_id($row["item"]);
+                        $item = find_item_by_item_id($row["item"]);
 
                         $value = "";
                         $os = "";
@@ -105,13 +106,14 @@ elseif (isset($_POST['TinNumber']) && isset($_POST['UID']) && isset($_POST['bill
                             </td>
                             <td>
 						     <?php if($os == "Out of stock"){}?>
-                                <a href="single-product.php?id=<?php echo find_item_by_item_id($row["item"])["id"]; ?>"><span style="<?php echo $value; ?>"><?php echo $row["item_description"]; ?></span>
-                                    <span style="color:black"><?php echo $os; ?></span>
-                                </a>
+                                <a href="single-product.php?id=<?php echo find_item_by_item_id($row["item"])["id"]; ?>"><span style="<?php echo $value; ?>"><?php if($_SESSION['lang'] == 'en' || trim($item["title_am"]) == "") { echo $item["title_en"]; }
+                                        else { echo $item["title_am"]; }  ?></span>
+                                    <span><?php echo $lang['etb']; ?>  <?php echo number_format($unit,2) . " * " . $row["qty"].  "<strong style=\"font-size: 9px;text-decoration: none;text-transform: lowercase;color: #81849d\">(".trim($price["uom"]).")</strong>"; ?></span>
+                                        </a>
                             </td>
                             <td>
                                 <a>
-                                    <span>ETB  <?php echo number_format($unit,2) * $row["qty"] ?></span>
+                                    <span><?php echo $lang['etb']; ?>  <?php echo number_format($unit,2) * $row["qty"] ?></span>
                                 </a>
                             </td>
                             <td>
@@ -137,11 +139,11 @@ elseif (isset($_POST['TinNumber']) && isset($_POST['UID']) && isset($_POST['bill
 		<div class="card cart-amount-area add2cart-notification" style="border-radius: 0;margin-left: -1rem;height: 50px;background-color: transparent;">
 
 			<div class="card-body d-flex align-items-center justify-content-between" style="margin: 0.01rem 0.94rem;background: white;">
-				<h5 class="total-price mb-0">ETB <span class="" id="totalAmount"><?php echo number_format($total,2); ?></span>
+				<h5 class="total-price mb-0"><?php echo $lang['etb']; ?> <span class="" id="totalAmount"><?php echo number_format($total,2); ?></span>
 				</h5>
 				<?php if ($total > 0) { ?>
 					<button type="button" id="confirm" onclick="checkoutBtn(<?php echo $orders; ?>,<?php echo $total; ?>)" class="btn btn-warning">
-						Confirm shopping
+                    <?php echo $lang['confirmShopping']; ?>
 					</button>
 				<?php } ?>
 
@@ -172,15 +174,15 @@ elseif (isset($_POST['TinNumber']) && isset($_POST['UID']) && isset($_POST['bill
         <tbody>
         <tr>
             <td style="padding: 0;border-bottom-width:0">
-                <span style="margin-left: 0">Local Time Range</span>
+                <span style="margin-left: 0"><?php echo $lang['localTimeRange']; ?></span>
             </td>
 
             <td style="padding: 0;border-bottom-width:0">
-                <span style="margin-left: 0">Location</span>
+                <span style="margin-left: 0"><?php echo $lang['location']; ?></span>
             </td>
 
             <td style="padding: 0;border-bottom-width:0">
-                <span style="margin-left: 0">Price</span>
+                <span style="margin-left: 0"><?php echo $lang['price']; ?></span>
             </td>
 
         </tr>

@@ -86,7 +86,7 @@ if (isset($_POST["submit"])) {
                     class="lni lni-arrow-left"></i></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-            <h6 class="mb-0">Bank Account Info</h6>
+            <h6 class="mb-0"><?php echo $lang['bankAccountInfo']; ?></h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler">
@@ -107,14 +107,14 @@ require_once("sidenav.php");
             <div class="credit-card-info-wrapper"><img class="d-block mb-4" src="img/bg-img/credit-card.png" alt="">
 
                 <div class="bank-ac-info">
-                    <p>Make your payment directly into one of our bank account below over mobile bank transfer or direct deposit and Please use your Order ID as the payment reference. </p>
+                    <p><?php echo $lang['makeYourPayment']; ?> </p>
 					
                 </div>
                 <form action="" method="post">
                     <div class="shipping-method-choose mb-3">
                         <div class="card shipping-method-choose-title-card bg-success">
                             <div class="card-body">
-                                <h6 class="text-center mb-0 text-white">Choose Bank</h6>
+                                <h6 class="text-center mb-0 text-white"><?php echo $lang['chooseBank']; ?></h6>
                             </div>
                         </div>
 
@@ -132,18 +132,18 @@ require_once("sidenav.php");
                                                             <img src="img/cbe.png">
                                                         </th>
                                                         <td style="padding: 0;color: #1613d2;border-bottom-width:0">
-                                                            Commercial Bank Of Ethiopia
+                                                        <?php echo $lang['commercialBankOf']; ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="padding: 0;border-bottom-width:0">
-                                                            <span style="margin-left: 0">Account = 100008569857</span>
+                                                            <span style="margin-left: 0"><?php echo $lang['account']; ?> = 100008569857</span>
                                                         </td>
 
                                                     </tr>
                                                     <tr>
                                                         <td style="padding: 0;border-bottom-width:0">
-                                                            <span style="margin-left: 0">Name = Daily Mini Mart</span>
+                                                            <span style="margin-left: 0"><?php echo $lang['nameDailyMini']; ?></span>
                                                         </td>
 
                                                     </tr>
@@ -165,18 +165,18 @@ require_once("sidenav.php");
                                                             <img src="img/awash.png">
                                                         </th>
                                                         <td style="padding: 0;color: #1613d2;border-bottom-width:0">
-                                                            Awash Bank
+                                                        <?php echo $lang['awashBank']; ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="padding: 0;border-bottom-width:0">
-                                                            <span style="margin-left: 0">Account = 35214855522555</span>
+                                                            <span style="margin-left: 0"><?php echo $lang['account']; ?> = 35214855522555</span>
                                                         </td>
 
                                                     </tr>
                                                     <tr>
                                                         <td style="padding: 0;border-bottom-width:0">
-                                                            <span style="margin-left: 0">Name = Daily Mart</span>
+                                                            <span style="margin-left: 0"><?php echo $lang['nameDailyMart']; ?></span>
                                                         </td>
 
                                                     </tr>
@@ -197,18 +197,18 @@ require_once("sidenav.php");
                                                             <img src="img/dashen.png">
                                                         </th>
                                                         <td style="padding: 0;color: #1613d2;border-bottom-width:0">
-                                                            Dashen Bank
+                                                        <?php echo $lang['dashenBank']; ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="padding: 0;border-bottom-width:0">
-                                                            <span style="margin-left: 0">Account = 1255588568546</span>
+                                                            <span style="margin-left: 0"><?php echo $lang['account']; ?> = 1255588568546</span>
                                                         </td>
 
                                                     </tr>
                                                     <tr>
                                                         <td style="padding: 0;border-bottom-width:0">
-                                                            <span style="margin-left: 0">Name = Daily Mart</span>
+                                                            <span style="margin-left: 0"><?php echo $lang['nameDailyMart']; ?></span>
                                                         </td>
 
                                                     </tr>
@@ -225,7 +225,7 @@ require_once("sidenav.php");
                         </div>
                     </div>
 
-                    <input class="btn btn-warning btn-lg w-100" name="submit" type="submit" value="Pay Now">
+                    <input class="btn btn-warning btn-lg w-100" name="submit" type="submit" value="<?php echo $lang['payNow']; ?>">
                 </form>
 
             </div>
@@ -239,8 +239,8 @@ require_once("sidenav.php");
     <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
             <ul class="h-100 d-flex align-items-center justify-content-between pl-0">
-                <li class="active"><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i>Search</a></li>
+                <li class="active"><a href="home.php"><i class="fa fa-home"></i><?php echo $lang['home']; ?></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-search"></i><?php echo $lang['search']; ?></a></li>
                 <li><a href="cart.php">
                         <span>
                             <i class="fa fa-shopping-cart">
@@ -257,10 +257,10 @@ require_once("sidenav.php");
                                 } ?>
                             </i>
                         </span>
-                        <span>Cart</span>
+                        <span><?php echo $lang['cart']; ?></span>
                     </a>
                 </li>
-                <li><a href="settings.php"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a href="settings.php"><i class="fa fa-cog"></i><?php echo $lang['settings']; ?></a></li>
             </ul>
         </div>
     </div>

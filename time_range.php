@@ -18,7 +18,7 @@ include("includes/functions.php"); ?>
         <select class="form-control" id="timerange" name="timerange" required="required"
                                     onchange="displayPrice()"
                                     style="border-radius: 0 0 15px 15px;;border: 3px solid lightgray;">
-                                    <option disabled selected hidden>Choose a convenient time</option>
+                                    <option disabled selected hidden><?php echo $lang['chooseConvenientTime']; ?></option>
             <?php
             $hour = strtotime("07:00");
             $hourTime = date('H:i', $hour);
@@ -43,7 +43,7 @@ include("includes/functions.php"); ?>
         <select class="form-control" id="timerange" name="timerange" required="required"
                                     onchange="displayPrice()"
                                     style="border-radius: 0 0 15px 15px;;border: 3px solid lightgray;">
-                                    <option disabled selected hidden>Choose a convenient time</option>
+                                    <option disabled selected hidden><?php echo $lang['chooseConvenientTime']; ?></option>
             <?php 
                 $var2 = strtotime(date('H:00')) + 60*60;
                 $var = date('H:i', $var2);
@@ -71,7 +71,7 @@ include("includes/functions.php"); ?>
         <select class="form-control" id="timerange" name="timerange" required="required"
                                     onchange="displayPrice()"
                                     style="border-radius: 0 0 15px 15px;;border: 3px solid lightgray;">
-                                    <option disabled selected hidden>Choose a convenient time</option>
+                                    <option disabled selected hidden><?php echo $lang['chooseConvenientTime']; ?></option>
             <?php
 
             $count = 1;
@@ -104,7 +104,7 @@ include("includes/functions.php"); ?>
         <select class="form-control" id="timerange" name="timerange" required="required"
                                     onchange="displayPrice()"
                                     style="border-radius: 0 0 15px 15px;;border: 3px solid lightgray;">
-                                    <option disabled selected hidden>Choose a convenient time</option>
+                                    <option disabled selected hidden><?php echo $lang['chooseConvenientTime']; ?></option>
             <?php
         
         while ($row = sqlsrv_fetch_array($time_range, SQLSRV_FETCH_ASSOC)) {
