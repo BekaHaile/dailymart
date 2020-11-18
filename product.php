@@ -111,7 +111,11 @@ require_once("sidenav.php");
                                        href="single-product.php?id=<?php echo $row["id"]; ?>"> <?php } ?>
                                         <img style="border-radius: 0.75rem; " class="mb-2" src="<?php echo "admin/" . $row["image"]; ?>" alt="">
                                     <?php if(isset($price["price"])) { ?> </a> <?php } ?>
-									<?php $check = sqlsrv_num_rows(check_inventory_total_balance($row["item_id"], "1")); ?>
+                                    
+									<?php $check = sqlsrv_num_rows(check_inventory_total_balance($row["item_id"], "1"));
+                                                         if(isset($_SESSION["customer_id"])) {
+                                                         $addedToCart = find_all_cart_by_customer_group($_SESSION["customer_id"], $row['item_id']); }  ?>
+
                                     <?php if(isset($price["price"])) { ?> <a class="product-title d-block text-center" style="font-size:12px; <?php if(!isset($price["price"])) { ?> color: gray;<?php } ?>"
                                        href="single-product.php?id=<?php echo $row["id"]; ?>"><?php } ?> 
                                        <div style="margin-bottom: 0.5rem; font-weight: 700; font-size: 12px;"> <?php if($_SESSION['lang'] == 'en' || trim($row["title_am"]) == ""){ echo $row["title_en"]; } 
@@ -149,7 +153,7 @@ require_once("sidenav.php");
                                                 <div class="col-md-10 text-center">
                                                             <?php if(isset($_SESSION["customer_id"])) { ?>
                                                             <input type="button" name="submit" id="submit"
-                                                                style="padding: 0.375rem 0.5rem;"
+                                                                style="padding: 0.375rem 0.5rem; <?php if(isset($addedToCart)) { ?> background-color: #d89609; border-color: #d89609; <?php } ?>"
                                                                 onclick="addBtn(<?php echo $row["item_id"]; ?>)"
                                                                 class="btn btn-danger" value="<?php echo $lang['add']; ?>" <?php if(!isset($price["price"])) { ?> disabled <?php }?>/>
                                                             <?php }

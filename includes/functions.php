@@ -1209,7 +1209,7 @@ function find_all_cart_by_customer_group($id, $item)
 {
     global $connection;
 
-    $query = "SELECT sum(qty) as qty FROM [dbo].[cart] ";
+    $query = "SELECT sum(CAST(qty as int)) as qty FROM [dbo].[cart] ";
     $query .= "where customer_id = '{$id}' and item = '{$item}' group by item ;";
     $params = array();
     $options = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
